@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<title>About · Ismail Dinia</title>
+<meta name="description" content="I have sat in the founder's chair. The story behind the operating system I now install for early-stage founders.">
+<link rel="canonical" href="https://ismaildinia.com/about.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ismaildinia.com/about.html">
+<meta property="og:title" content="About · Ismail Dinia">
+<meta property="og:description" content="I have sat in the founder's chair. The story behind the operating system I now install for early-stage founders.">
+<meta property="og:image" content="https://ismaildinia.com/images/ismail-1.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="About · Ismail Dinia">
+<meta name="twitter:description" content="I have sat in the founder's chair. The story behind the operating system I now install for early-stage founders.">
+<meta name="twitter:image" content="https://ismaildinia.com/images/ismail-1.jpg">
+
+<style>
+/* ===================================================================== 
+   DESIGN TOKENS — identical to the homepage. Same paper, same navy,
+   same indigo, same card system, everywhere on the site.
+===================================================================== */
+:root{
+  --paper:#F3F3EE;
+  --tint:#EDF0F7;
+  --tint-line:#DCE1EE;
+  --ink:#101014;
+  --accent:#2B2BE6;
+  --accent-light:#7C7CFF;
+  --line:#D9D9CF;
+  --muted:#5C5C66;
+  --navy-1:#0A0E27;
+  --navy-2:#12173A;
+  --navy-3:#0D1230;
+  --glass-paper:rgba(255,255,255,.55);
+  --card-radius:20px;
+  --card-shadow:0 1px 2px rgba(16,16,20,.04), 0 18px 40px -22px rgba(16,16,20,.16);
+  --card-shadow-hover:0 1px 2px rgba(16,16,20,.05), 0 26px 54px -20px rgba(43,43,230,.22);
+  --display:'Archivo',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--paper)}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+html[data-lang="en"] .lang-es{display:none !important}
+html[data-lang="es"] .lang-en{display:none !important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:116px 0;position:relative}
+.section.surface-paper{background:var(--paper)}
+.section.surface-tint{background:var(--tint)}
+.section > .wrap{position:relative;z-index:1}
+.section.surface-paper::before,.section.surface-tint::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(760px 340px at 12% 0%, rgba(43,43,230,.05), transparent 60%),
+             radial-gradient(680px 320px at 100% 100%, rgba(124,124,255,.05), transparent 60%);
+}
+.section.surface-tint::before{
+  background:radial-gradient(820px 380px at 88% 0%, rgba(43,43,230,.07), transparent 60%),
+             radial-gradient(700px 340px at 4% 100%, rgba(10,14,39,.04), transparent 60%);
+}
+.display{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:720;line-height:1.02;letter-spacing:-.015em;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:rgba(16,16,20,.045);border:1px solid rgba(16,16,20,.09);backdrop-filter:blur(6px);border-radius:100px;padding:9px 18px;margin-bottom:26px}
+.section.surface-tint .eyebrow{background:rgba(43,43,230,.06);border-color:rgba(43,43,230,.16)}
+.section-intro{max-width:56ch;font-size:17px;line-height:1.6;color:var(--muted);margin-bottom:44px}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,243,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .3s ease,border-color .3s ease}
+.nav-inner{max-width:1240px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;text-transform:uppercase;letter-spacing:.02em;font-size:15px;text-decoration:none;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;border:1px solid var(--ink);font-family:var(--mono);font-size:12px}
+.lang-toggle button{background:none;border:none;padding:7px 12px;font:inherit;cursor:pointer;color:var(--ink)}
+.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.hamburger{display:none;background:none;border:1px solid var(--ink);padding:9px 12px;cursor:pointer;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+body.page-dark .nav:not(.scrolled){background:transparent;border-bottom-color:transparent;backdrop-filter:none}
+body.page-dark .nav:not(.scrolled) .brand{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a{color:rgba(243,243,238,.62)}
+body.page-dark .nav:not(.scrolled) .nav-links a:hover{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--accent-light)}
+body.page-dark .nav:not(.scrolled) .lang-toggle{border-color:rgba(243,243,238,.35)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button{color:rgba(243,243,238,.8)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button[aria-pressed="true"]{background:rgba(243,243,238,.15);color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-cta{background:var(--accent);border-color:var(--accent);color:#fff}
+body.page-dark .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);color:var(--paper)}
+@media (max-width:1080px){
+  .nav-links{position:fixed;top:61px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:20px 28px;gap:16px;display:none}
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .nav-cta{display:none}
+  body.page-dark .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
+  body.page-dark .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
+}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);box-shadow:0 14px 32px -10px rgba(43,43,230,.45);transform:translateY(-2px)}
+.btn.ghost{background:none;color:var(--paper);border-color:rgba(243,243,238,.4)}
+.btn.ghost:hover{background:rgba(255,255,255,.1);color:var(--paper);border-color:var(--paper)}
+.text-link{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .2s}
+.text-link:hover{opacity:.6}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* Sub-hero — same navy gradient as the homepage hero, sized for an interior page */
+.sub-hero{position:relative;overflow:hidden;color:var(--paper);padding:172px 0 120px;background:radial-gradient(1100px 600px at 82% -8%, rgba(43,43,230,.35), transparent 60%),radial-gradient(900px 500px at -10% 100%, rgba(124,124,255,.18), transparent 55%),linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
+.sub-hero .wrap{position:relative;z-index:2}
+.sub-hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:48px;align-items:center}
+.sub-hero .dbadge{display:inline-flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:100px;padding:9px 20px;margin-bottom:28px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(243,243,238,.78)}
+.sub-hero h1{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:720;letter-spacing:-.015em;line-height:1.08;font-size:clamp(2rem,4.2vw,3.2rem)}
+.sub-hero h1 .accent{color:var(--accent-light)}
+.sub-hero-sub{margin-top:24px;font-size:18px;line-height:1.62;color:rgba(243,243,238,.68);max-width:52ch}
+@keyframes dHeroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sub-hero .dbadge,.sub-hero h1,.sub-hero-sub{opacity:0;animation:dHeroIn .8s cubic-bezier(.22,.8,.3,1) forwards}
+.sub-hero .dbadge{animation-delay:.05s}
+.sub-hero h1{animation-delay:.16s}
+.sub-hero-sub{animation-delay:.3s}
+@media (max-width:640px){.sub-hero{padding:150px 0 72px}.sub-hero-sub{font-size:16px}}
+@media (prefers-reduced-motion:reduce){.sub-hero .dbadge,.sub-hero h1,.sub-hero-sub{animation:none;opacity:1}}
+
+/* Photo bubble — drop images/ismail-1.jpg in /images/ next to the HTML and it
+   appears here automatically. Until a file exists, the bubble shows initials. */
+.photo-bubble{position:absolute;border-radius:50%;overflow:hidden;background:linear-gradient(160deg, rgba(124,124,255,.35), rgba(43,43,230,.18));border:3px solid rgba(255,255,255,.22);box-shadow:0 16px 34px -14px rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center}
+.photo-bubble img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-bubble .pb-fallback{display:none;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:rgba(243,243,238,.6)}
+.photo-bubble.img-missing img{display:none}
+.photo-bubble.img-missing .pb-fallback{display:block}
+@keyframes bubbleFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+.sub-hero-visual{position:relative;height:280px;opacity:0;animation:dHeroIn 1s .3s cubic-bezier(.22,.8,.3,1) forwards}
+.photo-bubble.pb-main{width:230px;height:230px;top:8%;right:10%;animation:bubbleFloat 7s ease-in-out infinite}
+@media (max-width:980px){
+  .sub-hero-grid{grid-template-columns:1fr}
+  .sub-hero-visual{height:auto;display:flex;justify-content:center;margin-top:16px}
+  .photo-bubble{position:static !important;animation:none !important}
+  .photo-bubble.pb-main{width:170px;height:170px}
+}
+@media (prefers-reduced-motion:reduce){.sub-hero-visual{animation:none;opacity:1}.photo-bubble{animation:none !important}}
+
+/* Story — portrait beside the three acts */
+.about-intro{display:grid;grid-template-columns:320px 1fr;gap:48px;align-items:start}
+.photo-slot{aspect-ratio:4/5;border-radius:var(--card-radius);border:1px dashed rgba(16,16,20,.25);background:repeating-linear-gradient(45deg,transparent,transparent 12px,rgba(16,16,20,.045) 12px,rgba(16,16,20,.045) 13px);display:flex;align-items:center;justify-content:center;text-align:center;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);overflow:hidden}
+.photo-slot .ps-empty{padding:24px}
+.photo-slot img{width:100%;height:100%;object-fit:cover;border-radius:var(--card-radius)}
+.story{display:grid;grid-template-columns:90px 1fr;gap:24px;padding:32px 0;border-top:1px solid var(--tint-line)}
+.story:first-child{border-top:none;padding-top:0}
+.story .act{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:800;font-size:13px;text-transform:uppercase;color:var(--accent)}
+.story h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:clamp(1.15rem,2vw,1.5rem);margin-bottom:12px}
+.story p{color:var(--muted);max-width:640px;font-size:15.5px;line-height:1.65}
+.story p + p{margin-top:12px}
+@media (max-width:980px){.about-intro{grid-template-columns:1fr}.photo-slot{max-width:320px}}
+@media (max-width:640px){.story{grid-template-columns:1fr;gap:8px}}
+
+/* Manifesto quote */
+.manifesto p{font-family:var(--display);font-variation-settings:'wdth' 105;font-weight:700;font-size:clamp(1.15rem,2vw,1.7rem);line-height:1.42;letter-spacing:-.005em;max-width:64ch;text-transform:none}
+.manifesto .dim{color:var(--muted)}
+.manifesto .mark{color:var(--accent)}
+
+/* Rhythm — the weekly cadence, styled as one continuous card */
+.rhythm{background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);overflow:hidden}
+.section.surface-tint .rhythm{background:var(--tint)}
+.rhythm-row{display:grid;grid-template-columns:150px 1fr;border-top:1px solid var(--tint-line)}
+.rhythm-row:first-child{border-top:none}
+.rhythm-row .k{padding:22px 24px;font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);border-right:1px solid var(--tint-line)}
+.rhythm-row .v{padding:22px 24px;color:var(--muted);font-size:15px;line-height:1.62}
+@media (max-width:640px){.rhythm-row{grid-template-columns:1fr}.rhythm-row .k{border-right:none;border-bottom:1px solid var(--tint-line);padding-bottom:10px}}
+
+/* Principles — 6 cards, same treatment as the homepage's gain cards */
+.principles{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.principle{padding:30px 28px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
+.principle:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
+.section.surface-tint .principle{background:var(--tint)}
+.principle .p-mark{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(43,43,230,.08);color:var(--accent);font-family:var(--mono);font-size:14px;margin-bottom:20px}
+.principle h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:15.5px;margin-bottom:12px}
+.principle p{color:var(--muted);font-size:14px;line-height:1.6}
+@media (max-width:820px){.principles{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.principles{grid-template-columns:1fr}}
+
+/* CTA band */
+.cta-band{position:relative;overflow:hidden;padding:118px 0;color:var(--paper);background:radial-gradient(900px 500px at 15% 0%, rgba(124,124,255,.22), transparent 60%),radial-gradient(800px 460px at 100% 100%, rgba(43,43,230,.28), transparent 55%),linear-gradient(160deg, var(--navy-2) 0%, var(--navy-1) 100%)}
+.cta-band .wrap{position:relative;z-index:1;text-align:center}
+.cta-band h2{font-size:clamp(1.5rem,3.2vw,2.4rem);margin-bottom:20px}
+.cta-band p{color:#B9B9C2;max-width:50ch;font-size:17px;line-height:1.6;margin:0 auto 34px}
+.cta-band .btn{font-size:13px;padding:17px 32px;letter-spacing:.1em;background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.cta-band .btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.cta-band .btn.ghost{background:none;color:var(--paper);border-color:rgba(243,243,238,.5)}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+@media (max-width:640px){.cta-band{padding:76px 0}.cta-band .btn{padding:15px 26px}}
+
+/* Footer */
+footer{padding:34px 0;background:var(--navy-1);border-top:1px solid rgba(255,255,255,.1);color:rgba(243,243,238,.55);font-family:var(--mono);font-size:12px}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-links a{color:rgba(243,243,238,.75);letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.foot-links a:hover{color:var(--paper)}
+.foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:rgba(243,243,238,.7)}
+footer a:hover{color:var(--paper)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.stagger.in > *{opacity:1;transform:none}
+.stagger.in > *:nth-child(1){transition-delay:.05s}
+.stagger.in > *:nth-child(2){transition-delay:.15s}
+.stagger.in > *:nth-child(3){transition-delay:.25s}
+.stagger.in > *:nth-child(4){transition-delay:.35s}
+.stagger.in > *:nth-child(5){transition-delay:.45s}
+.stagger.in > *:nth-child(6){transition-delay:.55s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger > *{opacity:1;transform:none;transition:none}}
+
+@media (max-width:640px){.wrap{padding:0 22px}.section{padding:72px 0}}
+</style>
+</head>
+<body class="page-dark">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Ismail Dinia</a>
+    <ul class="nav-links" id="nav-links">
+<li><a href="index.html"><span class="lang-en">Home</span><span class="lang-es">Inicio</span></a></li>
+<li><a href="about.html" aria-current="page"><span class="lang-en">About</span><span class="lang-es">Sobre mí</span></a></li>
+<li><a href="case-studies.html"><span class="lang-en">Case Studies</span><span class="lang-es">Casos</span></a></li>
+<li><a href="resources.html"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></a></li>
+<li><a href="work-with-me.html"><span class="lang-en">Work With Me</span><span class="lang-es">Trabaja Conmigo</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" aria-pressed="true">EN</button>
+        <button id="btn-es" aria-pressed="false">ES</button>
+      </div>
+      <a class="btn nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="wrap">
+    <div class="sub-hero-grid">
+      <div>
+        <div class="dbadge"><span class="lang-en">About</span><span class="lang-es">Sobre mí</span></div>
+        <h1><span class="lang-en">I've sat in the <span class="accent">founder's chair.</span></span><span class="lang-es">He estado en la <span class="accent">silla del fundador.</span></span></h1>
+        <p class="sub-hero-sub">
+          <span class="lang-en">Everything I bring to a startup was earned building one. The strategy, the systems, and the calm come from the same place: having carried a company myself.</span>
+          <span class="lang-es">Todo lo que aporto a una startup lo aprendí construyendo una. La estrategia, los sistemas y la calma vienen del mismo sitio: haber llevado una empresa yo mismo.</span>
+        </p>
+      </div>
+      <div class="sub-hero-visual" aria-hidden="true">
+        <div class="photo-bubble pb-main">
+          <img src="images/ismail-1.jpg" alt="Ismail Dinia" onerror="this.closest('.photo-bubble').classList.add('img-missing')">
+          <span class="pb-fallback">ID</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section surface-paper">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">The story</span><span class="lang-es">La historia</span></p>
+    <div class="about-intro">
+      <div class="photo-slot">
+        <img src="images/ismail-story.jpg" alt="Ismail Dinia, Hosstinn era" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <span class="ps-empty" style="display:none;width:100%;height:100%;align-items:center;justify-content:center"><span class="lang-en">Founder photo — Hosstinn era. Drop images/ismail-story.jpg in and I'll show it here.</span><span class="lang-es">Foto de fundador — época Hosstinn. Coloca images/ismail-story.jpg aquí y aparecerá.</span></span>
+      </div>
+      <div>
+        <div class="story">
+          <span class="act"><span class="lang-en">Act I</span><span class="lang-es">Acto I</span></span>
+          <div>
+            <h3><span class="lang-en">I built it</span><span class="lang-es">Lo construí</span></h3>
+            <p class="lang-en">I co-founded Hosstinn, an AI SaaS platform, and led it as CEO and CPO. From an idea with no product, no team, and no process, to a live platform: 1,500+ active users, 80%+ retention, 6x engagement growth, €200K raised, and two industry awards.</p>
+            <p class="lang-es">Cofundé Hosstinn, una plataforma SaaS con IA, y la lideré como CEO y CPO. De una idea sin producto, sin equipo y sin procesos, a una plataforma en producción: más de 1.500 usuarios activos, retención superior al 80%, crecimiento de engagement 6x, 200K euros levantados y dos premios del sector.</p>
+          </div>
+        </div>
+        <div class="story">
+          <span class="act"><span class="lang-en">Act II</span><span class="lang-es">Acto II</span></span>
+          <div>
+            <h3><span class="lang-en">I learned what actually works</span><span class="lang-es">Aprendí lo que funciona de verdad</span></h3>
+            <p class="lang-en">What carried us was never heroics. It was clarity about what mattered, decisions written down the day they were made, and a weekly rhythm the whole team could trust.</p>
+            <p class="lang-en">So I turned everything that worked into a system: diagnostic frameworks, prioritization lenses, a decision log, an operating rhythm. Written down, repeatable, and independent of any one person.</p>
+            <p class="lang-es">Lo que nos sostuvo nunca fueron las heroicidades. Fue la claridad sobre lo que importaba, las decisiones escritas el mismo día que se tomaban y un ritmo semanal en el que todo el equipo podía confiar.</p>
+            <p class="lang-es">Así que convertí todo lo que funcionó en un sistema: frameworks de diagnóstico, lentes de priorización, un registro de decisiones, un ritmo operativo. Escrito, repetible e independiente de cualquier persona.</p>
+          </div>
+        </div>
+        <div class="story">
+          <span class="act"><span class="lang-en">Act III</span><span class="lang-es">Acto III</span></span>
+          <div>
+            <h3><span class="lang-en">Now I install it for founders</span><span class="lang-es">Ahora lo instalo para fundadores</span></h3>
+            <p class="lang-en">Today I work with a small number of early-stage startups as a fractional product lead. I bring the strategy, the prioritization, and the execution system, then make them stick without me.</p>
+            <p class="lang-es">Hoy trabajo con un número reducido de startups early-stage como líder de producto fraccional. Aporto la estrategia, la priorización y el sistema de ejecución, y luego hago que perduren sin mí.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-tint">
+  <div class="wrap reveal manifesto">
+    <p class="eyebrow"><span class="lang-en">Why founder experience matters</span><span class="lang-es">Por qué importa la experiencia como fundador</span></p>
+    <p class="lang-en"><span class="dim">Advisors give opinions from the sidelines.</span> I have killed features I loved, made calls with runway on the line, and shipped with a deadline breathing down my neck. <span class="mark">That is why I can take real ownership in your company, not just leave recommendations behind.</span></p>
+    <p class="lang-es"><span class="dim">Los asesores dan opiniones desde la barrera.</span> He eliminado funcionalidades que me encantaban, he tomado decisiones con el runway en juego y he entregado con la fecha límite respirándome en la nuca. <span class="mark">Por eso puedo asumir responsabilidad real en tu empresa, no solo dejar recomendaciones.</span></p>
+  </div>
+</section>
+
+<section class="section surface-paper" id="how-i-work">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">How I work</span><span class="lang-es">Cómo trabajo</span></p>
+    <p class="section-intro">
+      <span class="lang-en">Calm, written, and structured by default. This is the weekly rhythm every engagement runs on.</span>
+      <span class="lang-es">Con calma, por escrito y con estructura por defecto. Este es el ritmo semanal de cada colaboración.</span>
+    </p>
+    <div class="rhythm">
+      <div class="rhythm-row">
+        <div class="k"><span class="lang-en">Monday</span><span class="lang-es">Lunes</span></div>
+        <div class="v"><span class="lang-en">Sprint planning. Commit to a small set of outcomes, not a wish list of tasks. Confirm owners.</span><span class="lang-es">Planificación del sprint. Compromiso con un conjunto reducido de resultados, no una lista de deseos. Confirmar responsables.</span></div>
+      </div>
+      <div class="rhythm-row">
+        <div class="k"><span class="lang-en">Mid-week</span><span class="lang-es">Mitad de semana</span></div>
+        <div class="v"><span class="lang-en">Async check-in. Blockers surface early, in writing, without waiting for the next meeting.</span><span class="lang-es">Check-in asíncrono. Los bloqueos afloran pronto, por escrito, sin esperar a la próxima reunión.</span></div>
+      </div>
+      <div class="rhythm-row">
+        <div class="k"><span class="lang-en">Friday</span><span class="lang-es">Viernes</span></div>
+        <div class="v"><span class="lang-en">Sprint review and a written update the founder can scan in 60 seconds: shipped, in progress, blocked, next, decisions needed.</span><span class="lang-es">Revisión del sprint y un update escrito que el fundador puede leer en 60 segundos: entregado, en curso, bloqueado, siguiente, decisiones pendientes.</span></div>
+      </div>
+      <div class="rhythm-row">
+        <div class="k"><span class="lang-en">Every day</span><span class="lang-es">Cada día</span></div>
+        <div class="v"><span class="lang-en">Decisions logged the day they are made. One source of truth for roadmap, decisions, blockers, and KPIs.</span><span class="lang-es">Decisiones registradas el mismo día que se toman. Una única fuente de verdad para roadmap, decisiones, bloqueos y KPIs.</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-tint">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">My principles</span><span class="lang-es">Mis principios</span></p>
+    <p class="section-intro">
+      <span class="lang-en">A CV says what someone has done. Principles say how they will behave the next time something is on fire.</span>
+      <span class="lang-es">Un CV dice lo que alguien ha hecho. Los principios dicen cómo se comportará la próxima vez que algo esté en llamas.</span>
+    </p>
+    <div class="principles stagger">
+      <div class="principle">
+        <span class="p-mark">01</span>
+        <h3><span class="lang-en">Clarity over complexity</span><span class="lang-es">Claridad sobre complejidad</span></h3>
+        <p class="lang-en">If I can't explain the plan in plain language, it isn't finished. One roadmap, one owner, one source of truth.</p>
+        <p class="lang-es">Si no puedo explicar el plan en lenguaje sencillo, no está terminado. Un roadmap, un responsable, una fuente de verdad.</p>
+      </div>
+      <div class="principle">
+        <span class="p-mark">02</span>
+        <h3><span class="lang-en">Speed with structure</span><span class="lang-es">Velocidad con estructura</span></h3>
+        <p class="lang-en">Fast and chaotic burns out. Slow and careful misses the window. The aim is velocity that compounds.</p>
+        <p class="lang-es">Rápido y caótico agota. Lento y cuidadoso pierde la ventana. El objetivo es una velocidad que se acumula.</p>
+      </div>
+      <div class="principle">
+        <span class="p-mark">03</span>
+        <h3><span class="lang-en">Async-first communication</span><span class="lang-es">Comunicación asíncrona primero</span></h3>
+        <p class="lang-en">Default to writing. It scales, it's searchable, and it forces clarity. Meetings are for real decisions.</p>
+        <p class="lang-es">Por defecto, por escrito. Escala, se puede buscar y obliga a la claridad. Las reuniones son para decisiones reales.</p>
+      </div>
+      <div class="principle">
+        <span class="p-mark">04</span>
+        <h3><span class="lang-en">Documentation over memory</span><span class="lang-es">Documentación sobre memoria</span></h3>
+        <p class="lang-en">Memory is not a system of record. If something important only exists in someone's head, the company is renting it.</p>
+        <p class="lang-es">La memoria no es un sistema de registro. Si algo importante solo existe en la cabeza de alguien, la empresa lo tiene alquilado.</p>
+      </div>
+      <div class="principle">
+        <span class="p-mark">05</span>
+        <h3><span class="lang-en">Execution over meetings</span><span class="lang-es">Ejecución sobre reuniones</span></h3>
+        <p class="lang-en">The measure of a week is what shipped, not how many syncs happened. Meetings enable execution, never substitute for it.</p>
+        <p class="lang-es">La medida de una semana es lo que se entregó, no cuántas reuniones hubo. Las reuniones habilitan la ejecución, nunca la sustituyen.</p>
+      </div>
+      <div class="principle">
+        <span class="p-mark">06</span>
+        <h3><span class="lang-en">Systems over heroics</span><span class="lang-es">Sistemas sobre heroicidades</span></h3>
+        <p class="lang-en">A system that prevents the fire is worth more than the person who puts it out. Success is measured by what keeps working after I'm gone.</p>
+        <p class="lang-es">Un sistema que previene el fuego vale más que la persona que lo apaga. El éxito se mide por lo que sigue funcionando cuando ya no estoy.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2 class="display"><span class="lang-en">Ready to build with more clarity?</span><span class="lang-es">¿Listo para construir con más claridad?</span></h2>
+    <p><span class="lang-en">I work with a small number of startups at a time. If the fit is right, let's talk.</span><span class="lang-es">Trabajo con un número reducido de startups a la vez. Si el encaje es el adecuado, hablemos.</span></p>
+    <div class="cta-actions">
+      <a class="btn" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+      <a class="btn ghost" href="work-with-me.html#inquiry"><span class="lang-en">Send an inquiry</span><span class="lang-es">Envía una consulta</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/ismail-dinia-pmp/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:hello@ismaildinia.com"><span class="lang-en">Email</span><span class="lang-es">Correo</span></a>
+      <a href="resources.html#newsletter"><span class="lang-en">Newsletter</span><span class="lang-es">Boletín</span></a>
+    </div>
+    <div class="foot-inner">
+      <span>© <span id="year"></span> Ismail Dinia</span>
+      <span><span class="lang-en">Product &amp; Execution Lead</span><span class="lang-es">Líder de Producto y Ejecución</span></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+var BOOKING_URL = "https://calendar.app.google/v88QGjvPbbctwXkm9";
+function rewriteLinks(lang){
+  document.querySelectorAll("a[href]").forEach(function(a){
+    var href = a.getAttribute("href");
+    if (!href || href.indexOf("http") === 0 || href.indexOf("mailto:") === 0 || href.charAt(0) === "#") return;
+    var base = href.split("?")[0];
+    var hash = "";
+    if (base.indexOf("#") > -1){ hash = base.substring(base.indexOf("#")); base = base.substring(0, base.indexOf("#")); }
+    if (href.indexOf("#") > -1 && href.indexOf("?") === -1 && hash === ""){ hash = href.substring(href.indexOf("#")); }
+    a.setAttribute("href", base + "?lang=" + lang + hash);
+  });
+}
+function setLang(lang){
+  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.setAttribute("lang", lang);
+  var be = document.getElementById("btn-en"), bs = document.getElementById("btn-es");
+  if (be) be.setAttribute("aria-pressed", lang === "en");
+  if (bs) bs.setAttribute("aria-pressed", lang === "es");
+  rewriteLinks(lang);
+}
+var params = new URLSearchParams(window.location.search);
+var initial = params.get("lang");
+if (initial !== "en" && initial !== "es"){
+  initial = (navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+}
+setLang(initial);
+var btnEn = document.getElementById("btn-en");
+var btnEs = document.getElementById("btn-es");
+if (btnEn) btnEn.addEventListener("click", function(){ setLang("en"); });
+if (btnEs) btnEs.addEventListener("click", function(){ setLang("es"); });
+document.querySelectorAll("[data-booking]").forEach(function(el){
+  if (BOOKING_URL){
+    el.setAttribute("href", BOOKING_URL);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  } else {
+    el.setAttribute("href", el.getAttribute("data-booking-fallback") || "work-with-me.html#inquiry");
+  }
+});
+var navBar = document.querySelector(".nav");
+var subHero = document.querySelector(".sub-hero");
+if (navBar && subHero){
+  var onHeroScroll = function(){
+    var threshold = subHero.offsetHeight - navBar.offsetHeight - 40;
+    if (window.scrollY > threshold){ navBar.classList.add("scrolled"); }
+    else { navBar.classList.remove("scrolled"); }
+  };
+  window.addEventListener("scroll", onHeroScroll, { passive: true });
+  onHeroScroll();
+}
+var burger = document.getElementById("hamburger");
+if (burger){
+  burger.addEventListener("click", function(){
+    var links = document.getElementById("nav-links");
+    var open = links.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+}
+var yr = document.getElementById("year");
+if (yr) yr.textContent = new Date().getFullYear();
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal, .stagger").forEach(function(el){ io.observe(el); });
+</script>
+</body>
+</html>

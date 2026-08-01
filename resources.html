@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<!-- RESOURCES PAGE -->
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<title>Resources · Ismail Dinia</title>
+<meta name="description" content="Frameworks and templates I actually use with clients: diagnostics, decision logs, alignment notes, and KPI guides for early-stage founders.">
+<link rel="canonical" href="https://ismaildinia.com/resources.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://ismaildinia.com/resources.html">
+<meta property="og:title" content="Resources · Ismail Dinia">
+<meta property="og:description" content="Frameworks and templates I actually use with clients: diagnostics, decision logs, alignment notes, and KPI guides for early-stage founders.">
+<meta property="og:image" content="https://ismaildinia.com/images/ismail-1.jpg">
+<meta property="og:locale" content="en_US">
+<meta property="og:locale:alternate" content="es_ES">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Resources · Ismail Dinia">
+<meta name="twitter:description" content="Frameworks and templates I actually use with clients: diagnostics, decision logs, alignment notes, and KPI guides for early-stage founders.">
+<meta name="twitter:image" content="https://ismaildinia.com/images/ismail-1.jpg">
+
+<style>
+/* =====================================================================
+   DESIGN TOKENS — identical to the homepage, About, and Case Studies.
+===================================================================== */
+:root{
+  --paper:#F3F3EE;
+  --tint:#EDF0F7;
+  --tint-line:#DCE1EE;
+  --ink:#101014;
+  --accent:#2B2BE6;
+  --accent-light:#7C7CFF;
+  --line:#D9D9CF;
+  --muted:#5C5C66;
+  --navy-1:#0A0E27;
+  --navy-2:#12173A;
+  --navy-3:#0D1230;
+  --glass-paper:rgba(255,255,255,.55);
+  --card-radius:20px;
+  --card-shadow:0 1px 2px rgba(16,16,20,.04), 0 18px 40px -22px rgba(16,16,20,.16);
+  --card-shadow-hover:0 1px 2px rgba(16,16,20,.05), 0 26px 54px -20px rgba(43,43,230,.22);
+  --display:'Archivo',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--paper)}
+a{color:inherit}
+img{max-width:100%}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+html[data-lang="en"] .lang-es{display:none !important}
+html[data-lang="es"] .lang-en{display:none !important}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:116px 0;position:relative}
+.section.surface-paper{background:var(--paper)}
+.section.surface-tint{background:var(--tint)}
+.section > .wrap{position:relative;z-index:1}
+.section.surface-paper::before,.section.surface-tint::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(760px 340px at 12% 0%, rgba(43,43,230,.05), transparent 60%),
+             radial-gradient(680px 320px at 100% 100%, rgba(124,124,255,.05), transparent 60%);
+}
+.section.surface-tint::before{
+  background:radial-gradient(820px 380px at 88% 0%, rgba(43,43,230,.07), transparent 60%),
+             radial-gradient(700px 340px at 4% 100%, rgba(10,14,39,.04), transparent 60%);
+}
+.display{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:720;line-height:1.02;letter-spacing:-.015em;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:rgba(16,16,20,.045);border:1px solid rgba(16,16,20,.09);backdrop-filter:blur(6px);border-radius:100px;padding:9px 18px;margin-bottom:26px}
+.section.surface-tint .eyebrow{background:rgba(43,43,230,.06);border-color:rgba(43,43,230,.16)}
+.section-intro{max-width:56ch;font-size:17px;line-height:1.6;color:var(--muted);margin-bottom:44px}
+
+/* Nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,243,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .3s ease,border-color .3s ease}
+.nav-inner{max-width:1240px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;text-transform:uppercase;letter-spacing:.02em;font-size:15px;text-decoration:none;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;border:1px solid var(--ink);font-family:var(--mono);font-size:12px}
+.lang-toggle button{background:none;border:none;padding:7px 12px;font:inherit;cursor:pointer;color:var(--ink)}
+.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.hamburger{display:none;background:none;border:1px solid var(--ink);padding:9px 12px;cursor:pointer;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+body.page-dark .nav:not(.scrolled){background:transparent;border-bottom-color:transparent;backdrop-filter:none}
+body.page-dark .nav:not(.scrolled) .brand{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a{color:rgba(243,243,238,.62)}
+body.page-dark .nav:not(.scrolled) .nav-links a:hover{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--accent-light)}
+body.page-dark .nav:not(.scrolled) .lang-toggle{border-color:rgba(243,243,238,.35)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button{color:rgba(243,243,238,.8)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button[aria-pressed="true"]{background:rgba(243,243,238,.15);color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-cta{background:var(--accent);border-color:var(--accent);color:#fff}
+body.page-dark .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);color:var(--paper)}
+@media (max-width:1080px){
+  .nav-links{position:fixed;top:61px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:20px 28px;gap:16px;display:none}
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .nav-cta{display:none}
+  body.page-dark .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
+  body.page-dark .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
+}
+
+/* Buttons */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);box-shadow:0 14px 32px -10px rgba(43,43,230,.45);transform:translateY(-2px)}
+.btn.ghost{background:none;color:var(--paper);border-color:rgba(243,243,238,.4)}
+.btn.ghost:hover{background:rgba(255,255,255,.1);color:var(--paper);border-color:var(--paper)}
+.btn.small{padding:10px 18px;font-size:11px}
+.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none !important}
+.text-link{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .2s}
+.text-link:hover{opacity:.6}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* Sub-hero */
+.sub-hero{position:relative;overflow:hidden;color:var(--paper);padding:172px 0 96px;background:radial-gradient(1100px 600px at 82% -8%, rgba(43,43,230,.35), transparent 60%),radial-gradient(900px 500px at -10% 100%, rgba(124,124,255,.18), transparent 55%),linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
+.sub-hero .wrap{position:relative;z-index:2;max-width:760px}
+.sub-hero .dbadge{display:inline-flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:100px;padding:9px 20px;margin-bottom:28px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(243,243,238,.78)}
+.sub-hero h1{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:720;letter-spacing:-.015em;line-height:1.08;font-size:clamp(2rem,4.2vw,3.2rem)}
+.sub-hero h1 .accent{color:var(--accent-light)}
+.sub-hero-sub{margin-top:24px;font-size:18px;line-height:1.62;color:rgba(243,243,238,.68);max-width:56ch}
+@keyframes dHeroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+.sub-hero .dbadge,.sub-hero h1,.sub-hero-sub{opacity:0;animation:dHeroIn .8s cubic-bezier(.22,.8,.3,1) forwards}
+.sub-hero .dbadge{animation-delay:.05s}
+.sub-hero h1{animation-delay:.16s}
+.sub-hero-sub{animation-delay:.3s}
+@media (max-width:640px){.sub-hero{padding:150px 0 72px}.sub-hero-sub{font-size:16px}}
+@media (prefers-reduced-motion:reduce){.sub-hero .dbadge,.sub-hero h1,.sub-hero-sub{animation:none;opacity:1}}
+
+/* Resource cards */
+.res-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.res-card{display:flex;flex-direction:column;padding:30px 26px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
+.res-card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
+.section.surface-tint .res-card{background:var(--tint)}
+.res-card .rc-type{display:inline-flex;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(43,43,230,.08);border-radius:100px;padding:5px 12px;margin-bottom:20px;align-self:flex-start}
+.res-card h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:17px;line-height:1.2;margin-bottom:12px}
+.res-card p{color:var(--muted);font-size:14px;line-height:1.55}
+.res-card .rc-cta{margin-top:auto;padding-top:24px}
+@media (max-width:820px){.res-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.res-grid{grid-template-columns:1fr}}
+
+/* Newsletter strip */
+.newsletter-card{display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap;padding:36px 34px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow)}
+.section.surface-tint .newsletter-card{background:var(--tint)}
+
+/* Articles & press */
+.art-card{display:flex;flex-direction:column;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s;overflow:hidden}
+.art-card:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
+.section.surface-tint .art-card{background:var(--tint)}
+.art-thumb{position:relative;aspect-ratio:16/9;background:linear-gradient(160deg, rgba(43,43,230,.10), rgba(10,14,39,.05));overflow:hidden}
+.art-thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s ease}
+.art-card:hover .art-thumb img{transform:scale(1.04)}
+.art-thumb .art-play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+.art-thumb .art-play span{width:44px;height:44px;border-radius:50%;background:rgba(16,16,20,.6);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;color:var(--paper);font-size:14px}
+.art-thumb.icon-fallback{display:flex;align-items:center;justify-content:center}
+.art-thumb .fav-badge{width:60px;height:60px;border-radius:50%;background:var(--paper);border:1px solid var(--tint-line);box-shadow:var(--card-shadow);display:flex;align-items:center;justify-content:center;overflow:hidden}
+.art-thumb .fav-badge img{width:30px;height:30px;object-fit:contain}
+.art-thumb .fav-badge .fav-fallback{display:none;font-family:var(--mono);font-size:16px;font-weight:600;color:var(--accent)}
+.art-thumb .fav-badge.fav-missing img{display:none}
+.art-thumb .fav-badge.fav-missing .fav-fallback{display:block}
+.art-body{display:flex;flex-direction:column;flex:1;padding:22px 24px 24px}
+.art-card .rc-type{display:inline-flex;align-items:center;gap:6px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);background:rgba(43,43,230,.08);border-radius:100px;padding:5px 12px;margin-bottom:16px;align-self:flex-start}
+.art-card h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:15px;line-height:1.28;margin-bottom:10px}
+.art-card p{color:var(--muted);font-size:13.5px;line-height:1.55}
+.art-card .art-meta{margin-top:14px;font-family:var(--mono);font-size:10.5px;color:var(--muted);letter-spacing:.02em}
+.art-card .art-link{margin-top:auto;padding-top:18px;display:inline-flex;align-items:center;gap:6px}
+.art-card .art-link a{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;text-decoration:none;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:2px}
+.art-card .art-link a:hover{opacity:.65}
+.newsletter-card h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:17px;margin-bottom:8px}
+.newsletter-card p{color:var(--muted);font-size:14.5px;max-width:44ch}
+.newsletter-form{display:flex;gap:10px;flex-wrap:wrap}
+.newsletter-form input[type=email]{background:var(--paper);border:1px solid var(--tint-line);border-radius:100px;padding:12px 18px;font-family:var(--body);font-size:14px;color:var(--ink);min-width:220px}
+.newsletter-form input[type=email]:focus{outline:2px solid var(--accent);outline-offset:2px}
+.newsletter-note{width:100%;font-family:var(--mono);font-size:11px;color:var(--accent);margin-top:10px;display:none}
+.newsletter-note.show{display:block}
+
+/* Modal — the download / request flow */
+.modal-backdrop{position:fixed;inset:0;background:rgba(10,14,39,.6);backdrop-filter:blur(3px);display:none;align-items:center;justify-content:center;z-index:100;padding:24px}
+.modal-backdrop.open{display:flex}
+.modal{background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow-hover);max-width:440px;width:100%;padding:36px 32px}
+.modal .close-row{display:flex;justify-content:flex-end;margin-bottom:4px}
+.modal .close-btn{background:none;border:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;color:var(--muted)}
+.modal .close-btn:hover{color:var(--ink)}
+.modal .m-eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:10px}
+.modal h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:19px;margin-bottom:10px;line-height:1.2}
+.modal p{color:var(--muted);font-size:14.5px;line-height:1.55;margin-bottom:24px}
+.field{margin-bottom:16px}
+.field label{display:block;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.field input{width:100%;background:var(--tint);border:1px solid var(--tint-line);border-radius:12px;padding:12px 14px;font-family:var(--body);font-size:15px;color:var(--ink)}
+.field input:focus{outline:2px solid var(--accent);outline-offset:1px}
+.modal .btn{width:100%;justify-content:center;margin-top:4px}
+.modal .success{display:none;text-align:center;padding:8px 0 4px}
+.modal .success .s-icon{width:44px;height:44px;border-radius:50%;background:rgba(43,43,230,.1);color:var(--accent);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;font-size:18px}
+.modal .success h4{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:16px;margin-bottom:8px}
+.modal .success p{margin-bottom:0}
+
+/* CTA band */
+.cta-band{position:relative;overflow:hidden;padding:118px 0;color:var(--paper);background:radial-gradient(900px 500px at 15% 0%, rgba(124,124,255,.22), transparent 60%),radial-gradient(800px 460px at 100% 100%, rgba(43,43,230,.28), transparent 55%),linear-gradient(160deg, var(--navy-2) 0%, var(--navy-1) 100%)}
+.cta-band .wrap{position:relative;z-index:1;text-align:center}
+.cta-band h2{font-size:clamp(1.5rem,3.2vw,2.4rem);margin-bottom:20px}
+.cta-band p{color:#B9B9C2;max-width:50ch;font-size:17px;line-height:1.6;margin:0 auto 34px}
+.cta-band .btn{font-size:13px;padding:17px 32px;letter-spacing:.1em;background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.cta-band .btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.cta-band .btn.ghost{background:none;color:var(--paper);border-color:rgba(243,243,238,.5)}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+@media (max-width:640px){.cta-band{padding:76px 0}.cta-band .btn{padding:15px 26px}}
+
+/* Footer */
+footer{padding:34px 0;background:var(--navy-1);border-top:1px solid rgba(255,255,255,.1);color:rgba(243,243,238,.55);font-family:var(--mono);font-size:12px}
+.foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1)}
+.foot-links a{color:rgba(243,243,238,.75);letter-spacing:.06em;text-transform:uppercase;font-size:11px}
+.foot-links a:hover{color:var(--paper)}
+.foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:rgba(243,243,238,.7)}
+footer a:hover{color:var(--paper)}
+
+/* Reveal */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.stagger.in > *{opacity:1;transform:none}
+.stagger.in > *:nth-child(1){transition-delay:.05s}
+.stagger.in > *:nth-child(2){transition-delay:.15s}
+.stagger.in > *:nth-child(3){transition-delay:.25s}
+.stagger.in > *:nth-child(4){transition-delay:.35s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger > *{opacity:1;transform:none;transition:none}}
+
+@media (max-width:640px){.wrap{padding:0 22px}.section{padding:72px 0}}
+</style>
+</head>
+<body class="page-dark">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Ismail Dinia</a>
+    <ul class="nav-links" id="nav-links">
+<li><a href="index.html"><span class="lang-en">Home</span><span class="lang-es">Inicio</span></a></li>
+<li><a href="about.html"><span class="lang-en">About</span><span class="lang-es">Sobre mí</span></a></li>
+<li><a href="case-studies.html"><span class="lang-en">Case Studies</span><span class="lang-es">Casos</span></a></li>
+<li><a href="resources.html" aria-current="page"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></a></li>
+<li><a href="work-with-me.html"><span class="lang-en">Work With Me</span><span class="lang-es">Trabaja Conmigo</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" aria-pressed="true">EN</button>
+        <button id="btn-es" aria-pressed="false">ES</button>
+      </div>
+      <a class="btn nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    </div>
+  </div>
+</nav>
+
+<header class="sub-hero">
+  <div class="wrap">
+    <div class="dbadge"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></div>
+    <h1><span class="lang-en">Frameworks, <span class="accent">not fluff.</span></span><span class="lang-es">Frameworks, <span class="accent">no relleno.</span></span></h1>
+    <p class="sub-hero-sub">
+      <span class="lang-en">The same templates I run with paying clients, free to take and use. Enter your email and I'll send the one you pick straight to your inbox.</span>
+      <span class="lang-es">Las mismas plantillas que uso con clientes de pago, gratis para que las uses. Deja tu correo y te envío la que elijas directamente a tu bandeja de entrada.</span>
+    </p>
+  </div>
+</header>
+
+<section class="section surface-paper">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">Free templates</span><span class="lang-es">Plantillas gratuitas</span></p>
+    <div class="res-grid stagger">
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">Canvas</span><span class="lang-es">Canvas</span></span>
+        <h3><span class="lang-en">Discovery Sprint Canvas</span><span class="lang-es">Canvas de Sprint de Discovery</span></h3>
+        <p><span class="lang-en">Map what you know, what you assume, and what you must learn next, on one page. The starting point of every engagement I run.</span><span class="lang-es">Mapea lo que sabes, lo que asumes y lo que debes aprender a continuación, en una página. El punto de partida de cada colaboración que dirijo.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Discovery Sprint Canvas" data-resource-es="Canvas de Sprint de Discovery"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">Framework</span><span class="lang-es">Framework</span></span>
+        <h3><span class="lang-en">Startup Prioritization Matrix</span><span class="lang-es">Matriz de Priorización</span></h3>
+        <p><span class="lang-en">Impact, effort, leverage, cost of delay, reversibility. Score candidates the same way every time, so priority is a decision, not a mood.</span><span class="lang-es">Impacto, esfuerzo, apalancamiento, coste de la demora, reversibilidad. Puntúa cada candidato igual siempre, para que la prioridad sea una decisión, no un estado de ánimo.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Startup Prioritization Matrix" data-resource-es="Matriz de Priorización"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">Template</span><span class="lang-es">Plantilla</span></span>
+        <h3><span class="lang-en">Weekly Product Review Template</span><span class="lang-es">Plantilla de Revisión Semanal</span></h3>
+        <p><span class="lang-en">Shipped, in progress, blocked, next, decisions needed. The 60-second update that replaces a status meeting.</span><span class="lang-es">Entregado, en curso, bloqueado, siguiente, decisiones pendientes. El update de 60 segundos que sustituye a una reunión de estado.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Weekly Product Review Template" data-resource-es="Plantilla de Revisión Semanal"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">System</span><span class="lang-es">Sistema</span></span>
+        <h3><span class="lang-en">Founder Decision Log</span><span class="lang-es">Registro de Decisiones</span></h3>
+        <p><span class="lang-en">One entry per meaningful decision, written the same day: decision, reasoning, owner, expected outcome. Your team stops relitigating settled calls.</span><span class="lang-es">Una entrada por decisión relevante, escrita el mismo día: decisión, razonamiento, responsable, resultado esperado. Tu equipo deja de reabrir debates cerrados.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Founder Decision Log" data-resource-es="Registro de Decisiones"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">Guide</span><span class="lang-es">Guía</span></span>
+        <h3><span class="lang-en">Product Discovery Interview Guide</span><span class="lang-es">Guía de Entrevistas de Discovery</span></h3>
+        <p><span class="lang-en">The questions that surface real pain instead of polite interest, and how to read the difference. Conviction comes from users, not guessing.</span><span class="lang-es">Las preguntas que revelan dolor real en lugar de interés educado, y cómo leer la diferencia. La convicción viene de los usuarios, no de suposiciones.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Product Discovery Interview Guide" data-resource-es="Guía de Entrevistas de Discovery"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+      <div class="res-card">
+        <span class="rc-type"><span class="lang-en">Template</span><span class="lang-es">Plantilla</span></span>
+        <h3><span class="lang-en">Early-Stage Roadmap Template</span><span class="lang-es">Plantilla de Roadmap Early-Stage</span></h3>
+        <p><span class="lang-en">Now, next, later. Outcomes instead of feature wish lists, with what changed and why, so the team trusts the order.</span><span class="lang-es">Ahora, después, más adelante. Resultados en lugar de listas de deseos, con qué cambió y por qué, para que el equipo confíe en el orden.</span></p>
+        <div class="rc-cta"><button class="btn small" type="button" data-resource="Early-Stage Roadmap Template" data-resource-es="Plantilla de Roadmap Early-Stage"><span class="lang-en">Get the template</span><span class="lang-es">Obtener plantilla</span></button></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-tint">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">Articles &amp; press</span><span class="lang-es">Artículos y prensa</span></p>
+    <p class="section-intro">
+      <span class="lang-en">Writing and press on product, training, and building Hosstinn, from before the fractional work started.</span>
+      <span class="lang-es">Artículos y prensa sobre producto, formación y la construcción de Hosstinn, de antes de empezar el trabajo fraccional.</span>
+    </p>
+    <div class="res-grid stagger">
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://cdn.elearningindustry.com/wp-content/uploads/2023/01/shutterstock_1439896043.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Article</span><span class="lang-es">Artículo</span></span>
+          <h3><span class="lang-en">How To Use Gamification In eLearning For Maximum Engagement And Effectiveness</span><span class="lang-es">Cómo usar la gamificación en eLearning para máximo compromiso y efectividad</span></h3>
+          <p><span class="lang-en">Why game-design principles make training stick, and the techniques that actually move retention.</span><span class="lang-es">Por qué los principios del diseño de juegos hacen que la formación cale, y las técnicas que realmente mejoran la retención.</span></p>
+          <span class="art-meta">eLearning Industry · 2023 · <span class="lang-en">8 min read</span><span class="lang-es">8 min de lectura</span></span>
+          <div class="art-link"><a href="https://elearningindustry.com/how-to-use-gamification-in-elearning-for-maximum-engagement-and-effectiveness" target="_blank" rel="noopener"><span class="lang-en">Read the article ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://cdn.elearningindustry.com/wp-content/uploads/2023/08/Unlocking-Potential-Through-Cross-Training-And-eLearning.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Article</span><span class="lang-es">Artículo</span></span>
+          <h3><span class="lang-en">Unlocking Potential Through Cross-Training And eLearning</span><span class="lang-es">Desbloqueando potencial mediante cross-training y eLearning</span></h3>
+          <p><span class="lang-en">How teaching people multiple roles builds a more adaptable, resilient organization.</span><span class="lang-es">Cómo enseñar a las personas varios roles construye una organización más adaptable y resiliente.</span></p>
+          <span class="art-meta">eLearning Industry · 2023 · <span class="lang-en">7 min read</span><span class="lang-es">7 min de lectura</span></span>
+          <div class="art-link"><a href="https://elearningindustry.com/unlocking-potential-through-cross-training-and-elearning" target="_blank" rel="noopener"><span class="lang-en">Read the article ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://cdn.elearningindustry.com/wp-content/uploads/2023/05/Boosting-Employee-Training-And-Performance-With-Microlearning-In-The-Hospitality-Industry.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Article</span><span class="lang-es">Artículo</span></span>
+          <h3><span class="lang-en">Boosting Employee Training And Performance With Microlearning In The Hospitality Industry</span><span class="lang-es">Impulsando el rendimiento con microlearning en hostelería</span></h3>
+          <p><span class="lang-en">Why bite-sized training fits hospitality's shift patterns and high-turnover reality better than the classroom ever did.</span><span class="lang-es">Por qué la formación en pequeñas dosis encaja con los turnos y la alta rotación de la hostelería mejor que el aula tradicional.</span></p>
+          <span class="art-meta">eLearning Industry · 2023 · <span class="lang-en">8 min read</span><span class="lang-es">8 min de lectura</span></span>
+          <div class="art-link"><a href="https://elearningindustry.com/boosting-employee-training-and-performance-with-microlearning-in-the-hospitality-industry" target="_blank" rel="noopener"><span class="lang-en">Read the article ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/06/shutterstock_1422488567.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Article</span><span class="lang-es">Artículo</span></span>
+          <h3><span class="lang-en">What Should You Focus On When Choosing Digital Training Programs For Hospitality?</span><span class="lang-es">¿En qué fijarse al elegir un programa de formación digital para hostelería?</span></h3>
+          <p><span class="lang-en">Flexibility, up-to-date content, growth paths, and standardization: the four things worth checking before you buy.</span><span class="lang-es">Flexibilidad, contenido actualizado, oportunidades de crecimiento y estandarización: lo cuatro puntos a revisar antes de comprar.</span></p>
+          <span class="art-meta">eLearning Industry · 2022 · <span class="lang-en">3 min read</span><span class="lang-es">3 min de lectura</span></span>
+          <div class="art-link"><a href="https://elearningindustry.com/what-should-you-focus-on-when-choosing-digital-training-programs-for-hospitality" target="_blank" rel="noopener"><span class="lang-en">Read the article ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://cdn.elearningindustry.com/wp-content/uploads/2022/05/shutterstock_1775158427.jpg" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Article</span><span class="lang-es">Artículo</span></span>
+          <h3><span class="lang-en">Benefits Of Digital Training For Hotel Staff</span><span class="lang-es">Beneficios de la formación digital para personal hotelero</span></h3>
+          <p><span class="lang-en">Flexibility, standardization, measurable progress, and access to expert-led content: the case for going digital.</span><span class="lang-es">Flexibilidad, estandarización, progreso medible y acceso a contenido de expertos: el caso para digitalizar la formación.</span></p>
+          <span class="art-meta">eLearning Industry · 2022 · <span class="lang-en">3 min read</span><span class="lang-es">3 min de lectura</span></span>
+          <div class="art-link"><a href="https://elearningindustry.com/benefits-of-digital-training-for-hotel-staff" target="_blank" rel="noopener"><span class="lang-en">Read the article ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb icon-fallback">
+          <div class="fav-badge"><span class="fav-fallback" style="display:block">ID</span></div>
+        </div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Press</span><span class="lang-es">Prensa</span></span>
+          <h3><span class="lang-en">Hosstinn's pioneering role in hotel tech training</span><span class="lang-es">hosstinn y su rol pionero en la formación tecnológica hotelera</span></h3>
+          <p><span class="lang-en">A Smart Travel News interview with co-founder Sandra Castejón on Hosstinn's approach to AI-driven, gamified hotel staff training. In Spanish.</span><span class="lang-es">Entrevista de Smart Travel News a la cofundadora Sandra Castejón sobre el enfoque de hosstinn hacia la formación hotelera con IA y gamificación.</span></p>
+          <span class="art-meta">Smart Travel News · 2024</span>
+          <div class="art-link"><a href="https://www.smarttravel.news/hosstinn-y-su-rol-pionero-en-la-formacion-tecnologica-hotelera/" target="_blank" rel="noopener"><span class="lang-en">Read the feature ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb"><img src="https://substackcdn.com/image/fetch/$s_!A0bN!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F93376b12-e066-40c2-9c3f-fd7b156f5c84_2500x2500.png" alt="" loading="lazy"></div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Press</span><span class="lang-es">Prensa</span></span>
+          <h3><span class="lang-en">Boosted #15 — Hosstinn</span><span class="lang-es">Boosted #15 — Hosstinn</span></h3>
+          <p><span class="lang-en">A startup profile of Hosstinn from Boosted by Bcombinator: the problem, the team, the market, and traction at the time. In Spanish.</span><span class="lang-es">Perfil de hosstinn como startup, por Boosted by Bcombinator: el problema, el equipo, el mercado y la tracción en ese momento.</span></p>
+          <span class="art-meta">Boosted by Bcombinator · 2023</span>
+          <div class="art-link"><a href="https://boostedbc.substack.com/p/boosted-15-hosstinn" target="_blank" rel="noopener"><span class="lang-en">Read the feature ↗</span><span class="lang-es">Leer el artículo ↗</span></a></div>
+        </div>
+      </div>
+      <div class="art-card">
+        <div class="art-thumb">
+          <img src="https://i.ytimg.com/vi/942z8H2OhHw/hqdefault.jpg" alt="" loading="lazy">
+          <div class="art-play"><span>▶</span></div>
+        </div>
+        <div class="art-body">
+          <span class="rc-type"><span class="lang-en">Video</span><span class="lang-es">Video</span></span>
+          <h3><span class="lang-en">The Founder Talk with Massimiliano Sulpizi — Featuring Hosstinn</span><span class="lang-es">The Founder Talk con Massimiliano Sulpizi — con Hosstinn</span></h3>
+          <p><span class="lang-en">A EquityMatch interview on building Hosstinn, hospitality training, and pitching for seed investment.</span><span class="lang-es">Entrevista de EquityMatch sobre construir Hosstinn, la formación hotelera y levantar una ronda semilla.</span></p>
+          <span class="art-meta">EquityMatch · <span class="lang-en">Episode 188 · 2023 · 22 min</span><span class="lang-es">Episodio 188 · 2023 · 22 min</span></span>
+          <div class="art-link"><a href="https://www.youtube.com/watch?v=942z8H2OhHw" target="_blank" rel="noopener"><span class="lang-en">Watch on YouTube ↗</span><span class="lang-es">Ver en YouTube ↗</span></a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section surface-tint" id="newsletter">
+  <div class="wrap reveal">
+    <div class="newsletter-card">
+      <div>
+        <h3><span class="lang-en">One framework a month, no noise</span><span class="lang-es">Un framework al mes, sin ruido</span></h3>
+        <p><span class="lang-en">A short email when a new template goes live. Nothing else, unsubscribe anytime.</span><span class="lang-es">Un correo breve cuando publico una plantilla nueva. Nada más, cancela cuando quieras.</span></p>
+      </div>
+      <form class="newsletter-form" id="newsletter-form">
+        <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><span class="lang-en">Email</span><span class="lang-es">Correo</span></label>
+        <input type="email" id="nl-email" required placeholder="you@startup.com">
+        <button class="btn small" type="submit"><span class="lang-en">Subscribe</span><span class="lang-es">Suscribirme</span></button>
+        <span class="newsletter-note" id="newsletter-note"><span class="lang-en">Thanks — your email client should have opened to confirm.</span><span class="lang-es">Gracias — tu cliente de correo debería haberse abierto para confirmar.</span></span>
+      </form>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2 class="display"><span class="lang-en">Ready to build with more clarity?</span><span class="lang-es">¿Listo para construir con más claridad?</span></h2>
+    <p><span class="lang-en">Templates are a starting point. If you want someone running the system with you, let's talk.</span><span class="lang-es">Las plantillas son un punto de partida. Si quieres a alguien llevando el sistema contigo, hablemos.</span></p>
+    <div class="cta-actions">
+      <a class="btn" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+      <a class="btn ghost" href="work-with-me.html#inquiry"><span class="lang-en">Send an inquiry</span><span class="lang-es">Envía una consulta</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-links">
+      <a href="https://www.linkedin.com/in/ismail-dinia-pmp/" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="mailto:hello@ismaildinia.com"><span class="lang-en">Email</span><span class="lang-es">Correo</span></a>
+      <a href="resources.html#newsletter"><span class="lang-en">Newsletter</span><span class="lang-es">Boletín</span></a>
+    </div>
+    <div class="foot-inner">
+      <span>© <span id="year"></span> Ismail Dinia</span>
+      <span><span class="lang-en">Product &amp; Execution Lead</span><span class="lang-es">Líder de Producto y Ejecución</span></span>
+    </div>
+  </div>
+</footer>
+
+<!-- DOWNLOAD / REQUEST MODAL -->
+<div class="modal-backdrop" id="capture-backdrop">
+  <div class="modal" role="dialog" aria-modal="true" aria-labelledby="capture-title">
+    <div class="close-row"><button class="close-btn" id="capture-close" type="button"><span class="lang-en">Close</span><span class="lang-es">Cerrar</span></button></div>
+    <div id="capture-form-wrap">
+      <p class="m-eyebrow"><span class="lang-en">Free template</span><span class="lang-es">Plantilla gratuita</span></p>
+      <h3 id="capture-title">—</h3>
+      <p><span class="lang-en">Enter your email and I'll send this over personally. No list, no spam, just the file.</span><span class="lang-es">Deja tu correo y te la envío personalmente. Sin listas, sin spam, solo el archivo.</span></p>
+      <form id="capture-form">
+        <div class="field">
+          <label for="capture-email"><span class="lang-en">Your email</span><span class="lang-es">Tu correo</span></label>
+          <input type="email" id="capture-email" required placeholder="you@startup.com">
+        </div>
+        <button class="btn" type="submit"><span class="lang-en">Send it to me</span><span class="lang-es">Envíamela</span></button>
+      </form>
+    </div>
+    <div class="success" id="capture-success">
+      <div class="s-icon">&#10003;</div>
+      <h4><span class="lang-en">Almost there</span><span class="lang-es">Casi listo</span></h4>
+      <p><span class="lang-en">Your email client should have opened with the request ready to send. Hit send and I'll get the template to you personally, usually within a day.</span><span class="lang-es">Tu cliente de correo debería haberse abierto con la solicitud lista para enviar. Envíala y te haré llegar la plantilla personalmente, normalmente en un día.</span></p>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ============================================================
+   CONFIG
+   ------------------------------------------------------------
+   Easiest route, zero setup: leave CAPTURE_ENDPOINT empty and every
+   request opens a pre-filled email to CONTACT_EMAIL — you get the
+   request, you reply with the file attached. No account needed.
+
+   Upgrade path: if you set up Mailchimp, Formspree, ConvertKit, or
+   similar, paste that form's POST endpoint into CAPTURE_ENDPOINT
+   below and requests will submit silently instead of opening email.
+   ============================================================ */
+var BOOKING_URL = "";
+var CAPTURE_ENDPOINT = "";   /* e.g. https://formspree.io/f/xxxxxxx */
+var CONTACT_EMAIL = "hello@ismaildinia.com";
+
+function rewriteLinks(lang){
+  document.querySelectorAll("a[href]").forEach(function(a){
+    var href = a.getAttribute("href");
+    if (!href || href.indexOf("http") === 0 || href.indexOf("mailto:") === 0 || href.charAt(0) === "#") return;
+    var base = href.split("?")[0];
+    var hash = "";
+    if (base.indexOf("#") > -1){ hash = base.substring(base.indexOf("#")); base = base.substring(0, base.indexOf("#")); }
+    if (href.indexOf("#") > -1 && href.indexOf("?") === -1 && hash === ""){ hash = href.substring(href.indexOf("#")); }
+    a.setAttribute("href", base + "?lang=" + lang + hash);
+  });
+}
+function setLang(lang){
+  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.setAttribute("lang", lang);
+  var be = document.getElementById("btn-en"), bs = document.getElementById("btn-es");
+  if (be) be.setAttribute("aria-pressed", lang === "en");
+  if (bs) bs.setAttribute("aria-pressed", lang === "es");
+  rewriteLinks(lang);
+}
+var params = new URLSearchParams(window.location.search);
+var initial = params.get("lang");
+if (initial !== "en" && initial !== "es"){
+  initial = (navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+}
+setLang(initial);
+var btnEn = document.getElementById("btn-en");
+var btnEs = document.getElementById("btn-es");
+if (btnEn) btnEn.addEventListener("click", function(){ setLang("en"); });
+if (btnEs) btnEs.addEventListener("click", function(){ setLang("es"); });
+
+document.querySelectorAll("[data-booking]").forEach(function(el){
+  if (BOOKING_URL){
+    el.setAttribute("href", BOOKING_URL);
+    el.setAttribute("target", "_blank");
+    el.setAttribute("rel", "noopener");
+  } else {
+    el.setAttribute("href", el.getAttribute("data-booking-fallback") || "work-with-me.html#inquiry");
+  }
+});
+
+var navBar = document.querySelector(".nav");
+var subHero = document.querySelector(".sub-hero");
+if (navBar && subHero){
+  var onHeroScroll = function(){
+    var threshold = subHero.offsetHeight - navBar.offsetHeight - 40;
+    if (window.scrollY > threshold){ navBar.classList.add("scrolled"); }
+    else { navBar.classList.remove("scrolled"); }
+  };
+  window.addEventListener("scroll", onHeroScroll, { passive: true });
+  onHeroScroll();
+}
+var burger = document.getElementById("hamburger");
+if (burger){
+  burger.addEventListener("click", function(){
+    var links = document.getElementById("nav-links");
+    var open = links.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+}
+var yr = document.getElementById("year");
+if (yr) yr.textContent = new Date().getFullYear();
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal, .stagger").forEach(function(el){ io.observe(el); });
+
+/* ---------- resource download / request modal ---------- */
+var backdrop = document.getElementById("capture-backdrop");
+var captureTitle = document.getElementById("capture-title");
+var formWrap = document.getElementById("capture-form-wrap");
+var captureForm = document.getElementById("capture-form");
+var captureSuccess = document.getElementById("capture-success");
+var currentResourceEn = "";
+var currentResourceEs = "";
+
+document.querySelectorAll("[data-resource]").forEach(function(btn){
+  btn.addEventListener("click", function(){
+    currentResourceEn = btn.getAttribute("data-resource");
+    currentResourceEs = btn.getAttribute("data-resource-es") || currentResourceEn;
+    var lang = document.documentElement.getAttribute("data-lang");
+    if (captureTitle) captureTitle.textContent = lang === "es" ? currentResourceEs : currentResourceEn;
+    if (formWrap) formWrap.style.display = "block";
+    if (captureSuccess) captureSuccess.style.display = "none";
+    if (captureForm) captureForm.reset();
+    if (backdrop) backdrop.classList.add("open");
+    document.body.style.overflow = "hidden";
+  });
+});
+function closeCapture(){
+  if (backdrop) backdrop.classList.remove("open");
+  document.body.style.overflow = "";
+}
+if (backdrop){
+  backdrop.addEventListener("click", function(e){ if (e.target === backdrop) closeCapture(); });
+}
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeCapture(); });
+var closeBtn = document.getElementById("capture-close");
+if (closeBtn) closeBtn.addEventListener("click", closeCapture);
+
+if (captureForm){
+  captureForm.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var email = document.getElementById("capture-email").value.trim();
+    if (!email) return;
+    var lang = document.documentElement.getAttribute("data-lang");
+    var resourceName = lang === "es" ? currentResourceEs : currentResourceEn;
+    if (CAPTURE_ENDPOINT){
+      fetch(CAPTURE_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({ email: email, resource: currentResourceEn })
+      }).catch(function(){});
+    } else {
+      var subject = (lang === "es" ? "Solicitud de plantilla: " : "Template request: ") + resourceName;
+      var body = (lang === "es"
+        ? "Hola Ismail, me gustaría recibir: " + resourceName + "\nMi correo: " + email
+        : "Hi Ismail, I would like to receive: " + resourceName + "\nMy email: " + email);
+      window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    }
+    formWrap.style.display = "none";
+    captureSuccess.style.display = "block";
+  });
+}
+
+/* ---------- newsletter (same zero-setup pattern) ---------- */
+var nlForm = document.getElementById("newsletter-form");
+if (nlForm){
+  nlForm.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var email = document.getElementById("nl-email").value.trim();
+    if (!email) return;
+    var lang = document.documentElement.getAttribute("data-lang");
+    if (CAPTURE_ENDPOINT){
+      fetch(CAPTURE_ENDPOINT, {
+        method: "POST",
+        headers: {"Content-Type": "application/json", "Accept": "application/json"},
+        body: JSON.stringify({ email: email, list: "newsletter" })
+      }).catch(function(){});
+    } else {
+      var subject = lang === "es" ? "Suscripción al boletín" : "Newsletter subscription";
+      var body = (lang === "es" ? "Quiero suscribirme al boletín. Mi correo: " : "I would like to subscribe to the newsletter. My email: ") + email;
+      window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+    }
+    var note = document.getElementById("newsletter-note");
+    if (note) note.classList.add("show");
+  });
+}
+</script>
+</body>
+</html>
