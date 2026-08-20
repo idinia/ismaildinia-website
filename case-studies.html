@@ -110,6 +110,12 @@ body.page-dark .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);
   body.page-dark .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
   body.page-dark .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
 }
+@media (max-width:480px){
+  .nav-inner{padding:12px 16px;gap:8px}
+  .brand{font-size:13px}
+  .lang-toggle button{padding:6px 9px}
+  .hamburger{padding:8px 10px;font-size:11px}
+}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
