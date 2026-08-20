@@ -116,6 +116,12 @@ body.page-home .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);
   body.page-home .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
   body.page-home .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
 }
+@media (max-width:480px){
+  .nav-inner{padding:12px 16px;gap:8px}
+  .brand{font-size:13px}
+  .lang-toggle button{padding:6px 9px}
+  .hamburger{padding:8px 10px;font-size:11px}
+}
 
 /* Buttons */
 .btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
@@ -261,6 +267,19 @@ body.page-home .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);
 .case-link a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent)}
 .case-link a:hover{text-decoration:underline}
 .honesty{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px}
+@media (max-width:700px){
+  .ba{grid-template-columns:1fr}
+  .ba .before{border-right:none;border-bottom:1px solid var(--tint-line)}
+}
+@media (max-width:640px){
+  .metrics{grid-template-columns:1fr 1fr}
+  .metric{border-bottom:1px solid var(--tint-line)}
+  .metric:nth-child(2n){border-right:none}
+}
+@media (max-width:400px){
+  .metrics{grid-template-columns:1fr}
+  .metric{border-right:none}
+}
 
 /* Testimonials */
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
