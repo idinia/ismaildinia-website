@@ -433,7 +433,8 @@ footer a:hover{color:var(--paper)}
         <label for="nl-email" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)"><span class="lang-en">Email</span><span class="lang-es">Correo</span></label>
         <input type="email" id="nl-email" required placeholder="you@startup.com">
         <button class="btn small" type="submit"><span class="lang-en">Subscribe</span><span class="lang-es">Suscribirme</span></button>
-        <span class="newsletter-note" id="newsletter-note"><span class="lang-en">Thanks — your email client should have opened to confirm.</span><span class="lang-es">Gracias — tu cliente de correo debería haberse abierto para confirmar.</span></span>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <span class="newsletter-note" id="newsletter-note" role="status"><span class="lang-en">Thanks, you're on the list.</span><span class="lang-es">Gracias, ya estás en la lista.</span></span>
       </form>
     </div>
   </div>
@@ -477,13 +478,14 @@ footer a:hover{color:var(--paper)}
           <label for="capture-email"><span class="lang-en">Your email</span><span class="lang-es">Tu correo</span></label>
           <input type="email" id="capture-email" required placeholder="you@startup.com">
         </div>
+        <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
         <button class="btn" type="submit"><span class="lang-en">Send it to me</span><span class="lang-es">Envíamela</span></button>
       </form>
     </div>
-    <div class="success" id="capture-success">
+    <div class="success" id="capture-success" role="status">
       <div class="s-icon">&#10003;</div>
-      <h4><span class="lang-en">Almost there</span><span class="lang-es">Casi listo</span></h4>
-      <p><span class="lang-en">Your email client should have opened with the request ready to send. Hit send and I'll get the template to you personally, usually within a day.</span><span class="lang-es">Tu cliente de correo debería haberse abierto con la solicitud lista para enviar. Envíala y te haré llegar la plantilla personalmente, normalmente en un día.</span></p>
+      <h4><span class="lang-en">Request received</span><span class="lang-es">Solicitud recibida</span></h4>
+      <p><span class="lang-en">I'll send the template to you personally, usually within a day.</span><span class="lang-es">Te enviaré la plantilla personalmente, normalmente en un día.</span></p>
     </div>
   </div>
 </div>
@@ -492,17 +494,21 @@ footer a:hover{color:var(--paper)}
 /* ============================================================
    CONFIG
    ------------------------------------------------------------
-   Easiest route, zero setup: leave CAPTURE_ENDPOINT empty and every
-   request opens a pre-filled email to CONTACT_EMAIL — you get the
-   request, you reply with the file attached. No account needed.
-
-   Upgrade path: if you set up Mailchimp, Formspree, ConvertKit, or
-   similar, paste that form's POST endpoint into CAPTURE_ENDPOINT
-   below and requests will submit silently instead of opening email.
+   Requests post to Formspree and arrive in your inbox. If the
+   endpoint is empty or a request fails, the visitor gets a
+   pre-filled email to CONTACT_EMAIL instead, so nothing is lost.
    ============================================================ */
-var BOOKING_URL = "";
-var CAPTURE_ENDPOINT = "";   /* e.g. https://formspree.io/f/xxxxxxx */
+var BOOKING_URL = "https://calendar.app.google/v88QGjvPbbctwXkm9";
+var CAPTURE_ENDPOINT = "https://formspree.io/f/maeqozwo";
 var CONTACT_EMAIL = "hello@ismaildinia.com";
+
+function postForm(data){
+  return fetch(CAPTURE_ENDPOINT, {
+    method: "POST",
+    headers: {"Content-Type": "application/json", "Accept": "application/json"},
+    body: JSON.stringify(data)
+  }).then(function(r){ if (!r.ok) throw new Error(r.status); });
+}
 
 function rewriteLinks(lang){
   document.querySelectorAll("a[href]").forEach(function(a){
@@ -612,21 +618,25 @@ if (captureForm){
     if (!email) return;
     var lang = document.documentElement.getAttribute("data-lang");
     var resourceName = lang === "es" ? currentResourceEs : currentResourceEn;
-    if (CAPTURE_ENDPOINT){
-      fetch(CAPTURE_ENDPOINT, {
-        method: "POST",
-        headers: {"Content-Type": "application/json", "Accept": "application/json"},
-        body: JSON.stringify({ email: email, resource: currentResourceEn })
-      }).catch(function(){});
-    } else {
+    var gotcha = captureForm.querySelector("[name=_gotcha]").value;
+    function viaEmail(){
       var subject = (lang === "es" ? "Solicitud de plantilla: " : "Template request: ") + resourceName;
       var body = (lang === "es"
         ? "Hola Ismail, me gustaría recibir: " + resourceName + "\nMi correo: " + email
         : "Hi Ismail, I would like to receive: " + resourceName + "\nMy email: " + email);
       window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     }
-    formWrap.style.display = "none";
-    captureSuccess.style.display = "block";
+    function done(){
+      formWrap.style.display = "none";
+      captureSuccess.style.display = "block";
+    }
+    if (!CAPTURE_ENDPOINT){ viaEmail(); done(); return; }
+    var btn = captureForm.querySelector("button[type=submit]");
+    btn.disabled = true;
+    postForm({ _subject: "Template request: " + currentResourceEn, form: "Template request", email: email, resource: currentResourceEn, language: lang, _gotcha: gotcha })
+      .then(done)
+      .catch(function(){ viaEmail(); done(); })
+      .then(function(){ btn.disabled = false; });
   });
 }
 
@@ -638,19 +648,24 @@ if (nlForm){
     var email = document.getElementById("nl-email").value.trim();
     if (!email) return;
     var lang = document.documentElement.getAttribute("data-lang");
-    if (CAPTURE_ENDPOINT){
-      fetch(CAPTURE_ENDPOINT, {
-        method: "POST",
-        headers: {"Content-Type": "application/json", "Accept": "application/json"},
-        body: JSON.stringify({ email: email, list: "newsletter" })
-      }).catch(function(){});
-    } else {
+    var gotcha = nlForm.querySelector("[name=_gotcha]").value;
+    function viaEmail(){
       var subject = lang === "es" ? "Suscripción al boletín" : "Newsletter subscription";
       var body = (lang === "es" ? "Quiero suscribirme al boletín. Mi correo: " : "I would like to subscribe to the newsletter. My email: ") + email;
       window.location.href = "mailto:" + CONTACT_EMAIL + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     }
-    var note = document.getElementById("newsletter-note");
-    if (note) note.classList.add("show");
+    function done(){
+      var note = document.getElementById("newsletter-note");
+      if (note) note.classList.add("show");
+      nlForm.reset();
+    }
+    if (!CAPTURE_ENDPOINT){ viaEmail(); done(); return; }
+    var btn = nlForm.querySelector("button[type=submit]");
+    btn.disabled = true;
+    postForm({ _subject: "Newsletter subscription", form: "Newsletter", email: email, language: lang, _gotcha: gotcha })
+      .then(done)
+      .catch(function(){ viaEmail(); done(); })
+      .then(function(){ btn.disabled = false; });
   });
 }
 </script>

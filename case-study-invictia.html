@@ -1,0 +1,971 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<title>Invictia case study · Ismail Dinia</title>
+<meta name="description" content="Three months as fractional product and execution lead at Invictia: from a live product nobody could measure to a beta ready product and a round ready to raise.">
+<link rel="canonical" href="https://ismaildinia.com/case-study-invictia.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ismaildinia.com/case-study-invictia.html">
+<meta property="og:title" content="Invictia case study · Ismail Dinia">
+<meta property="og:description" content="From a product nobody could measure to a company ready to raise. Three months, fractional product and execution lead.">
+<meta property="og:image" content="https://ismaildinia.com/images/invictia-after.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://ismaildinia.com/images/invictia-after.png">
+
+<style>
+/* =====================================================================
+   DESIGN TOKENS — identical to index.html
+===================================================================== */
+:root{
+  --paper:#F3F3EE;
+  --tint:#EDF0F7;
+  --tint-line:#DCE1EE;
+  --ink:#101014;
+  --accent:#2B2BE6;
+  --accent-light:#7C7CFF;
+  --line:#D9D9CF;
+  --muted:#5C5C66;
+  --navy-1:#0A0E27;
+  --navy-2:#12173A;
+  --navy-3:#0D1230;
+  --glass-paper:rgba(255,255,255,.55);
+  --card-radius:20px;
+  --card-shadow:0 1px 2px rgba(16,16,20,.04), 0 18px 40px -22px rgba(16,16,20,.16);
+  --card-shadow-hover:0 1px 2px rgba(16,16,20,.05), 0 26px 54px -20px rgba(43,43,230,.22);
+  --display:'Archivo',sans-serif;
+  --body:'Instrument Sans',sans-serif;
+  --mono:'IBM Plex Mono',monospace;
+}
+
+/* =====================================================================
+   RESET & BASE
+===================================================================== */
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:var(--body);font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased}
+::selection{background:var(--accent);color:var(--paper)}
+a{color:inherit}
+img{max-width:100%;display:block}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+
+html[data-lang="en"] .lang-es{display:none !important}
+html[data-lang="es"] .lang-en{display:none !important}
+
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* =====================================================================
+   LAYOUT PRIMITIVES
+===================================================================== */
+.wrap{max-width:1120px;margin:0 auto;padding:0 32px}
+.section{padding:116px 0;position:relative}
+.section.surface-paper{background:var(--paper)}
+.section.surface-tint{background:var(--tint)}
+.section > .wrap{position:relative;z-index:1}
+.section.surface-paper::before,.section.surface-tint::before{
+  content:"";position:absolute;inset:0;pointer-events:none;z-index:0;
+  background:radial-gradient(760px 340px at 12% 0%, rgba(43,43,230,.05), transparent 60%),
+             radial-gradient(680px 320px at 100% 100%, rgba(124,124,255,.05), transparent 60%);
+}
+.section.surface-tint::before{
+  background:radial-gradient(820px 380px at 88% 0%, rgba(43,43,230,.07), transparent 60%),
+             radial-gradient(700px 340px at 4% 100%, rgba(10,14,39,.04), transparent 60%);
+}
+.display{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:720;line-height:1.02;letter-spacing:-.015em;text-transform:uppercase}
+.eyebrow{display:inline-flex;align-items:center;font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);background:rgba(16,16,20,.045);border:1px solid rgba(16,16,20,.09);backdrop-filter:blur(6px);border-radius:100px;padding:9px 18px;margin-bottom:26px}
+.section.surface-tint .eyebrow{background:rgba(43,43,230,.06);border-color:rgba(43,43,230,.16)}
+.section-title{font-family:var(--display);font-variation-settings:'wdth' 110;font-weight:800;text-transform:uppercase;font-size:clamp(1.5rem,2.8vw,2.3rem);line-height:1.08;letter-spacing:-.015em}
+.section-intro{max-width:56ch;font-size:17px;line-height:1.6;color:var(--muted);margin:18px 0 44px}
+
+/* =====================================================================
+   NAV
+===================================================================== */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,243,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .3s ease,border-color .3s ease}
+.nav-inner{max-width:1240px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;text-transform:uppercase;letter-spacing:.02em;font-size:15px;text-decoration:none;white-space:nowrap}
+.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
+.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
+.nav-links a:hover{color:var(--ink)}
+.nav-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
+.nav-right{display:flex;align-items:center;gap:14px}
+.lang-toggle{display:flex;border:1px solid var(--ink);font-family:var(--mono);font-size:12px}
+.lang-toggle button{background:none;border:none;padding:7px 12px;font:inherit;cursor:pointer;color:var(--ink)}
+.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.hamburger{display:none;background:none;border:1px solid var(--ink);padding:9px 12px;cursor:pointer;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
+
+/* dark-hero pages: nav floats transparent until scrolled */
+body.page-dark .nav:not(.scrolled){background:transparent;border-bottom-color:transparent;backdrop-filter:none}
+body.page-dark .nav:not(.scrolled) .brand{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a{color:rgba(243,243,238,.62)}
+body.page-dark .nav:not(.scrolled) .nav-links a:hover{color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-links a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--accent-light)}
+body.page-dark .nav:not(.scrolled) .lang-toggle{border-color:rgba(243,243,238,.35)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button{color:rgba(243,243,238,.8)}
+body.page-dark .nav:not(.scrolled) .lang-toggle button[aria-pressed="true"]{background:rgba(243,243,238,.15);color:var(--paper)}
+body.page-dark .nav:not(.scrolled) .nav-cta{background:var(--accent);border-color:var(--accent);color:#fff}
+body.page-dark .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);color:var(--paper)}
+
+@media (max-width:1080px){
+  .nav-links{position:fixed;top:61px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:20px 28px;gap:16px;display:none}
+  .nav-links.open{display:flex}
+  .hamburger{display:block}
+  .nav-cta{display:none}
+  body.page-dark .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
+  body.page-dark .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
+}
+
+/* reading progress */
+#readbar{position:fixed;top:0;left:0;height:3px;width:0;background:linear-gradient(90deg,var(--accent),var(--accent-light));z-index:60}
+
+/* =====================================================================
+   BUTTONS & LINKS
+===================================================================== */
+.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
+.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);box-shadow:0 14px 32px -10px rgba(43,43,230,.45);transform:translateY(-2px)}
+.btn .arrow{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto}
+.text-link{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .2s}
+.text-link:hover{opacity:.6}
+@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
+
+/* =====================================================================
+   HERO
+===================================================================== */
+.dark-hero{
+  position:relative;overflow:hidden;color:var(--paper);
+  padding:168px 0 96px;
+  background:
+    radial-gradient(1100px 600px at 82% -8%, rgba(43,43,230,.35), transparent 60%),
+    radial-gradient(900px 500px at -10% 100%, rgba(124,124,255,.18), transparent 55%),
+    linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%);
+}
+.dark-hero .wrap{position:relative;z-index:2}
+.dark-hero .text-link{color:rgba(243,243,238,.85);border-bottom-color:rgba(243,243,238,.4)}
+.dark-hero .text-link:hover{opacity:.7;color:var(--paper)}
+.dhero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:52px;align-items:center}
+.dbadge{display:inline-flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:100px;padding:9px 20px;margin-bottom:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(243,243,238,.78)}
+.dot{width:7px;height:7px;border-radius:50%;background:var(--accent-light);position:relative;flex:0 0 auto}
+.dot::after{content:"";position:absolute;inset:-5px;border-radius:50%;border:1px solid var(--accent-light);animation:wpulse 2.4s ease-out infinite}
+.dhero-h1{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:720;letter-spacing:-.015em;line-height:1.08;font-size:clamp(2rem,4.1vw,3.4rem)}
+.dhero-h1 .accent{color:var(--accent-light);position:relative}
+.dhero-h1 .accent::after{content:"";position:absolute;left:0;bottom:.02em;height:.08em;width:100%;background:var(--accent-light);transform:scaleX(0);transform-origin:left;animation:dsweep .7s .9s cubic-bezier(.22,.8,.3,1) forwards}
+.dhero-sub{margin-top:26px;font-size:18px;line-height:1.62;color:rgba(243,243,238,.68);max-width:52ch}
+.dhero-cta{display:flex;align-items:center;gap:26px;margin-top:38px;flex-wrap:wrap}
+
+/* record card: the page opens the way the deliverables open */
+.record{
+  border-radius:24px;overflow:hidden;padding:8px 30px;
+  background:linear-gradient(160deg, rgba(124,124,255,.16), rgba(43,43,230,.04));
+  border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);
+}
+.record > div{display:grid;grid-template-columns:104px 1fr;gap:16px;align-items:baseline;padding:18px 0;border-top:1px solid rgba(255,255,255,.1)}
+.record > div:first-child{border-top:none}
+.record dt{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,243,238,.45)}
+.record dd{font-size:14.5px;line-height:1.5;color:rgba(243,243,238,.92)}
+.record .ok{color:var(--accent-light)}
+
+@keyframes dHeroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
+@keyframes dsweep{to{transform:scaleX(1)}}
+@keyframes wpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.dbadge,.dhero-h1,.dhero-sub,.dhero-cta{opacity:0;animation:dHeroIn .8s cubic-bezier(.22,.8,.3,1) forwards}
+.dbadge{animation-delay:.05s}
+.dhero-h1{animation-delay:.16s}
+.dhero-sub{animation-delay:.3s}
+.dhero-cta{animation-delay:.44s}
+.record{opacity:0;animation:dHeroIn 1s .3s cubic-bezier(.22,.8,.3,1) forwards}
+
+@media (max-width:980px){.dhero-grid{grid-template-columns:1fr;gap:38px}}
+@media (max-width:640px){
+  .dark-hero{padding:146px 0 64px}
+  .dhero-sub{font-size:16px}
+  .record{padding:4px 22px}
+  .record > div{grid-template-columns:1fr;gap:4px;padding:15px 0}
+}
+@media (prefers-reduced-motion:reduce){
+  .dbadge,.dhero-h1,.dhero-sub,.dhero-cta,.record{animation:none;opacity:1}
+  .dhero-h1 .accent::after{animation:none;transform:scaleX(1)}
+  .dot::after{animation:none}
+}
+
+/* =====================================================================
+   PROOF STRIP
+===================================================================== */
+.proof{position:relative;z-index:3;margin-top:-64px}
+.proof-inner{
+  display:grid;grid-template-columns:repeat(4,1fr);max-width:920px;margin:0 auto;overflow:hidden;
+  background:var(--glass-paper);backdrop-filter:blur(20px);
+  border:1px solid rgba(16,16,20,.08);border-radius:24px;box-shadow:var(--card-shadow);
+}
+.proof-item{padding:22px 14px;border-left:1px solid rgba(16,16,20,.08);text-align:center}
+.proof-item:first-child{border-left:none}
+.proof-item .pv{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:800;font-size:clamp(1.05rem,1.7vw,1.4rem);color:var(--accent);line-height:1;display:block}
+.proof-item .pl{font-family:var(--mono);font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);display:block;margin-top:8px;line-height:1.4}
+@media (max-width:980px){.proof{margin-top:-40px}}
+@media (max-width:640px){
+  .proof{margin-top:0}
+  .proof-inner{grid-template-columns:1fr 1fr;border-radius:16px}
+  .proof-item:nth-child(n+3){border-top:1px solid rgba(16,16,20,.08)}
+  .proof-item:nth-child(odd){border-left:none}
+}
+
+/* =====================================================================
+   AT A GLANCE
+===================================================================== */
+.ledger{max-width:900px;padding:6px 30px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow)}
+.ledger > div{display:grid;grid-template-columns:190px 1fr;gap:22px;align-items:baseline;padding:20px 0;border-top:1px solid var(--tint-line)}
+.ledger > div:first-child{border-top:none}
+.ledger dt{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.ledger dd{font-size:16px;line-height:1.6}
+@media (max-width:700px){.ledger > div{grid-template-columns:1fr;gap:8px}}
+
+.shift{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:34px}
+.shift-card{padding:28px 26px;border-radius:var(--card-radius);border:1px solid var(--tint-line);background:var(--paper);box-shadow:var(--card-shadow)}
+.shift-card h3{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:12px}
+.shift-card p{font-family:var(--display);font-variation-settings:'wdth' 104;font-weight:650;font-size:clamp(1rem,1.6vw,1.22rem);line-height:1.38}
+.shift-card.found{background:linear-gradient(160deg,var(--navy-2),var(--navy-1));border-color:transparent;color:var(--paper);box-shadow:0 1px 2px rgba(16,16,20,.05),0 26px 54px -20px rgba(43,43,230,.35)}
+.shift-card.found h3{color:var(--accent-light)}
+@media (max-width:700px){.shift{grid-template-columns:1fr}}
+
+/* =====================================================================
+   BEFORE / AFTER SLIDER
+===================================================================== */
+.ba{position:relative;border-radius:var(--card-radius);overflow:hidden;border:1px solid var(--tint-line);box-shadow:var(--card-shadow);background:var(--navy-1);--pos:50%}
+.ba-frame{position:relative;aspect-ratio:2.1/1}
+.ba-layer{position:absolute;inset:0}
+.ba-layer img{width:100%;height:100%;object-fit:cover;object-position:top left}
+.ba-layer.after{clip-path:inset(0 0 0 var(--pos))}
+.ba-tag{position:absolute;bottom:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:7px 14px;border-radius:100px;background:rgba(10,14,39,.72);color:var(--paper);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(8px);z-index:3}
+.ba-tag.l{left:16px}
+.ba-tag.r{right:16px;background:var(--accent);border-color:var(--accent)}
+.ba-handle{position:absolute;top:0;bottom:0;left:var(--pos);width:2px;background:var(--paper);z-index:4;pointer-events:none;box-shadow:0 0 0 1px rgba(10,14,39,.25)}
+.ba-handle::after{content:"";position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:var(--paper);box-shadow:0 10px 26px -8px rgba(10,14,39,.6)}
+.ba-handle span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);z-index:5;font-family:var(--mono);font-size:13px;color:var(--ink)}
+.ba-range{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;z-index:6;margin:0}
+.ba-range:focus-visible + .ba-handle::after{box-shadow:0 0 0 3px var(--accent)}
+.ba-caption{margin-top:16px;font-family:var(--mono);font-size:11px;letter-spacing:.06em;color:var(--muted)}
+@media (max-width:640px){.ba-frame{aspect-ratio:4/3}.ba-tag{bottom:10px;font-size:9px;padding:6px 10px}.ba-tag.l{left:10px}.ba-tag.r{right:10px}}
+
+/* =====================================================================
+   TIMELINE
+===================================================================== */
+.timeline{position:relative}
+.tl-track{position:absolute;left:19px;top:14px;bottom:14px;width:2px;background:var(--tint-line)}
+.tl-track i{position:absolute;left:0;top:0;width:100%;height:var(--fill,0%);background:linear-gradient(180deg,var(--accent),var(--accent-light));display:block}
+.month{position:relative;padding-left:70px;margin-bottom:28px}
+.month:last-child{margin-bottom:0}
+.month-dot{position:absolute;left:8px;top:26px;width:24px;height:24px;border-radius:50%;background:var(--paper);border:2px solid var(--tint-line);display:grid;place-items:center;font-family:var(--mono);font-size:10px;color:var(--muted);z-index:2;transition:border-color .4s ease,color .4s ease}
+.month.lit .month-dot{border-color:var(--accent);color:var(--accent)}
+.month-card{background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);overflow:hidden;transition:box-shadow .4s ease}
+.month.lit .month-card{box-shadow:var(--card-shadow-hover)}
+.month-head{padding:26px 30px 8px}
+.month-kicker{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.month-head h3{font-family:var(--display);font-variation-settings:'wdth' 110;font-weight:800;text-transform:uppercase;font-size:clamp(1.25rem,2.2vw,1.75rem);line-height:1.12;letter-spacing:-.01em}
+.month-body{padding:16px 30px 6px}
+.month-body p{font-size:15.5px;line-height:1.68;max-width:70ch;color:var(--muted)}
+.month-body p + p{margin-top:12px}
+.month-body strong{color:var(--ink);font-weight:600}
+
+.ranked{list-style:none;counter-reset:r;margin:26px 0 6px;display:grid;gap:10px}
+.ranked li{counter-increment:r;position:relative;padding:16px 18px 16px 58px;background:var(--tint);border:1px solid var(--tint-line);border-radius:14px}
+.ranked li::before{content:counter(r,decimal-leading-zero);position:absolute;left:18px;top:16px;font-family:var(--mono);font-size:11px;color:var(--accent);width:26px;height:26px;display:grid;place-items:center;border:1px solid rgba(43,43,230,.35);border-radius:50%;background:rgba(43,43,230,.06)}
+.ranked h4{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:14px;margin-bottom:5px}
+.ranked p{font-size:14.5px;line-height:1.55;color:var(--muted)}
+
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:26px 0 6px}
+.fact{padding:18px;background:var(--tint);border:1px solid var(--tint-line);border-radius:14px}
+.fact b{display:block;font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:800;font-size:1.5rem;color:var(--accent);line-height:1}
+.fact span.fd{display:block;margin-top:8px;font-size:13.5px;line-height:1.5;color:var(--muted)}
+@media (max-width:760px){.facts{grid-template-columns:1fr}}
+
+.month-foot{padding:22px 30px;border-top:1px solid var(--tint-line);margin-top:22px}
+.toggle{display:inline-flex;align-items:center;gap:12px;background:none;border:none;cursor:pointer;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);padding:0;text-align:left}
+.toggle .tcirc{width:26px;height:26px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;transition:background .25s ease,color .25s ease,transform .35s ease;flex:0 0 auto}
+.toggle:hover .tcirc{background:var(--accent);color:var(--paper)}
+.toggle[aria-expanded="true"] .tcirc{transform:rotate(45deg);background:var(--accent);color:var(--paper)}
+.toggle .t-close{display:none}
+.toggle[aria-expanded="true"] .t-open{display:none}
+.toggle[aria-expanded="true"] .t-close{display:inline}
+.detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.22,.8,.3,1)}
+.detail[data-open="true"]{grid-template-rows:1fr}
+.detail > .detail-in{overflow:hidden}
+.detail-pad{padding-top:22px}
+.detail-pad h4{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:14px;margin:24px 0 8px}
+.detail-pad h4:first-child{margin-top:0}
+.detail-pad p{font-size:15.5px;line-height:1.68;color:var(--muted);max-width:70ch}
+.note{margin-top:24px;padding:18px 22px;background:var(--tint);border-left:3px solid var(--accent);border-radius:0 14px 14px 0}
+.note p{color:var(--ink);font-size:15px}
+@media (prefers-reduced-motion:reduce){.detail{transition:none}.toggle .tcirc{transition:none}}
+@media (max-width:640px){
+  .month{padding-left:52px}
+  .tl-track{left:11px}
+  .month-dot{left:0;width:22px;height:22px}
+  .month-head,.month-body,.month-foot{padding-left:22px;padding-right:22px}
+}
+
+/* =====================================================================
+   DECISION BAND
+===================================================================== */
+.decision{
+  position:relative;overflow:hidden;padding:118px 0;color:var(--paper);
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgba(124,124,255,.22), transparent 60%),
+    radial-gradient(800px 460px at 100% 100%, rgba(43,43,230,.28), transparent 55%),
+    linear-gradient(160deg, var(--navy-2) 0%, var(--navy-1) 100%);
+}
+.decision .wrap{position:relative;z-index:1}
+.decision .eyebrow{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.18);color:rgba(243,243,238,.72)}
+.decision h2{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:750;text-transform:uppercase;font-size:clamp(1.4rem,3vw,2.35rem);line-height:1.1;letter-spacing:-.015em;max-width:24ch}
+.decision h2 .hl{color:var(--accent-light)}
+.decision > .wrap > p.dp{color:#B9B9C2;max-width:58ch;font-size:17px;line-height:1.62;margin-top:22px}
+.fork{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin-top:40px;max-width:880px}
+.fork-card{padding:26px 24px;border-radius:var(--card-radius);background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(10px);transition:transform .3s ease,background .3s ease,border-color .3s ease}
+.fork-card:hover{transform:translateY(-6px);background:rgba(124,124,255,.12);border-color:rgba(124,124,255,.4)}
+.fork-card b{display:block;font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:15px;margin-bottom:10px}
+.fork-card p{color:rgba(243,243,238,.68);font-size:14.5px;line-height:1.55}
+.stamp{margin-top:44px;display:inline-flex;align-items:center;gap:14px;padding:16px 26px;border-radius:100px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);font-family:var(--display);font-variation-settings:'wdth' 106;font-weight:700;text-transform:uppercase;font-size:clamp(.82rem,1.5vw,1.02rem)}
+.stamp .dot{background:#4ADE80}
+.stamp .dot::after{border-color:#4ADE80}
+@media (max-width:700px){.fork{grid-template-columns:1fr}.decision{padding:80px 0}.stamp{border-radius:20px}}
+@media (prefers-reduced-motion:reduce){.fork-card:hover{transform:none}}
+
+/* =====================================================================
+   HANDOVER + PRINCIPLES
+===================================================================== */
+.assets{list-style:none;display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:12px}
+.assets li{display:flex;align-items:flex-start;gap:12px;padding:16px 18px;background:var(--paper);border:1px solid var(--tint-line);border-radius:14px;font-size:14.5px;line-height:1.45;box-shadow:var(--card-shadow);transition:transform .25s ease,box-shadow .25s ease}
+.assets li:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover)}
+.assets li::before{content:"\2713";color:var(--accent);font-family:var(--mono);font-size:13px;flex:0 0 auto;line-height:1.45}
+@media (prefers-reduced-motion:reduce){.assets li:hover{transform:none}}
+
+.principles{list-style:none;max-width:860px;margin-top:34px}
+.principles li{display:grid;grid-template-columns:230px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-top:1px solid var(--tint-line)}
+.principles li:first-child{border-top:none}
+.principles b{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:14px}
+.principles span.pd{color:var(--muted);font-size:15.5px;line-height:1.6}
+@media (max-width:700px){.principles li{grid-template-columns:1fr;gap:6px}}
+
+.honesty{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:26px}
+
+/* =====================================================================
+   CTA BAND + FOOTER
+===================================================================== */
+.cta-band{
+  position:relative;overflow:hidden;padding:118px 0;color:var(--paper);
+  background:
+    radial-gradient(900px 500px at 15% 0%, rgba(124,124,255,.22), transparent 60%),
+    radial-gradient(800px 460px at 100% 100%, rgba(43,43,230,.28), transparent 55%),
+    linear-gradient(160deg, var(--navy-2) 0%, var(--navy-1) 100%);
+}
+.cta-band .wrap{position:relative;z-index:1;text-align:center}
+.cta-band h2{font-size:clamp(1.5rem,3.2vw,2.4rem);margin-bottom:20px}
+.cta-band p{color:#B9B9C2;max-width:50ch;font-size:17px;line-height:1.6;margin:0 auto 34px}
+.cta-band .btn{font-size:13px;padding:17px 32px;letter-spacing:.1em;background:var(--paper);color:var(--ink);border-color:var(--paper)}
+.cta-band .btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
+.cta-band .btn.ghost{background:transparent;color:var(--paper);border-color:rgba(243,243,238,.4)}
+.cta-band .btn.ghost:hover{background:var(--accent);border-color:var(--accent)}
+.cta-actions{display:flex;justify-content:center;gap:14px;flex-wrap:wrap}
+@media (max-width:640px){.cta-band{padding:76px 0}.cta-band .btn{padding:15px 26px}}
+
+footer{padding:34px 0;background:var(--navy-1);border-top:1px solid rgba(255,255,255,.1);color:rgba(243,243,238,.55);font-family:var(--mono);font-size:12px}
+.foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer a{color:rgba(243,243,238,.7)}
+footer a:hover{color:var(--paper)}
+
+/* =====================================================================
+   SCROLL REVEAL
+===================================================================== */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.stagger > *{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease}
+.stagger.in > *{opacity:1;transform:none}
+.stagger.in > *:nth-child(1){transition-delay:.05s}
+.stagger.in > *:nth-child(2){transition-delay:.12s}
+.stagger.in > *:nth-child(3){transition-delay:.19s}
+.stagger.in > *:nth-child(4){transition-delay:.26s}
+.stagger.in > *:nth-child(5){transition-delay:.33s}
+.stagger.in > *:nth-child(6){transition-delay:.4s}
+.stagger.in > *:nth-child(7){transition-delay:.47s}
+.stagger.in > *:nth-child(8){transition-delay:.54s}
+.stagger.in > *:nth-child(9){transition-delay:.61s}
+.stagger.in > *:nth-child(10){transition-delay:.68s}
+@media (prefers-reduced-motion:reduce){.reveal,.stagger > *{opacity:1;transform:none;transition:none}}
+
+@media (max-width:640px){
+  .wrap{padding:0 22px}
+  .section{padding:72px 0}
+}
+</style>
+</head>
+<body class="page-dark">
+
+<div id="readbar" aria-hidden="true"></div>
+
+<!-- ============================== NAV ============================== -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="index.html">Ismail Dinia</a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html"><span class="lang-en">Home</span><span class="lang-es">Inicio</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About</span><span class="lang-es">Sobre mí</span></a></li>
+      <li><a href="case-studies.html" aria-current="page"><span class="lang-en">Case Studies</span><span class="lang-es">Casos</span></a></li>
+      <li><a href="resources.html"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></a></li>
+      <li><a href="work-with-me.html"><span class="lang-en">Work With Me</span><span class="lang-es">Trabaja Conmigo</span></a></li>
+    </ul>
+    <div class="nav-right">
+      <div class="lang-toggle" role="group" aria-label="Language">
+        <button id="btn-en" aria-pressed="true">EN</button>
+        <button id="btn-es" aria-pressed="false">ES</button>
+      </div>
+      <a class="btn nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ============================== HERO ============================== -->
+<header class="dark-hero" id="top">
+  <div class="wrap">
+    <div class="dhero-grid">
+      <div>
+        <div class="dbadge"><span class="dot"></span> <span class="lang-en">Case study 01 · Fractional engagement</span><span class="lang-es">Caso 01 · Colaboración fraccional</span></div>
+
+        <h1 class="dhero-h1">
+          <span class="lang-en">From a product nobody could measure to a company <span class="accent">ready to raise.</span></span>
+          <span class="lang-es">De un producto que nadie podía medir a una empresa <span class="accent">lista para levantar capital.</span></span>
+        </h1>
+
+        <p class="dhero-sub lang-en">Invictia had a live app taking real payments and no way of knowing whether any of it worked. Three months later the product was beta ready, the metrics had been running since day one, and the round was ready to go out.</p>
+        <p class="dhero-sub lang-es">Invictia tenía una app en producción cobrando pagos reales y ninguna forma de saber si algo de eso funcionaba. Tres meses después el producto estaba listo para la beta, las métricas funcionaban desde el primer día y la ronda estaba lista para salir.</p>
+
+        <div class="dhero-cta">
+          <a class="btn" href="#glance"><span class="arrow">↓</span><span class="lang-en">Read the engagement</span><span class="lang-es">Leer la colaboración</span></a>
+          <a class="text-link" href="case-studies.html"><span class="lang-en">All case studies</span><span class="lang-es">Todos los casos</span></a>
+        </div>
+      </div>
+
+      <dl class="record">
+        <div><dt><span class="lang-en">Client</span><span class="lang-es">Cliente</span></dt><dd><span class="lang-en">Invictia, an AI assistant for founders</span><span class="lang-es">Invictia, un asistente de IA para fundadores</span></dd></div>
+        <div><dt><span class="lang-en">Role</span><span class="lang-es">Rol</span></dt><dd><span class="lang-en">Fractional operator, acting as product and execution lead</span><span class="lang-es">Operador fraccional, como líder de producto y ejecución</span></dd></div>
+        <div><dt><span class="lang-en">Duration</span><span class="lang-es">Duración</span></dt><dd><span class="lang-en">Three months, June to September 2026</span><span class="lang-es">Tres meses, de junio a septiembre de 2026</span></dd></div>
+        <div><dt><span class="lang-en">Stage</span><span class="lang-es">Etapa</span></dt><dd><span class="lang-en">Pre-seed, product already in production</span><span class="lang-es">Pre-seed, producto ya en producción</span></dd></div>
+        <div><dt><span class="lang-en">Scope</span><span class="lang-es">Alcance</span></dt><dd class="ok"><span class="lang-en">Agreed up front, delivered in full</span><span class="lang-es">Acordado desde el inicio, entregado por completo</span></dd></div>
+      </dl>
+    </div>
+  </div>
+</header>
+
+<!-- ============================== PROOF STRIP ============================== -->
+<div class="proof">
+  <div class="proof-inner">
+    <div class="proof-item"><span class="pv" data-count="3">0</span><span class="pl"><span class="lang-en">Months, start to handover</span><span class="lang-es">Meses, del inicio a la entrega</span></span></div>
+    <div class="proof-item"><span class="pv" data-count="56">0</span><span class="pl"><span class="lang-en">Blockers classified and tested</span><span class="lang-es">Bloqueos clasificados y probados</span></span></div>
+    <div class="proof-item"><span class="pv" data-count="18">0</span><span class="pl"><span class="lang-en">Roadmap outcomes owned</span><span class="lang-es">Resultados del roadmap a cargo</span></span></div>
+    <div class="proof-item"><span class="pv" data-count="23">0</span><span class="pl"><span class="lang-en">Validation responses, read honestly</span><span class="lang-es">Respuestas de validación, leídas con honestidad</span></span></div>
+  </div>
+</div>
+
+<!-- ============================== AT A GLANCE ============================== -->
+<section class="section surface-paper" id="glance">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">At a glance</span><span class="lang-es">De un vistazo</span></p>
+    <h2 class="section-title"><span class="lang-en">One quarter, three phases,<br>no scope left behind.</span><span class="lang-es">Un trimestre, tres fases,<br>ningún alcance sin cumplir.</span></h2>
+    <p class="section-intro lang-en">Month one for clarity and positioning. Month two for validation and user experience. Month three for execution and fundraise readiness. Agreed in the first week and delivered in full.</p>
+    <p class="section-intro lang-es">El mes uno para claridad y posicionamiento. El mes dos para validación y experiencia de usuario. El mes tres para ejecución y preparación de la ronda. Acordado en la primera semana y entregado por completo.</p>
+
+    <dl class="ledger">
+      <div><dt><span class="lang-en">Starting problem</span><span class="lang-es">Problema de partida</span></dt><dd><span class="lang-en">A live product with real payments, no focus, no onboarding, and nothing being measured.</span><span class="lang-es">Un producto en producción con pagos reales, sin foco, sin onboarding y sin nada medido.</span></dd></div>
+      <div><dt><span class="lang-en">Ending position</span><span class="lang-es">Punto de llegada</span></dt><dd><span class="lang-en">Beta ready product, metrics running from day one, and a friends and family round ready to raise.</span><span class="lang-es">Producto listo para la beta, métricas funcionando desde el primer día y una ronda de amigos y familia lista para levantar.</span></dd></div>
+      <div><dt><span class="lang-en">Left behind</span><span class="lang-es">Lo que queda</span></dt><dd><span class="lang-en">Audit, operating hub, roadmap, decision log, design system, product rules, metrics framework, prompts, pricing model and investor materials.</span><span class="lang-es">Auditoría, centro operativo, roadmap, registro de decisiones, sistema de diseño, reglas de producto, marco de métricas, prompts, modelo de precios y materiales para inversores.</span></dd></div>
+    </dl>
+
+    <div class="shift stagger">
+      <div class="shift-card">
+        <h3><span class="lang-en">What everyone assumed</span><span class="lang-es">Lo que todos suponían</span></h3>
+        <p><span class="lang-en">A startup that was behind. A launch date approaching and not enough built.</span><span class="lang-es">Una startup con retraso. Una fecha de lanzamiento cerca y poco construido.</span></p>
+      </div>
+      <div class="shift-card found">
+        <h3><span class="lang-en">What the audit found</span><span class="lang-es">Lo que encontró la auditoría</span></h3>
+        <p><span class="lang-en">The plumbing was ahead of schedule. What was missing was focus.</span><span class="lang-es">La infraestructura iba adelantada. Lo que faltaba era foco.</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== BEFORE / AFTER ============================== -->
+<section class="section surface-tint" id="before-after">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">Before and after</span><span class="lang-es">Antes y después</span></p>
+    <h2 class="section-title"><span class="lang-en">The same product,<br>three months apart.</span><span class="lang-es">El mismo producto,<br>con tres meses de diferencia.</span></h2>
+    <p class="section-intro lang-en">Drag the handle. On the left, the product a new user met in June: no onboarding, zero counters, an unconfigured budget. On the right, the beta ready flow that replaced it.</p>
+    <p class="section-intro lang-es">Arrastra el control. A la izquierda, el producto que encontraba un usuario nuevo en junio: sin onboarding, contadores a cero, presupuesto sin configurar. A la derecha, el flujo listo para la beta que lo sustituyó.</p>
+
+    <div class="ba" id="ba">
+      <div class="ba-frame">
+        <div class="ba-layer before">
+          <img src="images/invictia-before.png" alt="The Invictia product before the engagement: a new user landing on empty counters with no onboarding.">
+        </div>
+        <div class="ba-layer after">
+          <img src="images/invictia-after.png" alt="The Invictia product after the engagement: a home screen that greets the user and plans their day.">
+        </div>
+        <span class="ba-tag l"><span class="lang-en">Before · June</span><span class="lang-es">Antes · junio</span></span>
+        <span class="ba-tag r"><span class="lang-en">After · September</span><span class="lang-es">Después · septiembre</span></span>
+        <input class="ba-range" id="ba-range" type="range" min="0" max="100" value="50" aria-label="Compare before and after">
+        <div class="ba-handle" aria-hidden="true"><span>⇆</span></div>
+      </div>
+    </div>
+    <p class="ba-caption"><span class="lang-en">Median time to value moved from undefined to a written target of under five minutes.</span><span class="lang-es">El tiempo mediano hasta el valor pasó de indefinido a un objetivo escrito de menos de cinco minutos.</span></p>
+  </div>
+</section>
+
+<!-- ============================== MONTHS 1 AND 2 ============================== -->
+<section class="section surface-paper" id="engagement">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">The engagement</span><span class="lang-es">La colaboración</span></p>
+    <h2 class="section-title"><span class="lang-en">Three months,<br>taken one at a time.</span><span class="lang-es">Tres meses,<br>uno a uno.</span></h2>
+    <p class="section-intro lang-en">Each month opened with a question and closed with something the company still owns. Open any month to read it in full.</p>
+    <p class="section-intro lang-es">Cada mes empezó con una pregunta y terminó con algo que la empresa sigue teniendo. Abre cualquier mes para leerlo completo.</p>
+
+    <div class="timeline" id="timeline">
+      <div class="tl-track" aria-hidden="true"><i id="tl-fill"></i></div>
+
+      <article class="month" id="month-1">
+        <div class="month-dot">01</div>
+        <div class="month-card">
+          <div class="month-head">
+            <p class="month-kicker"><span class="lang-en">Month one · June</span><span class="lang-es">Mes uno · junio</span></p>
+            <h3><span class="lang-en">Clarity and positioning</span><span class="lang-es">Claridad y posicionamiento</span></h3>
+          </div>
+          <div class="month-body">
+            <div class="lang-en">
+              <p>Invictia arrived looking like a startup that was behind: a live app, a founder stretched thin, an external dev agency, a launch date approaching and a friends and family round three months out.</p>
+              <p>The product was already in production, taking payments through Stripe, with AI integrated and analytics installed. The problem was not capacity. <strong>Five bottlenecks explained where the effort was going.</strong></p>
+            </div>
+            <div class="lang-es">
+              <p>Invictia llegó con pinta de startup con retraso: una app en producción, un fundador desbordado, una agencia de desarrollo externa, una fecha de lanzamiento cerca y una ronda de amigos y familia a tres meses.</p>
+              <p>El producto ya estaba en producción, cobrando con Stripe, con IA integrada y analítica instalada. El problema no era la capacidad. <strong>Cinco cuellos de botella explicaban a dónde se iba el esfuerzo.</strong></p>
+            </div>
+
+            <ol class="ranked stagger">
+              <li>
+                <h4><span class="lang-en">No time to value</span><span class="lang-es">Sin tiempo hasta el valor</span></h4>
+                <p class="lang-en">Onboarding was a guided tour and a reminder email. New users landed on zero counters and an unconfigured budget.</p>
+                <p class="lang-es">El onboarding era un tour guiado y un email recordatorio. Los usuarios nuevos aterrizaban en contadores a cero y un presupuesto sin configurar.</p>
+              </li>
+              <li>
+                <h4><span class="lang-en">Fragmented AI</span><span class="lang-es">IA fragmentada</span></h4>
+                <p class="lang-en">Five separate assistant identities. The product's whole promise, a companion that thinks with you, was invisible inside the product itself.</p>
+                <p class="lang-es">Cinco identidades de asistente distintas. La promesa entera del producto, un compañero que piensa contigo, era invisible dentro del propio producto.</p>
+              </li>
+              <li>
+                <h4><span class="lang-en">Inflated scope</span><span class="lang-es">Alcance inflado</span></h4>
+                <p class="lang-en">A finance tracker, a virtual currency and a referral programme, all competing with the positioning the founder had just validated.</p>
+                <p class="lang-es">Un gestor de finanzas, una moneda virtual y un programa de referidos, todos compitiendo con el posicionamiento que el fundador acababa de validar.</p>
+              </li>
+              <li>
+                <h4><span class="lang-en">Configuration debt</span><span class="lang-es">Deuda de configuración</span></h4>
+                <p class="lang-en">The WhatsApp channel, a central piece of the product, was half configured. Parts of what users could see did not actually work.</p>
+                <p class="lang-es">El canal de WhatsApp, pieza central del producto, estaba a medio configurar. Parte de lo que veían los usuarios no funcionaba realmente.</p>
+              </li>
+              <li>
+                <h4><span class="lang-en">No instrumented funnel</span><span class="lang-es">Sin embudo medido</span></h4>
+                <p class="lang-en">Visitor, signup, activation, retention and payment were not measured, so nothing could be prioritised with evidence.</p>
+                <p class="lang-es">Visita, registro, activación, retención y pago no se medían, así que nada podía priorizarse con evidencia.</p>
+              </li>
+            </ol>
+          </div>
+          <div class="month-foot">
+            <button class="toggle" type="button" aria-expanded="false" aria-controls="d1"><span class="tcirc">+</span><span class="tlabel"><span class="lang-en t-open">Read what was delivered</span><span class="lang-es t-open">Leer lo que se entregó</span><span class="lang-en t-close">Close this section</span><span class="lang-es t-close">Cerrar esta sección</span></span></button>
+            <div class="detail" id="d1" data-open="false"><div class="detail-in"><div class="detail-pad">
+              <div class="lang-en">
+                <h4>The discovery sprint</h4>
+                <p>A short discovery sprint produced the brand pyramid, the narrative and a one page ICP, and moved the positioning from generic productivity to founder decisional loneliness. That single decision then governed the pricing, the landing page, the onboarding, the product spec and the investor deck. Consistency across those surfaces is what makes a small company look deliberate.</p>
+                <h4>The audit</h4>
+                <p>A startup audit with a risk matrix, eight recommendations ordered by impact against effort, and a 30/60/90 day plan with an owner and a KPI for every phase. Ranked, not listed, so the founder could see the trade-offs rather than a wish list.</p>
+                <div class="note"><p>Nothing downstream can be prioritised with evidence until you know who the product is for. Positioning here was not a marketing detail, it was the input to every other decision in the quarter.</p></div>
+              </div>
+              <div class="lang-es">
+                <h4>El sprint de descubrimiento</h4>
+                <p>Un sprint corto de descubrimiento produjo la pirámide de marca, la narrativa y un ICP de una página, y movió el posicionamiento de productividad genérica a la soledad decisional del fundador. Esa única decisión gobernó después los precios, la landing, el onboarding, la especificación del producto y el deck para inversores. La coherencia entre todas esas superficies es lo que hace que una empresa pequeña parezca deliberada.</p>
+                <h4>La auditoría</h4>
+                <p>Una auditoría de startup con matriz de riesgos, ocho recomendaciones ordenadas por impacto frente a esfuerzo y un plan a 30/60/90 días con responsable y KPI en cada fase. Priorizado, no listado, para que el fundador viera los trade-offs y no una lista de deseos.</p>
+                <div class="note"><p>Nada de lo que viene después puede priorizarse con evidencia hasta saber para quién es el producto. El posicionamiento aquí no era un detalle de marketing, era el input de todas las demás decisiones del trimestre.</p></div>
+              </div>
+            </div></div></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="month" id="month-2">
+        <div class="month-dot">02</div>
+        <div class="month-card">
+          <div class="month-head">
+            <p class="month-kicker"><span class="lang-en">Month two · July</span><span class="lang-es">Mes dos · julio</span></p>
+            <h3><span class="lang-en">Rules, metrics, and the first honest look at the build</span><span class="lang-es">Reglas, métricas y la primera mirada honesta a lo construido</span></h3>
+          </div>
+          <div class="month-body">
+            <div class="lang-en">
+              <p>Month two installed the things that make quality independent of whoever is paying attention that week: written product rules, a measurement system running from day one, and an operating hub holding the roadmap, decisions, blockers and KPIs in one place.</p>
+              <p>Then I looked at what had actually been built, and the picture did not match the status reports.</p>
+            </div>
+            <div class="lang-es">
+              <p>El mes dos instaló lo que hace que la calidad no dependa de quién esté atento esa semana: reglas de producto escritas, un sistema de medición funcionando desde el primer día y un centro operativo con el roadmap, las decisiones, los bloqueos y los KPIs en un solo lugar.</p>
+              <p>Después miré lo que realmente se había construido, y el panorama no coincidía con los informes de estado.</p>
+            </div>
+
+            <div class="facts stagger">
+              <div class="fact"><b>56</b><span class="fd"><span class="lang-en">Blockers classified across seven areas, each judged against a single written test.</span><span class="lang-es">Bloqueos clasificados en siete áreas, cada uno juzgado con una misma prueba escrita.</span></span></div>
+              <div class="fact"><b>18</b><span class="fd"><span class="lang-en">Roadmap outcomes in the operating hub, next to a decision log and a KPI board.</span><span class="lang-es">Resultados del roadmap en el centro operativo, junto a un registro de decisiones y un panel de KPIs.</span></span></div>
+              <div class="fact"><b>40%</b><span class="fd"><span class="lang-en">Activation floor, written down as a testable criterion before anything shipped.</span><span class="lang-es">Suelo de activación, escrito como criterio verificable antes de lanzar nada.</span></span></div>
+            </div>
+          </div>
+          <div class="month-foot">
+            <button class="toggle" type="button" aria-expanded="false" aria-controls="d2"><span class="tcirc">+</span><span class="tlabel"><span class="lang-en t-open">Read how the system was built</span><span class="lang-es t-open">Leer cómo se construyó el sistema</span><span class="lang-en t-close">Close this section</span><span class="lang-es t-close">Cerrar esta sección</span></span></button>
+            <div class="detail" id="d2" data-open="false"><div class="detail-in"><div class="detail-pad">
+              <div class="lang-en">
+                <h4>I wrote the product rules</h4>
+                <p>A defined value moment in four concrete outcomes, and five design principles used as a filter for every feature anyone proposed. If a screen or a message did not move a founder closer to first value, it did not ship. That gave the team a way to say no that was not an opinion.</p>
+                <h4>I built the measurement system, and it ran from day one</h4>
+                <p>Not a dashboard added at the end. Success criteria were written down and made testable: activation above 40 percent, median time to value under five minutes, D30 retention with a flattening curve, NPS, a ceiling on critical bugs. A beta readiness tracker then turned a vague sense of lots to do into 56 classified blockers across seven areas, with everything that failed the written test moved into a post beta bucket so it was never argued about twice.</p>
+                <h4>The templates fed the metrics</h4>
+                <p>The product guide closed every block with its own written ready when criterion. The onboarding guide specified the flow message by message across web and WhatsApp. Each document existed to produce a number or a decision, not to sit in a drive.</p>
+                <h4>And then I looked at what had actually been built</h4>
+                <p>Onboarding did not exist. Stripe was broken. What a user typed during signup was not saved anywhere. On the web the AI could talk but could not act, so the product could not do anything it was told.</p>
+              </div>
+              <div class="lang-es">
+                <h4>Escribí las reglas de producto</h4>
+                <p>Un momento de valor definido en cuatro resultados concretos y cinco principios de diseño usados como filtro para cada funcionalidad que alguien proponía. Si una pantalla o un mensaje no acercaba al fundador al primer valor, no se lanzaba. Eso dio al equipo una forma de decir que no que no era una opinión.</p>
+                <h4>Construí el sistema de medición, y funcionó desde el primer día</h4>
+                <p>No un dashboard añadido al final. Los criterios de éxito se escribieron y se hicieron verificables: activación por encima del 40 %, tiempo mediano hasta el valor por debajo de cinco minutos, retención D30 con una curva que se aplana, NPS y un tope de bugs críticos. Un tracker de preparación para la beta convirtió la vaga sensación de tener mucho por hacer en 56 bloqueos clasificados en siete áreas, y todo lo que no pasaba la prueba escrita se movió a un cajón post beta para no discutirlo dos veces.</p>
+                <h4>Las plantillas alimentaban las métricas</h4>
+                <p>La guía de producto cerraba cada bloque con su propio criterio escrito de "listo cuando". La guía de onboarding especificaba el flujo mensaje a mensaje en web y WhatsApp. Cada documento existía para producir un número o una decisión, no para quedarse en una carpeta.</p>
+                <h4>Y entonces miré lo que realmente se había construido</h4>
+                <p>El onboarding no existía. Stripe estaba roto. Lo que el usuario escribía al registrarse no se guardaba en ningún sitio. En la web la IA podía hablar pero no actuar, así que el producto no podía hacer nada de lo que se le pedía.</p>
+              </div>
+            </div></div></div>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== THE DECISION ============================== -->
+<section class="decision" id="decision">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">The turning point</span><span class="lang-es">El punto de inflexión</span></p>
+    <h2>
+      <span class="lang-en">It went to the founder as a cold document: <span class="hl">what was planned, what exists, and what it costs to close the gap.</span></span>
+      <span class="lang-es">Llegó al fundador como un documento frío: <span class="hl">lo planificado, lo que existe y lo que cuesta cerrar la brecha.</span></span>
+    </h2>
+    <p class="dp lang-en">It set a twelve point minimum bar with written acceptance criteria, recommended against the planned launch date, and put one decision in front of him in two parts.</p>
+    <p class="dp lang-es">Fijaba un mínimo de doce puntos con criterios de aceptación escritos, recomendaba no mantener la fecha de lanzamiento prevista y le ponía delante una sola decisión en dos partes.</p>
+    <p class="dp lang-en">With twenty people on a waitlist and a round three months away, inviting them into a product that forgot them in the first minute would have burned the only list available and produced early churn, which is the worst number to carry into an investor conversation.</p>
+    <p class="dp lang-es">Con veinte personas en lista de espera y una ronda a tres meses, invitarlas a un producto que las olvidaba en el primer minuto habría quemado la única lista disponible y producido abandono temprano, el peor número que llevar a una conversación con inversores.</p>
+
+    <div class="fork stagger">
+      <div class="fork-card">
+        <b><span class="lang-en">Option A · Invest properly</span><span class="lang-es">Opción A · Invertir bien</span></b>
+        <p class="lang-en">Close a written list of twelve items against acceptance criteria, then open the waitlist to a product that holds.</p>
+        <p class="lang-es">Cerrar una lista escrita de doce puntos según criterios de aceptación y abrir después la lista de espera a un producto que aguante.</p>
+      </div>
+      <div class="fork-card">
+        <b><span class="lang-en">Option B · Stop deliberately</span><span class="lang-es">Opción B · Parar a propósito</span></b>
+        <p class="lang-en">Halt on purpose rather than by attrition, and keep the learning, the positioning and the systems intact.</p>
+        <p class="lang-es">Parar a propósito y no por desgaste, manteniendo intactos el aprendizaje, el posicionamiento y los sistemas.</p>
+      </div>
+    </div>
+
+    <p class="stamp"><span class="dot"></span><span class="lang-en">Definition of done: verified in the product, not reported on a call.</span><span class="lang-es">Definición de hecho: verificado en el producto, no contado en una llamada.</span></p>
+  </div>
+</section>
+
+<!-- ============================== MONTH 3 ============================== -->
+<section class="section surface-tint" id="month-3">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">Month three · August to September</span><span class="lang-es">Mes tres · agosto y septiembre</span></p>
+    <h2 class="section-title"><span class="lang-en">Access, and taking<br>the build by the hand.</span><span class="lang-es">Acceso, y llevar<br>la construcción de la mano.</span></h2>
+    <p class="section-intro lang-en">I finally got access to the platform and the repository. That changed the job from arguing about status to fixing the product. A product owner who cannot verify the product is not a product owner, and once I could verify it the project moved faster in three weeks than it had in the previous two months.</p>
+    <p class="section-intro lang-es">Por fin tuve acceso a la plataforma y al repositorio. Eso cambió el trabajo: de discutir el estado a arreglar el producto. Un product owner que no puede verificar el producto no es un product owner, y una vez que pude verificarlo el proyecto avanzó más en tres semanas que en los dos meses anteriores.</p>
+
+    <div class="month" style="padding-left:0">
+      <div class="month-card">
+        <div class="month-body" style="padding-top:26px">
+          <p class="lang-en">The month covered a full codebase review, a local environment, step by step technical direction, a rewritten system prompt, a closed validation loop, and the materials the company needed to raise.</p>
+          <p class="lang-es">El mes incluyó una revisión completa del código, un entorno local, dirección técnica paso a paso, un system prompt reescrito, un ciclo de validación cerrado y los materiales que la empresa necesitaba para levantar capital.</p>
+          <div class="facts stagger">
+            <div class="fact"><b>1</b><span class="fd"><span class="lang-en">Checklist covering the whole codebase, each item mapped to a file and a line.</span><span class="lang-es">Checklist que cubre todo el código, cada punto vinculado a un archivo y una línea.</span></span></div>
+            <div class="fact"><b>23</b><span class="fd"><span class="lang-en">Survey responses, written up as confirmed, unconfirmed and discarded.</span><span class="lang-es">Respuestas de encuesta, documentadas como confirmadas, no confirmadas y descartadas.</span></span></div>
+            <div class="fact"><b>2</b><span class="fd"><span class="lang-en">Issues escalated upward as founder decisions rather than sideways as complaints.</span><span class="lang-es">Problemas escalados hacia arriba como decisiones del fundador, no hacia los lados como quejas.</span></span></div>
+          </div>
+        </div>
+        <div class="month-foot">
+          <button class="toggle" type="button" aria-expanded="false" aria-controls="d3"><span class="tcirc">+</span><span class="tlabel"><span class="lang-en t-open">Read the month in full</span><span class="lang-es t-open">Leer el mes completo</span><span class="lang-en t-close">Close this section</span><span class="lang-es t-close">Cerrar esta sección</span></span></button>
+          <div class="detail" id="d3" data-open="false"><div class="detail-in"><div class="detail-pad">
+            <div class="lang-en">
+              <h4>I reviewed the entire codebase against a specific commit</h4>
+              <p>One checklist that said, item by item, what was confirmed working, what was confirmed broken, and what still had to be verified in the running product, each with the file and line where it lived. Security and product split into separate blocks. Password hashing, phone verification, payment webhook signatures and error handling all covered, with a manual test list for every path that touched money or identity.</p>
+              <h4>I stood the whole thing up locally in Docker</h4>
+              <p>So the product could be tested independently rather than judged from a demo.</p>
+              <h4>Then I directed the build step by step</h4>
+              <p>Not feedback, not tickets thrown over a wall. What to change, where in the code, in what order, and what the acceptance test was. Patches verified against the real repository before they were handed over. Two issues that were not the developer's to solve, core logic sitting outside version control and an unsupported framework version, went upward to the founder as decisions.</p>
+              <h4>I rewrote the product's brain</h4>
+              <p>One system prompt for web and WhatsApp, one identity, one memory across both channels, with the reasoning hierarchy written in explicitly: context, then thinking, then decision, then execution, and only then tasks. The forbidden shortcut was named in the spec, because the easy failure mode for a product like this is to become a to do list with a chat box on top.</p>
+              <h4>I closed the validation loop</h4>
+              <p>The final survey landed at 23 responses, read against the original hypotheses and written up as confirmed, unconfirmed and discarded. Some of it did not support the original thesis, and it was written that way. Then a full QA pass across the product and a printable readiness checklist covering activation, WhatsApp, the product core, payments, UX, analytics and operations before anyone was invited in.</p>
+              <h4>And I got the company ready to raise</h4>
+              <p>Pricing modelled twice, moving up as the product spec grew, with the reasoning written down and a founder rate frozen for twelve months. A go to market strategy split into two growth engines and five phases, each with an owner, and an explicit argument against paid advertising before retention is proven. A pitch rebuilt around a clear problem, solution, product and ask. Investor research done properly, Artyzen among them, so the round would be pitched to a target list rather than to whoever answered.</p>
+              <div class="note"><p>By the end of the contract the product was beta ready and the round was ready to go out.</p></div>
+            </div>
+            <div class="lang-es">
+              <h4>Revisé todo el código contra un commit concreto</h4>
+              <p>Una checklist que decía, punto por punto, qué estaba confirmado como funcional, qué estaba confirmado como roto y qué había que verificar todavía en el producto en marcha, cada uno con el archivo y la línea donde vivía. Seguridad y producto separados en bloques distintos. Hash de contraseñas, verificación de teléfono, firmas de webhooks de pago y gestión de errores cubiertos, con una lista de pruebas manuales para cada camino que tocara dinero o identidad.</p>
+              <h4>Levanté todo en local con Docker</h4>
+              <p>Para poder probar el producto de forma independiente en lugar de juzgarlo por una demo.</p>
+              <h4>Después dirigí la construcción paso a paso</h4>
+              <p>Ni feedback ni tickets lanzados por encima del muro. Qué cambiar, dónde en el código, en qué orden y cuál era la prueba de aceptación. Parches verificados contra el repositorio real antes de entregarlos. Dos problemas que no le correspondía resolver al desarrollador, lógica central fuera del control de versiones y una versión de framework sin soporte, subieron al fundador como decisiones.</p>
+              <h4>Reescribí el cerebro del producto</h4>
+              <p>Un solo system prompt para web y WhatsApp, una identidad, una memoria compartida entre ambos canales, con la jerarquía de razonamiento escrita explícitamente: contexto, luego pensamiento, luego decisión, luego ejecución y solo después tareas. El atajo prohibido quedó nombrado en la especificación, porque el modo de fallo fácil de un producto así es convertirse en una lista de tareas con un chat encima.</p>
+              <h4>Cerré el ciclo de validación</h4>
+              <p>La encuesta final llegó a 23 respuestas, leídas contra las hipótesis originales y documentadas como confirmadas, no confirmadas y descartadas. Parte de ellas no respaldaba la tesis original, y así se escribió. Después, una pasada completa de QA por todo el producto y una checklist imprimible de preparación que cubría activación, WhatsApp, el núcleo del producto, pagos, UX, analítica y operaciones antes de invitar a nadie.</p>
+              <h4>Y dejé a la empresa lista para levantar capital</h4>
+              <p>Precios modelados dos veces, subiendo a medida que crecía la especificación del producto, con el razonamiento escrito y una tarifa de fundador congelada durante doce meses. Una estrategia de go to market dividida en dos motores de crecimiento y cinco fases, cada una con responsable, y un argumento explícito contra la publicidad de pago antes de demostrar la retención. Un pitch reconstruido en torno a un problema, una solución, un producto y una petición claros. Investigación de inversores hecha en serio, Artyzen entre ellos, para que la ronda se presentara a una lista objetivo y no a quien contestara.</p>
+              <div class="note"><p>Al final del contrato el producto estaba listo para la beta y la ronda lista para salir.</p></div>
+            </div>
+          </div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== HANDOVER ============================== -->
+<section class="section surface-paper" id="handover">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">Where it ended</span><span class="lang-es">Cómo terminó</span></p>
+    <h2 class="section-title"><span class="lang-en">Nothing built here<br>depends on me being there.</span><span class="lang-es">Nada de lo construido aquí<br>depende de que yo esté.</span></h2>
+    <p class="section-intro lang-en">Invictia is now paused while the founder resolves financing. Everything below is usable by whoever takes it forward, which was the point from the beginning.</p>
+    <p class="section-intro lang-es">Invictia está ahora en pausa mientras el fundador resuelve la financiación. Todo lo que sigue lo puede usar quien lo retome, que era el objetivo desde el principio.</p>
+
+    <ul class="assets stagger">
+      <li><span class="lang-en">Startup audit and risk matrix</span><span class="lang-es">Auditoría de startup y matriz de riesgos</span></li>
+      <li><span class="lang-en">Operating hub</span><span class="lang-es">Centro operativo</span></li>
+      <li><span class="lang-en">Roadmap, 18 outcomes</span><span class="lang-es">Roadmap, 18 resultados</span></li>
+      <li><span class="lang-en">Decision log</span><span class="lang-es">Registro de decisiones</span></li>
+      <li><span class="lang-en">Design system</span><span class="lang-es">Sistema de diseño</span></li>
+      <li><span class="lang-en">Product rules</span><span class="lang-es">Reglas de producto</span></li>
+      <li><span class="lang-en">Metrics framework</span><span class="lang-es">Marco de métricas</span></li>
+      <li><span class="lang-en">System prompts</span><span class="lang-es">System prompts</span></li>
+      <li><span class="lang-en">Pricing model</span><span class="lang-es">Modelo de precios</span></li>
+      <li><span class="lang-en">Investor materials</span><span class="lang-es">Materiales para inversores</span></li>
+    </ul>
+
+    <p class="honesty lang-en">Scope defined at the start and delivered in full: positioning, audit, product rules, metrics, onboarding and UX, technical direction, prompts, pricing, go to market and fundraise materials.</p>
+    <p class="honesty lang-es">Alcance definido al inicio y entregado por completo: posicionamiento, auditoría, reglas de producto, métricas, onboarding y UX, dirección técnica, prompts, precios, go to market y materiales de captación.</p>
+  </div>
+</section>
+
+<!-- ============================== PRINCIPLES ============================== -->
+<section class="section surface-tint" id="principles">
+  <div class="wrap reveal">
+    <p class="eyebrow"><span class="lang-en">The principles behind it</span><span class="lang-es">Los principios detrás</span></p>
+    <h2 class="section-title"><span class="lang-en">How the work was run.</span><span class="lang-es">Cómo se llevó el trabajo.</span></h2>
+    <ul class="principles stagger">
+      <li><b><span class="lang-en">Clarity over complexity</span><span class="lang-es">Claridad sobre complejidad</span></b><span class="pd"><span class="lang-en">One positioning line, carried consistently across every surface the company has.</span><span class="lang-es">Una sola línea de posicionamiento, sostenida de forma coherente en cada superficie de la empresa.</span></span></li>
+      <li><b><span class="lang-en">Systems over heroics</span><span class="lang-es">Sistemas sobre heroicidades</span></b><span class="pd"><span class="lang-en">Metrics and rules running from day one, so quality did not depend on anyone remembering to check.</span><span class="lang-es">Métricas y reglas funcionando desde el primer día, para que la calidad no dependiera de que alguien se acordara de revisar.</span></span></li>
+      <li><b><span class="lang-en">Documentation over memory</span><span class="lang-es">Documentación sobre memoria</span></b><span class="pd"><span class="lang-en">A decision log kept from the first week, so the reasoning survives the people.</span><span class="lang-es">Un registro de decisiones desde la primera semana, para que el razonamiento sobreviva a las personas.</span></span></li>
+      <li><b><span class="lang-en">Execution over meetings</span><span class="lang-es">Ejecución sobre reuniones</span></b><span class="pd"><span class="lang-en">Prototypes, code review and checklists instead of status calls.</span><span class="lang-es">Prototipos, revisión de código y checklists en lugar de llamadas de seguimiento.</span></span></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============================== CTA ============================== -->
+<section class="cta-band">
+  <div class="wrap reveal">
+    <h2 class="display"><span class="lang-en">Want this kind of quarter?</span><span class="lang-es">¿Quieres un trimestre así?</span></h2>
+    <p><span class="lang-en">I only work with a handful of startups at a time, so the focus is real. If you are serious about building the right product, let's talk.</span><span class="lang-es">Solo trabajo con un puñado de startups a la vez, para que el foco sea real. Si te tomas en serio construir el producto correcto, hablemos.</span></p>
+    <div class="cta-actions">
+      <a class="btn" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a discovery call</span><span class="lang-es">Reserva una llamada</span></a>
+      <a class="btn ghost" href="case-studies.html"><span class="lang-en">All case studies</span><span class="lang-es">Todos los casos</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================== FOOTER ============================== -->
+<footer>
+  <div class="wrap foot-inner">
+    <span>© <span id="year"></span> Ismail Dinia</span>
+    <span><span class="lang-en">Product &amp; Execution Lead</span><span class="lang-es">Líder de Producto y Ejecución</span></span>
+    <a href="mailto:hello@ismaildinia.com">hello@ismaildinia.com</a>
+  </div>
+</footer>
+
+<script>
+var BOOKING_URL = "https://calendar.app.google/v88QGjvPbbctwXkm9";
+var reduced = window.matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+/* ---------- language toggle ---------- */
+function rewriteLinks(lang){
+  document.querySelectorAll("a[href]").forEach(function(a){
+    var href = a.getAttribute("href");
+    if (!href || href.indexOf("http") === 0 || href.indexOf("mailto:") === 0 || href.charAt(0) === "#") return;
+    var base = href.split("?")[0];
+    var hash = "";
+    if (base.indexOf("#") > -1){ hash = base.substring(base.indexOf("#")); base = base.substring(0, base.indexOf("#")); }
+    if (href.indexOf("#") > -1 && href.indexOf("?") === -1 && hash === ""){ hash = href.substring(href.indexOf("#")); }
+    a.setAttribute("href", base + "?lang=" + lang + hash);
+  });
+}
+function setLang(lang){
+  document.documentElement.setAttribute("data-lang", lang);
+  document.documentElement.setAttribute("lang", lang);
+  var be = document.getElementById("btn-en"), bs = document.getElementById("btn-es");
+  if (be) be.setAttribute("aria-pressed", lang === "en");
+  if (bs) bs.setAttribute("aria-pressed", lang === "es");
+  rewriteLinks(lang);
+}
+var params = new URLSearchParams(window.location.search);
+var initial = params.get("lang");
+if (initial !== "en" && initial !== "es"){
+  initial = (navigator.language || "en").toLowerCase().indexOf("es") === 0 ? "es" : "en";
+}
+setLang(initial);
+var btnEn = document.getElementById("btn-en"), btnEs = document.getElementById("btn-es");
+if (btnEn) btnEn.addEventListener("click", function(){ setLang("en"); });
+if (btnEs) btnEs.addEventListener("click", function(){ setLang("es"); });
+
+/* ---------- booking links ---------- */
+document.querySelectorAll("[data-booking]").forEach(function(el){
+  if (BOOKING_URL){
+    el.setAttribute("href", BOOKING_URL);
+    el.setAttribute("target","_blank");
+    el.setAttribute("rel","noopener");
+  } else {
+    el.setAttribute("href", el.getAttribute("data-booking-fallback") || "work-with-me.html#inquiry");
+  }
+});
+
+/* ---------- nav state ---------- */
+var navBar = document.querySelector(".nav"), darkHero = document.querySelector(".dark-hero");
+if (navBar && darkHero){
+  var onHeroScroll = function(){
+    var threshold = darkHero.offsetHeight - navBar.offsetHeight - 40;
+    navBar.classList.toggle("scrolled", window.scrollY > threshold);
+  };
+  window.addEventListener("scroll", onHeroScroll, {passive:true});
+  onHeroScroll();
+}
+var burger = document.getElementById("hamburger");
+if (burger){
+  burger.addEventListener("click", function(){
+    var links = document.getElementById("nav-links");
+    var open = links.classList.toggle("open");
+    burger.setAttribute("aria-expanded", open);
+  });
+}
+var yr = document.getElementById("year");
+if (yr) yr.textContent = new Date().getFullYear();
+
+/* ---------- scroll reveal ---------- */
+var io = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); }
+  });
+},{threshold:.12});
+document.querySelectorAll(".reveal, .stagger").forEach(function(el){ io.observe(el); });
+
+/* ---------- counting numbers in the proof strip ---------- */
+var cio = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if (!e.isIntersecting) return;
+    cio.unobserve(e.target);
+    var el = e.target, target = parseFloat(el.getAttribute("data-count"));
+    if (reduced){ el.textContent = target; return; }
+    var start = null, dur = 1100;
+    function step(t){
+      if (!start) start = t;
+      var p = Math.min((t - start) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 3)));
+      if (p < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  });
+},{threshold:.5});
+document.querySelectorAll("[data-count]").forEach(function(el){ cio.observe(el); });
+
+/* ---------- accordions (labels swap via CSS) ---------- */
+document.querySelectorAll(".toggle").forEach(function(btn){
+  var panel = document.getElementById(btn.getAttribute("aria-controls"));
+  btn.addEventListener("click", function(){
+    var isOpen = btn.getAttribute("aria-expanded") === "true";
+    btn.setAttribute("aria-expanded", String(!isOpen));
+    panel.setAttribute("data-open", String(!isOpen));
+  });
+});
+
+/* ---------- reading progress, timeline fill, active month ---------- */
+var readbar = document.getElementById("readbar");
+var tlFill = document.getElementById("tl-fill");
+var timeline = document.getElementById("timeline");
+var months = document.querySelectorAll(".month");
+var ticking = false;
+
+function measure(){
+  var doc = document.documentElement;
+  var max = doc.scrollHeight - doc.clientHeight;
+  readbar.style.width = (max > 0 ? (doc.scrollTop / max) * 100 : 0) + "%";
+
+  if (timeline && tlFill){
+    var r = timeline.getBoundingClientRect();
+    var p = (window.innerHeight * 0.55 - r.top) / r.height;
+    tlFill.style.height = Math.max(0, Math.min(1, p)) * 100 + "%";
+  }
+  months.forEach(function(m){
+    var mr = m.getBoundingClientRect();
+    m.classList.toggle("lit", mr.top < window.innerHeight * 0.6 && mr.bottom > 120);
+  });
+  ticking = false;
+}
+function onScroll(){
+  if (!ticking){ ticking = true; requestAnimationFrame(measure); }
+}
+window.addEventListener("scroll", onScroll, {passive:true});
+window.addEventListener("resize", onScroll);
+measure();
+
+/* ---------- before / after slider ---------- */
+(function(){
+  var ba = document.getElementById("ba"), range = document.getElementById("ba-range");
+  if (!ba || !range) return;
+  function set(v){ ba.style.setProperty("--pos", v + "%"); }
+  range.addEventListener("input", function(){ set(range.value); });
+  set(range.value);
+
+  /* one sweep the first time it enters view, so the control explains itself */
+  var swept = false;
+  var sio = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if (!e.isIntersecting || swept) return;
+      swept = true; sio.disconnect();
+      if (reduced) return;
+      var keys = [50, 88, 14, 50], i = 0, start = null, leg = 620;
+      function tween(t){
+        if (!start) start = t;
+        var p = Math.min((t - start) / leg, 1);
+        var eased = p < .5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+        var v = keys[i] + (keys[i + 1] - keys[i]) * eased;
+        set(v); range.value = v;
+        if (p < 1){ requestAnimationFrame(tween); }
+        else if (i < keys.length - 2){ i++; start = null; requestAnimationFrame(tween); }
+      }
+      setTimeout(function(){ requestAnimationFrame(tween); }, 350);
+    });
+  },{threshold:.45});
+  sio.observe(ba);
+})();
+</script>
+</body>
+</html>
