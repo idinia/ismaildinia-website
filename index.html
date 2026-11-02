@@ -6,7 +6,7 @@
 <link rel="icon" type="image/svg+xml" href="/images/favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Newsreader:opsz,wght@6..72,400..500&display=swap" rel="stylesheet">
 
 <title>Ismail Dinia | Product Strategy &amp; Execution for Early-Stage Startups</title>
 <meta name="description" content="I help early-stage founders validate ideas, build products users love, and create execution systems that scale.">
@@ -32,25 +32,34 @@
 
 <style>
 /* =====================================================================
-   DESIGN TOKENS — back to the index-7 system: warm paper neutrals,
-   indigo accent, navy hero/CTA/footer, glass cards.
+   DESIGN TOKENS: deep navy, warm ivory, muted gold, indigo
 ===================================================================== */
 :root{
-  --paper:#F3F3EE;
-  --tint:#EDF0F7;
-  --tint-line:#DCE1EE;
-  --ink:#101014;
-  --accent:#2B2BE6;
-  --accent-light:#7C7CFF;
-  --line:#D9D9CF;
-  --muted:#5C5C66;
-  --navy-1:#0A0E27;
-  --navy-2:#12173A;
-  --navy-3:#0D1230;
+  /* Brand palette */
+  --navy:#101B2D;
+  --ivory:#F5F1E8;
+  --gold:#E9AD39;
+  --indigo:#4B507F;
+  --gold-soft:rgba(233,173,57,.55);
+  --gold-ink:#8A6110;
+  --serif:'Newsreader',Georgia,serif;
+
+  /* Existing tokens, remapped to the new palette */
+  --paper:var(--ivory);
+  --tint:#EDE7DA;
+  --tint-line:#E0D8C6;
+  --ink:var(--navy);
+  --accent:var(--gold);
+  --accent-light:var(--gold);
+  --line:#DCD4C2;
+  --muted:#5A6170;
+  --navy-1:#101B2D;
+  --navy-2:#16243A;
+  --navy-3:#0C1524;
   --glass-paper:rgba(255,255,255,.55);
   --card-radius:20px;
-  --card-shadow:0 1px 2px rgba(16,16,20,.04), 0 18px 40px -22px rgba(16,16,20,.16);
-  --card-shadow-hover:0 1px 2px rgba(16,16,20,.05), 0 26px 54px -20px rgba(43,43,230,.22);
+  --card-shadow:0 1px 2px rgba(16,27,45,.04), 0 18px 40px -22px rgba(16,27,45,.16);
+  --card-shadow-hover:0 1px 2px rgba(16,27,45,.05), 0 26px 54px -20px rgba(16,27,45,.24);
   --display:'Archivo',sans-serif;
   --body:'Instrument Sans',sans-serif;
   --mono:'IBM Plex Mono',monospace;
@@ -86,121 +95,181 @@ html[data-lang="es"] .lang-en{display:none !important}
 .section-intro{max-width:56ch;font-size:17px;line-height:1.6;color:var(--muted);margin-bottom:44px}
 
 /* Nav */
-.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(243,243,238,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);transition:background .3s ease,border-color .3s ease}
-.nav-inner{max-width:1240px;margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;gap:16px}
-.brand{font-family:var(--display);font-weight:800;font-variation-settings:'wdth' 112;text-transform:uppercase;letter-spacing:.02em;font-size:15px;text-decoration:none;white-space:nowrap}
-.nav-links{display:flex;align-items:center;gap:26px;list-style:none}
-.nav-links a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--muted);padding:6px 0;border-bottom:2px solid transparent}
-.nav-links a:hover{color:var(--ink)}
-.nav-links a[aria-current="page"]{color:var(--ink);border-bottom-color:var(--accent)}
-.nav-right{display:flex;align-items:center;gap:14px}
-.lang-toggle{display:flex;border:1px solid var(--ink);font-family:var(--mono);font-size:12px}
-.lang-toggle button{background:none;border:none;padding:7px 12px;font:inherit;cursor:pointer;color:var(--ink)}
-.lang-toggle button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
-.hamburger{display:none;background:none;border:1px solid var(--ink);padding:9px 12px;cursor:pointer;font-family:var(--mono);font-size:12px;text-transform:uppercase;letter-spacing:.08em}
-body.page-home .nav:not(.scrolled){background:transparent;border-bottom-color:transparent;backdrop-filter:none}
-body.page-home .nav:not(.scrolled) .brand{color:var(--paper)}
-body.page-home .nav:not(.scrolled) .nav-links a{color:rgba(243,243,238,.62)}
-body.page-home .nav:not(.scrolled) .nav-links a:hover{color:var(--paper)}
-body.page-home .nav:not(.scrolled) .nav-links a[aria-current="page"]{color:var(--paper);border-bottom-color:var(--accent-light)}
-body.page-home .nav:not(.scrolled) .lang-toggle{border-color:rgba(243,243,238,.35)}
-body.page-home .nav:not(.scrolled) .lang-toggle button{color:rgba(243,243,238,.8)}
-body.page-home .nav:not(.scrolled) .lang-toggle button[aria-pressed="true"]{background:rgba(243,243,238,.15);color:var(--paper)}
-body.page-home .nav:not(.scrolled) .nav-cta{background:var(--accent);border-color:var(--accent);color:#fff}
-body.page-home .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);color:var(--paper)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(16,27,45,.94);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.08);transition:background .3s ease,border-color .3s ease}
+body.page-home .nav:not(.scrolled){background:transparent;border-bottom-color:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.nav:has(.nav-links.open){background:var(--navy-1) !important}
+.nav-inner{max-width:1240px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;gap:32px}
+
+/* Left: name, divider, tagline */
+.brand{display:flex;align-items:center;gap:20px;text-decoration:none;color:#F3F1EA;flex:0 0 auto}
+.brand-name{font-family:var(--serif);font-weight:400;font-size:27px;line-height:1;letter-spacing:-.005em;white-space:nowrap}
+.brand-divider{width:1px;height:30px;background:var(--gold);opacity:.85}
+.brand-tag{font-family:var(--body);font-size:12.5px;line-height:1.45;color:rgba(243,241,234,.78);white-space:nowrap}
+
+/* Right: links, language, CTA */
+.nav-links{display:flex;align-items:center;gap:36px;list-style:none;margin-left:auto}
+.nav-links a{position:relative;font-family:var(--body);font-size:14px;font-weight:500;color:rgba(243,241,234,.82);text-decoration:none;padding:4px 0;transition:color .2s}
+.nav-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-links a:hover,.nav-links a[aria-current="page"]{color:#fff}
+.nav-links a:hover::after,.nav-links a[aria-current="page"]::after{transform:scaleX(1)}
+.nav-mobile-cta{display:none}
+
+.nav-right{display:flex;align-items:center;gap:22px}
+.lang-toggle{display:flex;gap:2px;padding-left:22px;border-left:1px solid rgba(255,255,255,.16)}
+.lang-toggle button{position:relative;background:none;border:none;cursor:pointer;font-family:var(--body);font-size:12px;font-weight:500;letter-spacing:.06em;color:rgba(243,241,234,.55);padding:4px 6px;transition:color .2s}
+.lang-toggle button:hover{color:#fff}
+.lang-toggle button[aria-pressed="true"]{color:var(--gold)}
+.lang-toggle button[aria-pressed="true"]::after{content:"";position:absolute;left:6px;right:6px;bottom:-2px;height:1px;background:var(--gold)}
+
+.nav-cta{display:inline-flex;align-items:center;gap:10px;font-family:var(--body);font-size:14px;font-weight:500;color:var(--gold);text-decoration:none;border:1px solid var(--gold-soft);border-radius:6px;padding:10px 18px;white-space:nowrap;transition:background .2s,color .2s,border-color .2s}
+.nav-cta:hover{background:var(--gold);border-color:var(--gold);color:var(--navy-1)}
+.nav-cta-arrow{display:inline-block;transition:transform .2s}
+.nav-cta:hover .nav-cta-arrow{transform:translateX(3px)}
+
+/* Hamburger */
+.hamburger{display:none;position:relative;width:42px;height:42px;background:none;border:1px solid rgba(255,255,255,.22);border-radius:6px;cursor:pointer}
+.hamburger span{position:absolute;left:12px;right:12px;height:1.5px;background:#F3F1EA;transition:transform .25s ease,opacity .2s ease,top .25s ease}
+.hamburger span:nth-child(1){top:15px}
+.hamburger span:nth-child(2){top:20px}
+.hamburger span:nth-child(3){top:25px}
+.hamburger[aria-expanded="true"] span:nth-child(1){top:20px;transform:rotate(45deg)}
+.hamburger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.hamburger[aria-expanded="true"] span:nth-child(3){top:20px;transform:rotate(-45deg)}
+
+@media (max-width:1180px){
+  .nav-inner{padding:18px 28px;gap:24px}
+  .nav-links{gap:26px}
+}
 @media (max-width:1080px){
-  .nav-links{position:fixed;top:61px;left:0;right:0;background:var(--paper);border-bottom:1px solid var(--line);flex-direction:column;align-items:flex-start;padding:20px 28px;gap:16px;display:none}
-  .nav-links.open{display:flex}
   .hamburger{display:block}
-  .nav-cta{display:none}
-  body.page-home .nav:not(.scrolled) .nav-links.open{background:var(--navy-2);border-bottom-color:rgba(255,255,255,.12)}
-  body.page-home .nav:not(.scrolled) .nav-links.open a{color:rgba(243,243,238,.75)}
-}
-@media (max-width:480px){
-  .nav-inner{padding:12px 16px;gap:8px}
-  .brand{font-size:13px}
-  .lang-toggle button{padding:6px 9px}
-  .hamburger{padding:8px 10px;font-size:11px}
-}
-
-/* Buttons */
-.btn{display:inline-flex;align-items:center;gap:10px;background:var(--ink);color:var(--paper);text-decoration:none;font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:12px 20px;border:1px solid var(--ink);border-radius:100px;cursor:pointer;transition:background .2s,color .2s,border-color .2s,transform .2s,box-shadow .2s}
-.btn:hover{background:var(--accent);border-color:var(--accent);color:var(--paper);box-shadow:0 14px 32px -10px rgba(43,43,230,.45);transform:translateY(-2px)}
-.btn .arrow{width:20px;height:20px;border-radius:50%;background:rgba(255,255,255,.18);display:flex;align-items:center;justify-content:center;font-size:12px;flex:0 0 auto}
-.text-link{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent);border-bottom:1px solid var(--accent);padding-bottom:3px;transition:opacity .2s}
-.text-link:hover{opacity:.6}
-@media (prefers-reduced-motion:reduce){.btn:hover{transform:none}}
-
-/* Hero */
-.dark-hero{position:relative;overflow:hidden;color:var(--paper);padding:172px 0 96px;background:radial-gradient(1100px 600px at 82% -8%, rgba(43,43,230,.35), transparent 60%),radial-gradient(900px 500px at -10% 100%, rgba(124,124,255,.18), transparent 55%),linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
-.dark-hero .wrap{position:relative;z-index:2}
-.dark-hero .btn{padding:16px 28px;font-size:13px}
-.dark-hero .text-link{color:rgba(243,243,238,.85);border-bottom-color:rgba(243,243,238,.4)}
-.dark-hero .text-link:hover{opacity:.7;color:var(--paper)}
-.dhero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center}
-.dbadge{display:inline-flex;align-items:center;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);border-radius:100px;padding:9px 20px;margin-bottom:30px;font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:rgba(243,243,238,.78)}
-.dhero-h1{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:720;letter-spacing:-.015em;line-height:1.08;font-size:clamp(2.1rem,4.4vw,3.6rem)}
-.dhero-h1 .accent{color:var(--accent-light);position:relative}
-.dhero-h1 .accent::after{content:"";position:absolute;left:0;bottom:.02em;height:.08em;width:100%;background:var(--accent-light);transform:scaleX(0);transform-origin:left;animation:dsweep .7s .9s cubic-bezier(.22,.8,.3,1) forwards}
-.dhero-sub{margin-top:26px;font-size:18px;line-height:1.62;color:rgba(243,243,238,.68);max-width:52ch}
-.dhero-cta{display:flex;align-items:center;gap:26px;margin-top:40px;flex-wrap:wrap}
-
-/* Industries — replaces the flat company-name trust row */
-.industries{margin-top:56px}
-.ind-label{display:block;margin-bottom:12px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(243,243,238,.45)}
-.ind-chips{display:flex;flex-wrap:wrap;gap:9px}
-.chip{font-family:var(--mono);font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;color:rgba(243,243,238,.82);background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:100px;padding:7px 15px;backdrop-filter:blur(6px)}
-
-/* Hero visual — chaos to order, the actual before/after of the work */
-.dhero-visual{position:relative;height:360px}
-.workspace{position:absolute;inset:0;border-radius:24px;overflow:hidden;display:flex;align-items:stretch;background:linear-gradient(160deg, rgba(124,124,255,.16), rgba(43,43,230,.04));border:1px solid rgba(255,255,255,.14)}
-.co-side{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 22px;gap:18px}
-.co-before{border-right:1px dashed rgba(255,255,255,.14)}
-.co-svg{width:100%;max-width:150px;height:auto}
-.co-svg path{stroke:rgba(243,243,238,.32)}
-.co-svg circle{fill:rgba(243,243,238,.4)}
-.co-svg circle.hot{fill:var(--accent-light)}
-.co-arrow{flex:0 0 auto;width:44px;display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:18px;color:var(--accent-light)}
-.co-caption{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(243,243,238,.4);text-align:center}
-.co-after{width:100%}
-.co-after .workspace-row{width:100%}
-.workspace-row{display:flex;align-items:center;gap:12px;width:100%}
-.wnode{position:relative;width:10px;height:10px;border-radius:50%;background:rgba(243,243,238,.32);flex:0 0 auto}
-.wbar{height:10px;border-radius:6px;background:rgba(243,243,238,.14)}
-.workspace-row.active .wnode{background:var(--accent-light)}
-.workspace-row.active .wnode::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--accent-light);animation:wpulse 2.4s ease-out infinite}
-.workspace-row.active .wbar{background:linear-gradient(90deg, var(--accent-light), rgba(124,124,255,.3))}
-.co-after .workspace-row + .workspace-row{margin-top:14px}
-
-@keyframes dHeroIn{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:none}}
-@keyframes dsweep{to{transform:scaleX(1)}}
-@keyframes wpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
-.dbadge,.dhero-h1,.dhero-sub,.dhero-cta,.industries{opacity:0;animation:dHeroIn .8s cubic-bezier(.22,.8,.3,1) forwards}
-.dbadge{animation-delay:.05s}
-.dhero-h1{animation-delay:.16s}
-.dhero-sub{animation-delay:.3s}
-.dhero-cta{animation-delay:.44s}
-.industries{animation-delay:.56s}
-.dhero-visual{opacity:0;animation:dHeroIn 1s .3s cubic-bezier(.22,.8,.3,1) forwards}
-@media (max-width:980px){
-  .dhero-grid{grid-template-columns:1fr;padding-top:6px}
-  .dhero-visual{height:auto;margin-top:36px}
-  .workspace{flex-direction:column;padding:8px 0}
-  .co-before{border-right:none;border-bottom:1px dashed rgba(255,255,255,.14)}
-  .co-arrow{transform:rotate(90deg);padding:4px 0}
+  .nav-right{margin-left:auto}
+  .nav-right > .nav-cta{display:none}
+  .nav-links{position:absolute;top:100%;left:0;right:0;margin:0;display:none;flex-direction:column;align-items:stretch;gap:0;padding:8px 28px 24px;background:var(--navy-1);border-bottom:1px solid rgba(255,255,255,.1)}
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;font-size:17px;padding:14px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .nav-links a::after{display:none}
+  .nav-links a[aria-current="page"]{color:var(--gold)}
+  .nav-mobile-cta{display:block;margin-top:20px}
+  .nav-mobile-cta .nav-cta{display:flex;justify-content:center;border-bottom:1px solid var(--gold-soft);padding:14px 18px}
 }
 @media (max-width:640px){
-  .dark-hero{padding:150px 0 64px}
-  .dark-hero .btn{padding:15px 24px;font-size:12px}
-  .dhero-sub{font-size:16px}
+  .nav-inner{padding:14px 20px}
+  .brand-divider,.brand-tag{display:none}
+  .brand-name{font-size:23px}
+  .lang-toggle{padding-left:0;border-left:none}
+  .nav-right{gap:12px}
+  .nav-links{padding:8px 20px 22px}
+}
+
+/* Hero */
+.dark-hero{position:relative;overflow:hidden;display:flex;align-items:center;min-height:100vh;min-height:100svh;padding:140px 0 120px;color:#F3F1EA;background:
+  radial-gradient(900px 520px at 88% 8%, rgba(75,80,127,.42), transparent 62%),
+  radial-gradient(760px 460px at -8% 105%, rgba(233,173,57,.09), transparent 58%),
+  linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
+.dark-hero .wrap{position:relative;z-index:2;width:100%}
+.dhero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:60px;align-items:center;transform:translateY(30px)}
+
+/* Left: copy */
+.hero-h1{font-family:var(--serif);font-weight:400;font-size:clamp(2.4rem,4.8vw,4rem);line-height:1.08;letter-spacing:-.012em;color:#F7F4EC}
+.hero-h1 .accent{color:var(--gold);background-image:linear-gradient(var(--gold),var(--gold));background-repeat:no-repeat;background-position:0 94%;background-size:0% .05em;-webkit-box-decoration-break:clone;box-decoration-break:clone;animation:heroSweep .9s 1.1s cubic-bezier(.22,.8,.3,1) forwards}
+.hero-sub{margin-top:38px;max-width:50ch;font-size:18px;line-height:1.65;color:rgba(243,241,234,.76)}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:60px}
+.hero-btn{display:inline-flex;align-items:center;gap:10px;padding:15px 24px;border:1px solid var(--gold);border-radius:6px;font-family:var(--body);font-size:15px;font-weight:600;text-decoration:none;transition:background .2s,border-color .2s,box-shadow .2s,color .2s}
+.hero-btn-primary{background:var(--gold);color:var(--navy)}
+.hero-btn-primary:hover{background:#F2BE55;border-color:#F2BE55;box-shadow:0 14px 32px -12px rgba(233,173,57,.55)}
+.hero-btn-secondary{background:transparent;color:var(--gold)}
+.hero-btn-secondary:hover{background:rgba(233,173,57,.1)}
+.hero-btn .arr{display:inline-block;transition:transform .2s}
+.hero-btn:hover .arr{transform:translateX(3px)}
+
+/* Right: chaos to order */
+.dhero-visual{position:relative;height:380px;top:-95px}
+.workspace{position:absolute;inset:0;display:flex;align-items:stretch;overflow:hidden;border-radius:16px;background:linear-gradient(160deg, rgba(75,80,127,.32), rgba(16,27,45,.4));border:1px solid rgba(243,241,234,.12);box-shadow:0 40px 80px -40px rgba(0,0,0,.6)}
+.workspace::before{content:"";position:absolute;top:0;left:24px;right:24px;height:1px;background:linear-gradient(90deg, transparent, rgba(233,173,57,.6), transparent)}
+.co-side{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:30px 24px}
+.co-before{border-right:1px dashed rgba(243,241,234,.14)}
+.co-svg{width:100%;max-width:150px;height:auto}
+.co-svg path{stroke:rgba(243,241,234,.32);stroke-dasharray:480;stroke-dashoffset:480;animation:coDraw 2.2s .6s ease forwards}
+.co-svg circle{fill:rgba(243,241,234,.4)}
+.co-svg circle.hot{fill:var(--gold)}
+.co-arrow{flex:0 0 auto;width:44px;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--gold)}
+.co-caption{font-family:var(--body);font-size:10.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:rgba(243,241,234,.45);text-align:center}
+.co-after{gap:0}
+.co-after .co-caption{margin-top:20px}
+.workspace-row{display:flex;align-items:center;gap:12px;width:100%}
+.workspace-row + .workspace-row{margin-top:14px}
+.wnode{position:relative;flex:0 0 auto;width:10px;height:10px;border-radius:50%;background:rgba(243,241,234,.3)}
+.wbar{height:10px;border-radius:6px;background:rgba(243,241,234,.13);transform:scaleX(0);transform-origin:left;animation:barGrow .9s cubic-bezier(.22,.8,.3,1) forwards}
+.workspace-row:nth-child(1) .wbar{animation-delay:1.2s}
+.workspace-row:nth-child(2) .wbar{animation-delay:1.35s}
+.workspace-row:nth-child(3) .wbar{animation-delay:1.5s}
+.workspace-row:nth-child(4) .wbar{animation-delay:1.65s}
+.workspace-row.active .wnode{background:var(--gold)}
+.workspace-row.active .wnode::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid var(--gold);animation:wpulse 2.4s ease-out infinite}
+.workspace-row.active .wbar{background:linear-gradient(90deg, var(--gold), rgba(233,173,57,.25))}
+
+/* Motion */
+@keyframes heroIn{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:none}}
+@keyframes heroSweep{to{background-size:100% .05em}}
+@keyframes coDraw{to{stroke-dashoffset:0}}
+@keyframes barGrow{to{transform:scaleX(1)}}
+@keyframes wpulse{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+.hero-h1,.hero-sub,.hero-cta,.dhero-visual{opacity:0;animation:heroIn .8s cubic-bezier(.22,.8,.3,1) forwards}
+.hero-h1{animation-delay:.2s}
+.hero-sub{animation-delay:.34s}
+.hero-cta{animation-delay:.46s}
+.dhero-visual{animation-delay:.35s;animation-duration:1s}
+
+@media (max-width:980px){
+  .dark-hero{min-height:auto;padding:140px 0 110px}
+  .dhero-grid{grid-template-columns:1fr;gap:0;transform:none}
+  .dhero-visual{height:auto;margin-top:48px;top:0}
+  .workspace{position:relative;inset:auto;flex-direction:column;padding:8px 0}
+  .co-before{border-right:none;border-bottom:1px dashed rgba(243,241,234,.14)}
+  .co-arrow{width:auto;padding:6px 0;transform:rotate(90deg)}
+}
+@media (max-width:640px){
+  .dark-hero{padding:120px 0 72px}
+  .hero-sub{font-size:16px;margin-top:26px}
+  .hero-cta{margin-top:36px}
+  .hero-btn{flex:1 1 100%;justify-content:center}
 }
 @media (prefers-reduced-motion:reduce){
-  .dbadge,.dhero-h1,.dhero-sub,.dhero-cta,.industries,.dhero-visual{animation:none;opacity:1}
-  .dhero-h1 .accent::after{animation:none;transform:scaleX(1)}
+  .hero-h1,.hero-sub,.hero-cta,.dhero-visual{animation:none;opacity:1}
+  .hero-h1 .accent{animation:none;background-size:100% .05em}
+  .co-svg path{animation:none;stroke-dashoffset:0}
+  .wbar{animation:none;transform:none}
   .workspace-row.active .wnode::after{animation:none}
 }
 
-/* Proof strip — floats directly over the hero seam */
+/* What I do */
+.sec-eyebrow{display:flex;align-items:center;gap:14px;margin-bottom:22px;font-family:var(--body);font-size:12px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--gold-ink)}
+.sec-eyebrow::before{content:"";flex:0 0 auto;width:32px;height:1px;background:var(--gold)}
+.sec-title{font-family:var(--serif);font-weight:400;font-size:clamp(2rem,3.4vw,2.9rem);line-height:1.1;letter-spacing:-.01em;color:var(--navy)}
+
+.wid-grid{display:grid;grid-template-columns:minmax(280px,.9fr) 1.6fr;gap:72px;align-items:start}
+.wid-intro p:not(.sec-eyebrow){margin-top:24px;max-width:40ch;font-size:16.5px;line-height:1.7;color:var(--muted)}
+.wid-items{display:grid;grid-template-columns:1fr 1fr;row-gap:44px}
+.wid-item{padding-right:40px}
+.wid-item:nth-child(even){padding-right:0;padding-left:48px;border-left:1px solid var(--line)}
+.wid-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;margin-bottom:18px;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.22);color:var(--navy);transition:background .25s,color .25s,border-color .25s}
+.wid-icon svg{width:20px;height:20px}
+.wid-item:hover .wid-icon{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+.wid-item h3{margin-bottom:8px;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;color:var(--navy)}
+.wid-item p{max-width:36ch;font-size:15px;line-height:1.6;color:var(--muted)}
+
+@media (max-width:1080px){
+  .wid-grid{grid-template-columns:1fr;gap:48px}
+  .wid-intro p:not(.sec-eyebrow){max-width:60ch}
+}
+@media (max-width:640px){
+  .wid-items{grid-template-columns:1fr;row-gap:0}
+  .wid-item,.wid-item:nth-child(even){padding:24px 0;border-left:none;border-top:1px solid var(--line)}
+  .wid-item:first-child{border-top:none;padding-top:0}
+}
+
+/* Proof strip: floats over the hero seam */
 .proof{position:relative;z-index:3;margin-top:-64px}
 .proof-inner{display:grid;grid-template-columns:repeat(5,1fr);max-width:1080px;margin:0 auto;overflow:hidden;background:var(--glass-paper);backdrop-filter:blur(20px);border:1px solid rgba(16,16,20,.08);border-radius:24px;box-shadow:var(--card-shadow)}
 .proof-item{padding:22px 14px;border-left:1px solid rgba(16,16,20,.08);text-align:center}
@@ -218,122 +287,173 @@ body.page-home .nav:not(.scrolled) .hamburger{border-color:rgba(243,243,238,.4);
   .proof-inner{grid-template-columns:1fr 1fr;border-radius:16px}
   .proof-item:nth-child(odd){border-left:none}
 }
-
-/* Marquee — the navy bridge, now sitting quietly after proof, not under it */
-.marquee{position:relative;overflow:hidden;padding:14px 0;margin-top:64px;background:linear-gradient(100deg, var(--navy-1), var(--navy-2) 60%, var(--navy-3))}
-.marquee::after{content:"";position:absolute;inset:0;pointer-events:none;background:radial-gradient(600px 200px at 50% 0%, rgba(124,124,255,.18), transparent 70%)}
-.marquee-track{display:flex;width:max-content;animation:scroll 52s linear infinite}
-.marquee-track span{font-family:var(--display);font-variation-settings:'wdth' 116;font-weight:700;text-transform:uppercase;font-size:19px;letter-spacing:.02em;white-space:nowrap;padding-right:16px;color:rgba(243,243,238,.82)}
-.marquee:hover .marquee-track{animation-play-state:paused}
-@keyframes scroll{to{transform:translateX(-50%)}}
-@media (max-width:980px){.marquee{margin-top:40px}}
-@media (max-width:640px){.marquee{margin-top:0}}
-
-/* Who I work with */
-.who-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:14px 32px;max-width:900px}
-.who-list li{position:relative;padding-left:30px;font-size:16px;line-height:1.6;color:var(--muted)}
-.who-list li::before{content:"";position:absolute;left:0;top:9px;width:8px;height:8px;border-radius:2px;background:var(--accent)}
-@media (max-width:640px){.who-list{grid-template-columns:1fr}}
-
-/* What founders gain */
-.gains{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.gain{padding:30px 28px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
-.gain:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
-.gain .g-mark{display:flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:10px;background:rgba(43,43,230,.08);color:var(--accent);font-family:var(--mono);font-size:14px;margin-bottom:20px}
-.gain p{font-family:var(--display);font-variation-settings:'wdth' 106;font-weight:700;font-size:16.5px;line-height:1.4;letter-spacing:-.005em;text-transform:none}
-.section.surface-tint .gain{background:var(--tint)}
-@media (max-width:820px){.gains{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.gains{grid-template-columns:1fr}}
-
-/* Case studies */
-.case{margin-bottom:26px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);overflow:hidden;transition:transform .3s,box-shadow .3s}
-.case:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover)}
-.case-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding:26px 30px;background:#ECECE4;border-bottom:1px solid var(--tint-line)}
-.case-head h3{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:800;text-transform:uppercase;font-size:clamp(1.45rem,2.5vw,2.05rem)}
-.case-tags{display:flex;gap:8px;flex-wrap:wrap}
-.tag{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--ink);padding:5px 10px}
-.tag.live{background:var(--accent);color:var(--paper);border-color:var(--accent)}
-.ba{display:grid;grid-template-columns:1fr 1fr}
-.ba > div{padding:24px 26px}
-.ba .before{border-right:1px solid var(--tint-line)}
-.ba h4{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
-.ba p{font-size:15.5px;line-height:1.6;max-width:50ch}
-.metrics{display:grid;grid-template-columns:repeat(5,1fr);background:var(--paper);border-top:1px solid var(--tint-line)}
-.metric{padding:20px 14px;border-right:1px solid var(--tint-line)}
-.metric:last-child{border-right:none}
-.metric .val{font-family:var(--display);font-variation-settings:'wdth' 112;font-weight:800;font-size:clamp(1.35rem,2.3vw,1.95rem);color:var(--accent);display:block;line-height:1}
-.metric .lbl{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);display:block;margin-top:8px}
-.case-link{padding:20px 30px;border-top:1px solid var(--tint-line)}
-.case-link a{font-family:var(--mono);font-size:12px;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;color:var(--accent)}
-.case-link a:hover{text-decoration:underline}
-.honesty{font-family:var(--mono);font-size:12px;color:var(--muted);margin-top:8px}
-@media (max-width:700px){
-  .ba{grid-template-columns:1fr}
-  .ba .before{border-right:none;border-bottom:1px solid var(--tint-line)}
-}
+/* Who I work with: continues the "What I do" surface, split by a hairline */
+#who{padding-top:0}
+.who-inner{padding-top:96px;border-top:1px solid var(--line)}
+.who-list{list-style:none;border-top:1px solid var(--line)}
+.who-list li{position:relative;padding:22px 0 22px 34px;border-bottom:1px solid var(--line);font-family:var(--serif);font-size:20px;line-height:1.45;color:var(--navy)}
+.who-list li::before{content:"";position:absolute;left:4px;top:33px;width:7px;height:7px;border-radius:50%;background:var(--gold);box-shadow:0 0 0 4px rgba(233,173,57,.18)}
 @media (max-width:640px){
-  .metrics{grid-template-columns:1fr 1fr}
-  .metric{border-bottom:1px solid var(--tint-line)}
-  .metric:nth-child(2n){border-right:none}
+  .who-inner{padding-top:64px}
+  .who-list li{padding:18px 0 18px 28px;font-size:18px}
+  .who-list li::before{left:2px;top:28px}
 }
-@media (max-width:400px){
-  .metrics{grid-template-columns:1fr}
-  .metric{border-right:none}
+/* What you get out of it: same hairline-and-serif language as "What I do" */
+.gains-title{max-width:30ch;margin-bottom:64px}
+.gains{display:grid;grid-template-columns:repeat(3,1fr);column-gap:48px;row-gap:44px}
+.gain{padding-top:24px;border-top:1px solid var(--tint-line)}
+.gain .g-mark{display:flex;align-items:center;justify-content:center;width:46px;height:46px;margin-bottom:18px;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.22);color:var(--navy);font-family:var(--serif);font-size:17px;transition:background .25s,color .25s,border-color .25s}
+.gain:hover .g-mark{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+.gain p{max-width:34ch;font-family:var(--serif);font-size:19px;line-height:1.45;color:var(--navy)}
+@media (max-width:980px){.gains{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){
+  .gains-title{margin-bottom:40px}
+  .gains{grid-template-columns:1fr;row-gap:0}
+  .gain{padding:22px 0}
+  .gain p{font-size:18px}
 }
+
+/* Selected work: dark split, intro left, case cards right */
+.section.work-dark{color:#F3F1EA;background:
+  radial-gradient(760px 420px at 100% 0%, rgba(75,80,127,.38), transparent 62%),
+  radial-gradient(620px 380px at 0% 100%, rgba(233,173,57,.07), transparent 58%),
+  linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
+.work-dark > .wrap{max-width:1280px}
+.work-grid{display:grid;grid-template-columns:minmax(240px,.7fr) minmax(0,3fr);gap:44px;align-items:center}
+.work-dark .sec-eyebrow{color:var(--gold)}
+.work-dark .sec-title{color:#F7F4EC;font-size:clamp(1.6rem,2.4vw,2.1rem);line-height:1.18}
+.work-intro p:not(.sec-eyebrow){margin-top:22px;max-width:36ch;font-size:16px;line-height:1.65;color:rgba(243,241,234,.74)}
+.work-all{display:inline-flex;align-items:center;gap:10px;margin-top:30px;font-size:15px;font-weight:500;color:var(--gold);text-decoration:none}
+.work-all .arr{display:inline-block;transition:transform .2s}
+.work-all:hover .arr{transform:translateX(3px)}
+.work-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+/* Fixed squares: the card is a size container and everything inside scales with its width (cqi), so content never changes its shape */
+.wcard{container-type:inline-size;display:flex;flex-direction:column;min-width:0;aspect-ratio:1/1;overflow:hidden;text-decoration:none;color:var(--navy);background:var(--ivory);border:1px solid rgba(243,241,234,.14);border-radius:6px;box-shadow:0 30px 60px -34px rgba(0,0,0,.7);transition:transform .3s,box-shadow .3s}
+.wcard:hover{transform:translateY(-5px);box-shadow:0 40px 70px -32px rgba(0,0,0,.8)}
+.wcard-head{display:flex;align-items:center;justify-content:space-between;gap:4cqi;padding:6.5cqi 6.5cqi 0}
+.wcard-icon{display:flex;align-items:center;justify-content:center;width:14cqi;height:14cqi;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.26);color:var(--navy);transition:background .25s,color .25s,border-color .25s}
+.wcard-icon svg{width:6.5cqi;height:6.5cqi}
+.wcard:hover .wcard-icon{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+.wcard-cat{font-family:var(--mono);font-size:3.6cqi;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink)}
+.wcard-body{display:flex;flex-direction:column;flex:1;min-height:0;padding:5cqi 6.5cqi 6.5cqi}
+.wcard h3{font-family:var(--serif);font-weight:500;font-size:7.5cqi;line-height:1.2}
+.wcard p{margin:1.5cqi 0 5cqi;font-size:4.4cqi;line-height:1.5;color:var(--muted)}
+/* Contributions: icon + label grid, always 2 by 2, pinned to the bottom of the square */
+.wcard-contrib{display:grid;grid-template-columns:1fr 1fr;gap:3cqi 4cqi;margin-top:auto;padding-top:4.5cqi;border-top:1px solid var(--line);list-style:none}
+.wcard-contrib li{display:flex;align-items:flex-start;gap:2.3cqi;font-size:4cqi;font-weight:500;line-height:1.35;color:var(--navy)}
+.wcard-contrib svg{flex:0 0 auto;width:4.8cqi;height:4.8cqi;margin-top:.3cqi;color:var(--gold-ink)}
+@media (max-width:1200px){
+  .work-grid{grid-template-columns:minmax(0,1fr);gap:44px}
+  .work-intro p:not(.sec-eyebrow){max-width:56ch}
+}
+/* One card per row: squares would be huge, so cards keep one shared height and use fixed sizes */
+@media (max-width:900px){
+  .work-cards{grid-template-columns:minmax(0,1fr);grid-auto-rows:1fr}
+  .wcard{aspect-ratio:auto}
+  .wcard-head{gap:12px;padding:22px 22px 0}
+  .wcard-icon{width:46px;height:46px}
+  .wcard-icon svg{width:22px;height:22px}
+  .wcard-cat{font-size:11px}
+  .wcard-body{padding:16px 22px 22px}
+  .wcard h3{font-size:22px}
+  .wcard p{margin:5px 0 18px;font-size:14px}
+  .wcard-contrib{gap:10px 14px;padding-top:16px}
+  .wcard-contrib li{gap:8px;font-size:13px}
+  .wcard-contrib svg{width:15px;height:15px;margin-top:1px}
+}
+@media (prefers-reduced-motion:reduce){.wcard,.wcard-icon{transition:none}}
 
 /* Testimonials */
+.quotes-title{margin-bottom:56px}
 .quotes{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.q-card{display:flex;flex-direction:column;padding:30px 28px 32px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow)}
-.section.surface-tint .q-card{background:var(--tint)}
-.q-card blockquote{font-family:var(--display);font-variation-settings:'wdth' 104;font-weight:650;font-size:clamp(1.02rem,1.6vw,1.2rem);line-height:1.45;letter-spacing:-.005em;text-transform:none}
-.q-card blockquote::before{content:"\201C";color:var(--accent)}
-.q-card blockquote::after{content:"\201D";color:var(--accent)}
-.q-attr-row{margin-top:auto;padding-top:24px;display:flex;align-items:center;gap:12px}
-.q-avatar{width:44px;height:44px;border-radius:50%;background:var(--accent);color:var(--paper);display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:13px;font-weight:600;flex:0 0 auto}
-.q-attr{font-family:var(--mono);font-size:12px;color:var(--muted);line-height:1.6}
-.q-attr strong{color:var(--ink);font-weight:500}
+.q-card{position:relative;display:flex;flex-direction:column;padding:34px 34px 30px;background:var(--ivory);border:1px solid var(--tint-line);border-radius:6px;box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
+.q-card:hover{transform:translateY(-4px);box-shadow:var(--card-shadow-hover)}
+.q-card blockquote{font-family:var(--serif);margin-bottom:28px;font-weight:400;font-size:clamp(1.05rem,1.5vw,1.2rem);line-height:1.55;color:var(--navy)}
+.q-card blockquote::before{content:"\201C";display:block;height:.55em;margin-bottom:14px;font-size:3.4em;line-height:1;color:var(--gold)}
+.q-attr-row{margin-top:auto;padding-top:22px;display:flex;align-items:center;gap:14px;border-top:1px solid var(--line)}
+.q-avatar{display:flex;align-items:center;justify-content:center;flex:0 0 auto;width:46px;height:46px;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.26);color:var(--navy);font-family:var(--serif);font-size:16px;transition:background .25s,color .25s,border-color .25s}
+.q-card:hover .q-avatar{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+.q-attr{font-size:13.5px;line-height:1.5;color:var(--muted)}
+.q-attr strong{font-family:var(--serif);font-size:17px;font-weight:500;color:var(--navy)}
 @media (max-width:820px){.quotes{grid-template-columns:1fr}}
+@media (max-width:640px){.quotes-title{margin-bottom:36px}.q-card{padding:28px 24px 24px}}
+@media (prefers-reduced-motion:reduce){.q-card,.q-avatar{transition:none}}
 
-/* Process */
-.process{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.proc{padding:26px 24px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow)}
-.proc .p-num{display:block;margin-bottom:18px;font-family:var(--mono);font-size:12px;color:var(--accent)}
-.proc h4{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:16px;margin-bottom:8px}
-.proc p{color:var(--muted);font-size:14px;line-height:1.5}
-@media (max-width:820px){.process{grid-template-columns:1fr 1fr}}
-@media (max-width:560px){.process{grid-template-columns:1fr}}
-.process-more{margin-top:28px}
+/* Shared light-section link: navy label, gold arrow */
+.text-link{display:inline-flex;align-items:center;gap:10px;font-size:15px;font-weight:500;color:var(--navy);text-decoration:none}
+.text-link .arr{display:inline-block;color:var(--gold-ink);transition:transform .2s}
+.text-link:hover{color:var(--gold-ink)}
+.text-link:hover .arr{transform:translateX(3px)}
+.sec-lede{margin-top:20px;max-width:52ch;font-size:16.5px;line-height:1.7;color:var(--muted)}
 
-/* Offers */
-.offers{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.offer{display:flex;flex-direction:column;padding:30px 26px 34px;background:var(--paper);border:1px solid var(--tint-line);border-radius:var(--card-radius);box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
-.offer:hover{transform:translateY(-6px);box-shadow:var(--card-shadow-hover)}
-.offer.core{border:1px solid rgba(43,43,230,.35);box-shadow:0 1px 2px rgba(16,16,20,.04),0 30px 60px -22px rgba(43,43,230,.32);transform:translateY(-10px)}
-.offer.core:hover{transform:translateY(-14px)}
-.offer .kicker{display:block;min-height:1.2em;margin-bottom:16px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
-.offer h3{font-family:var(--display);font-variation-settings:'wdth' 108;font-weight:800;text-transform:uppercase;font-size:18px;line-height:1.15;margin-bottom:12px}
-.offer .tagline{font-weight:600;font-size:14px;line-height:1.5;margin-bottom:12px}
-.offer p{color:var(--muted);font-size:14px;line-height:1.55}
-.offer .offer-cta{margin-top:auto;padding-top:24px}
-@media (max-width:980px){.offers{grid-template-columns:1fr}.offer.core{transform:none}.offer.core:hover{transform:translateY(-6px)}}
+/* Process: same hairline-and-serif language as "What you get out of it" */
+.method-head{margin-bottom:64px}
+.process{display:grid;grid-template-columns:repeat(4,1fr);column-gap:40px;row-gap:44px}
+.proc{padding-top:24px;border-top:1px solid var(--line)}
+.proc .p-num{display:flex;align-items:center;justify-content:center;width:46px;height:46px;margin-bottom:18px;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.22);color:var(--navy);font-family:var(--serif);font-size:17px;transition:background .25s,color .25s,border-color .25s}
+.proc:hover .p-num{background:var(--navy);border-color:var(--navy);color:var(--gold)}
+.proc h3{margin-bottom:8px;font-family:var(--serif);font-weight:500;font-size:20px;line-height:1.25;color:var(--navy)}
+.proc p{max-width:28ch;font-size:15px;line-height:1.6;color:var(--muted)}
+.process-more{margin-top:52px}
+@media (max-width:980px){.process{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){
+  .method-head{margin-bottom:40px}
+  .process{grid-template-columns:1fr;row-gap:0}
+  .proc{padding:22px 0}
+  .process-more{margin-top:28px}
+}
 
-/* CTA band */
-.cta-band{position:relative;overflow:hidden;padding:118px 0;color:var(--paper);background:radial-gradient(900px 500px at 15% 0%, rgba(124,124,255,.22), transparent 60%),radial-gradient(800px 460px at 100% 100%, rgba(43,43,230,.28), transparent 55%),linear-gradient(160deg, var(--navy-2) 0%, var(--navy-1) 100%)}
-.cta-band .wrap{position:relative;z-index:1;text-align:center}
-.cta-band h2{font-size:clamp(1.5rem,3.2vw,2.4rem);margin-bottom:20px}
-.cta-band p{color:#B9B9C2;max-width:50ch;font-size:17px;line-height:1.6;margin:0 auto 34px}
-.cta-band .btn{font-size:13px;padding:17px 32px;letter-spacing:.1em;background:var(--paper);color:var(--ink);border-color:var(--paper)}
-.cta-band .btn:hover{background:var(--accent);color:var(--paper);border-color:var(--accent)}
-@media (max-width:640px){.cta-band{padding:76px 0}.cta-band .btn{padding:15px 26px}}
+/* Offers: ivory cards like the case cards, core offer in navy */
+.offers-head{margin-bottom:56px}
+.offers{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;align-items:stretch}
+.offer{display:flex;flex-direction:column;padding:30px 28px 28px;background:var(--ivory);border:1px solid var(--tint-line);border-radius:6px;box-shadow:var(--card-shadow);transition:transform .3s,box-shadow .3s}
+.offer:hover{transform:translateY(-5px);box-shadow:var(--card-shadow-hover)}
+.offer-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:24px}
+.offer-icon{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:rgba(233,173,57,.14);border:1px solid rgba(233,173,57,.26);color:var(--navy)}
+.offer-icon svg{width:20px;height:20px}
+.offer .kicker{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold-ink)}
+.offer h3{margin-bottom:10px;font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.2;color:var(--navy)}
+.offer .tagline{margin-bottom:10px;font-size:15px;font-weight:500;line-height:1.5;color:var(--navy)}
+.offer p{font-size:14.5px;line-height:1.6;color:var(--muted)}
+.offer .offer-cta{margin-top:auto;padding-top:26px}
+.offer .offer-cta .text-link{width:100%;padding-top:18px;border-top:1px solid var(--line)}
+.offer.core{background:linear-gradient(160deg, var(--navy-2), var(--navy-1));border-color:var(--navy);box-shadow:0 30px 60px -30px rgba(16,27,45,.55)}
+.offer.core h3,.offer.core .tagline{color:#F7F4EC}
+.offer.core p{color:rgba(243,241,234,.72)}
+.offer.core .kicker{color:var(--gold)}
+.offer.core .offer-icon{background:rgba(233,173,57,.16);border-color:rgba(233,173,57,.35);color:var(--gold)}
+.offer.core .text-link{color:var(--gold);border-top-color:rgba(243,241,234,.14)}
+.offer.core .text-link .arr{color:var(--gold)}
+@media (max-width:980px){.offers{grid-template-columns:minmax(0,1fr)}}
+@media (max-width:560px){.offers-head{margin-bottom:36px}}
 
-/* Footer */
-footer{padding:34px 0;background:var(--navy-1);border-top:1px solid rgba(255,255,255,.1);color:rgba(243,243,238,.55);font-family:var(--mono);font-size:12px}
-.foot-links{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:24px;padding-bottom:24px;border-bottom:1px solid rgba(255,255,255,.1)}
-.foot-links a{color:rgba(243,243,238,.75);letter-spacing:.06em;text-transform:uppercase;font-size:11px}
-.foot-links a:hover{color:var(--paper)}
-.foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
-footer a{color:rgba(243,243,238,.7)}
-footer a:hover{color:var(--paper)}
+/* CTA band: same navy and serif as the hero */
+.cta-band{position:relative;overflow:hidden;padding:124px 0;color:#F3F1EA;background:
+  radial-gradient(900px 500px at 85% 0%, rgba(75,80,127,.4), transparent 60%),
+  radial-gradient(760px 420px at 0% 100%, rgba(233,173,57,.09), transparent 58%),
+  linear-gradient(160deg, var(--navy-1) 0%, var(--navy-2) 55%, var(--navy-3) 100%)}
+.cta-band .wrap{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;text-align:center}
+.cta-band .sec-eyebrow{color:var(--gold)}
+.cta-band .sec-eyebrow::after{content:"";flex:0 0 auto;width:32px;height:1px;background:var(--gold)}
+.cta-band h2{max-width:20ch;font-family:var(--serif);font-weight:400;font-size:clamp(2.1rem,4vw,3.3rem);line-height:1.1;letter-spacing:-.012em;color:#F7F4EC}
+.cta-band h2 .accent{color:var(--gold)}
+.cta-band p{max-width:52ch;margin:26px auto 40px;font-size:17px;line-height:1.65;color:rgba(243,241,234,.74)}
+.cta-actions{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+@media (max-width:640px){.cta-actions{align-self:stretch}.cta-actions .hero-btn{flex:1 1 100%;justify-content:center}}
+@media (max-width:640px){.cta-band{padding:80px 0}}
+
+/* Footer: brand lockup from the nav */
+footer{padding:56px 0 32px;background:var(--navy-3);border-top:1px solid rgba(243,241,234,.08);color:rgba(243,241,234,.55);font-family:var(--body);font-size:13px}
+.foot-top{display:flex;align-items:center;justify-content:space-between;gap:28px;flex-wrap:wrap;padding-bottom:32px;border-bottom:1px solid rgba(243,241,234,.1)}
+footer .brand-name{font-size:24px}
+.foot-links{display:flex;gap:30px;flex-wrap:wrap}
+.foot-links a{position:relative;padding:4px 0;font-size:14px;font-weight:500;color:rgba(243,241,234,.78);text-decoration:none;transition:color .2s}
+.foot-links a::after{content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.foot-links a:hover{color:#fff}
+.foot-links a:hover::after{transform:scaleX(1)}
+.foot-inner{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:24px}
+@media (max-width:640px){footer{padding:44px 0 28px}footer .brand-divider,footer .brand-tag{display:block}}
+@media (prefers-reduced-motion:reduce){.proc .p-num,.offer{transition:none}}
 
 /* Reveal */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
@@ -349,27 +469,53 @@ footer a:hover{color:var(--paper)}
 @media (prefers-reduced-motion:reduce){.reveal,.stagger > *{opacity:1;transform:none;transition:none}}
 
 @media (max-width:640px){.wrap{padding:0 22px}.section{padding:72px 0}}
+
+/* Palette patch: replaces hardcoded indigo values and keeps accents readable on ivory */
+::selection{background:var(--gold);color:var(--navy)}
+:focus-visible{outline-color:var(--gold)}
+
+/* Accent text on light sections */
+.proof-item .pv{color:var(--gold-ink)}
+.who-list li::before{background:var(--gold)}
+.section.surface-tint .eyebrow{background:rgba(75,80,127,.07);border-color:rgba(75,80,127,.18)}
+
+/* Section glows, warmed up */
+.section.surface-paper::before{background:radial-gradient(760px 340px at 12% 0%, rgba(233,173,57,.06), transparent 60%)}
+.section.surface-tint::before{background:radial-gradient(820px 380px at 88% 0%, rgba(75,80,127,.06), transparent 60%)}
 </style>
 </head>
 <body class="page-home">
 
-<nav class="nav">
+<nav class="nav" aria-label="Main">
   <div class="nav-inner">
-    <a class="brand" href="index.html">Ismail Dinia</a>
+    <a class="brand" href="index.html" aria-label="Ismail Dinia, home">
+      <span class="brand-name">Ismail Dinia</span>
+      <span class="brand-divider" aria-hidden="true"></span>
+      <span class="brand-tag">
+        <span class="lang-en">Product Strategy &amp; Execution<br>for Early-Stage Startups</span>
+        <span class="lang-es">Estrategia de Producto y Ejecución<br>para Startups Early-Stage</span>
+      </span>
+    </a>
+
     <ul class="nav-links" id="nav-links">
-<li><a href="index.html" aria-current="page"><span class="lang-en">Home</span><span class="lang-es">Inicio</span></a></li>
-<li><a href="about.html"><span class="lang-en">About</span><span class="lang-es">Sobre mí</span></a></li>
-<li><a href="case-studies.html"><span class="lang-en">Case Studies</span><span class="lang-es">Casos</span></a></li>
-<li><a href="resources.html"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></a></li>
-<li><a href="work-with-me.html"><span class="lang-en">Work With Me</span><span class="lang-es">Trabaja Conmigo</span></a></li>
+      <li><a href="about.html"><span class="lang-en">About Me</span><span class="lang-es">Sobre mí</span></a></li>
+      <li><a href="case-studies.html"><span class="lang-en">Case Studies</span><span class="lang-es">Trabajo</span></a></li>
+      <li><a href="resources.html"><span class="lang-en">Resources</span><span class="lang-es">Recursos</span></a></li>
+      <li><a href="work-with-me.html"><span class="lang-en">Contact</span><span class="lang-es">Contacto</span></a></li>
+      <li class="nav-mobile-cta">
+        <a class="nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Let's talk</span><span class="lang-es">Hablemos</span><span class="nav-cta-arrow" aria-hidden="true">→</span></a>
+      </li>
     </ul>
+
     <div class="nav-right">
       <div class="lang-toggle" role="group" aria-label="Language">
         <button id="btn-en" aria-pressed="true">EN</button>
         <button id="btn-es" aria-pressed="false">ES</button>
       </div>
-      <a class="btn nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
-      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-links">Menu</button>
+      <a class="nav-cta" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Let's talk</span><span class="lang-es">Hablemos</span><span class="nav-cta-arrow" aria-hidden="true">→</span></a>
+      <button class="hamburger" id="hamburger" aria-expanded="false" aria-controls="nav-links" aria-label="Open menu">
+        <span></span><span></span><span></span>
+      </button>
     </div>
   </div>
 </nav>
@@ -378,36 +524,29 @@ footer a:hover{color:var(--paper)}
 <header class="dark-hero" id="top">
   <div class="wrap">
     <div class="dhero-grid">
-      <div>
-        <div class="dbadge">
-          <span class="lang-en">Helping early-stage founders turn strategy into execution</span>
-          <span class="lang-es">Ayudo a fundadores early-stage a convertir la estrategia en ejecución</span>
-        </div>
-        <h1 class="dhero-h1">
-          <span class="lang-en">Helping founders turn <span class="accent">ideas into products</span> and products into <span class="accent">scalable businesses.</span></span>
-          <span class="lang-es">Ayudo a fundadores a convertir <span class="accent">ideas en productos</span> y productos en <span class="accent">negocios escalables.</span></span>
+
+      <div class="hero-content">
+        <h1 class="hero-h1">
+          <span class="lang-en">Helping founders turn ideas into products and products into <span class="accent">scalable businesses.</span></span>
+          <span class="lang-es">Ayudo a fundadores a convertir ideas en productos y productos en <span class="accent">negocios escalables.</span></span>
         </h1>
-        <p class="dhero-sub">
-          <span class="lang-en">I bring clarity to product decisions and build the execution systems your team can run without another full-time executive.</span>
-          <span class="lang-es">Aporto claridad a las decisiones de producto y construyo los sistemas de ejecución que tu equipo puede llevar sin otro ejecutivo a tiempo completo.</span>
+
+        <p class="hero-sub">
+          <span class="lang-en">I work across product strategy, technical leadership and execution to help early-stage startups go from concept to traction, and from traction to scale.</span>
+          <span class="lang-es">Trabajo en estrategia de producto, liderazgo técnico y ejecución para ayudar a startups early-stage a pasar del concepto a la tracción, y de la tracción a la escala.</span>
         </p>
-        <div class="dhero-cta">
-          <a class="btn" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="arrow">→</span><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
-          <a class="text-link" href="case-studies.html"><span class="lang-en">See the work</span><span class="lang-es">Ver el trabajo</span></a>
-        </div>
-        <div class="industries">
-          <span class="ind-label"><span class="lang-en">Real engagements, across</span><span class="lang-es">Colaboraciones reales, en</span></span>
-          <div class="ind-chips">
-            <span class="chip">EdTech</span>
-            <span class="chip"><span class="lang-en">Travel Tech</span><span class="lang-es">Travel Tech</span></span>
-            <span class="chip"><span class="lang-en">Marketplaces</span><span class="lang-es">Marketplaces</span></span>
-            <span class="chip"><span class="lang-en">AI Agents</span><span class="lang-es">Agentes de IA</span></span>
-            <span class="chip">SaaS</span>
-          </div>
+
+        <div class="hero-cta">
+          <a class="hero-btn hero-btn-primary" href="case-studies.html">
+            <span class="lang-en">See my work</span><span class="lang-es">Ver mi trabajo</span>
+            <span class="arr" aria-hidden="true">→</span>
+          </a>
+          <a class="hero-btn hero-btn-secondary" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry">
+            <span class="lang-en">Book a discovery call</span><span class="lang-es">Reserva una llamada</span>
+          </a>
         </div>
       </div>
 
-      <!-- chaos-to-order: the actual shape of the impact, not a generic bar chart -->
       <div class="dhero-visual" aria-hidden="true">
         <div class="workspace">
           <div class="co-side co-before">
@@ -431,15 +570,16 @@ footer a:hover{color:var(--paper)}
             <div class="workspace-row active"><span class="wnode"></span><span class="wbar" style="width:68%"></span></div>
             <div class="workspace-row"><span class="wnode"></span><span class="wbar" style="width:54%"></span></div>
             <div class="workspace-row"><span class="wnode"></span><span class="wbar" style="width:38%"></span></div>
-            <span class="co-caption" style="margin-top:4px"><span class="lang-en">After</span><span class="lang-es">Después</span></span>
+            <span class="co-caption"><span class="lang-en">After</span><span class="lang-es">Después</span></span>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </header>
 
-<!-- PROOF STRIP — overlaps the hero seam -->
+<!-- PROOF STRIP: overlaps the hero seam -->
 <div class="proof">
   <div class="proof-inner">
     <div class="proof-item"><span class="pv">PMP</span><span class="pl"><span class="lang-en">Certified project leadership</span><span class="lang-es">Liderazgo de proyectos certificado</span></span></div>
@@ -450,116 +590,194 @@ footer a:hover{color:var(--paper)}
   </div>
 </div>
 
-<!-- MARQUEE — now sits below the proof strip, not under it -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track" id="marquee-track"></div>
-</div>
+<!-- WHAT I DO -->
+<section class="section surface-paper" id="what-i-do">
+  <div class="wrap reveal">
+    <div class="wid-grid">
+
+      <div class="wid-intro">
+        <p class="sec-eyebrow"><span class="lang-en">What I do</span><span class="lang-es">Qué hago</span></p>
+        <h2 class="sec-title">
+          <span class="lang-en">From strategy<br>to execution</span>
+          <span class="lang-es">De la estrategia<br>a la ejecución</span>
+        </h2>
+        <p>
+          <span class="lang-en">I help founders define the right product, build the right team and execute with focus. Whether you need strategic guidance, hands-on product leadership or technical direction, I bring a founder mindset and a bias for action.</span>
+          <span class="lang-es">Ayudo a fundadores a definir el producto correcto, construir el equipo adecuado y ejecutar con foco. Tanto si necesitas orientación estratégica, liderazgo de producto práctico o dirección técnica, aporto mentalidad de fundador y orientación a la acción.</span>
+        </p>
+      </div>
+
+      <div class="wid-items stagger">
+
+        <div class="wid-item">
+          <div class="wid-icon" aria-hidden="true">
+            <!-- Lucide: compass -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg>
+          </div>
+          <h3><span class="lang-en">Product Strategy</span><span class="lang-es">Estrategia de Producto</span></h3>
+          <p>
+            <span class="lang-en">Turn ideas into clear product strategy and go-to-market plans.</span>
+            <span class="lang-es">Convertir ideas en una estrategia de producto clara y planes de salida al mercado.</span>
+          </p>
+        </div>
+
+        <div class="wid-item">
+          <div class="wid-icon" aria-hidden="true">
+            <!-- Lucide: code-xml -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>
+          </div>
+          <h3><span class="lang-en">Technical Leadership</span><span class="lang-es">Liderazgo Técnico</span></h3>
+          <p>
+            <span class="lang-en">Bridge product and technology to build scalable solutions.</span>
+            <span class="lang-es">Conectar producto y tecnología para construir soluciones escalables.</span>
+          </p>
+        </div>
+
+        <div class="wid-item">
+          <div class="wid-icon" aria-hidden="true">
+            <!-- Lucide: zap -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </div>
+          <h3><span class="lang-en">Execution</span><span class="lang-es">Ejecución</span></h3>
+          <p>
+            <span class="lang-en">Drive delivery, set up efficient processes and get things shipped.</span>
+            <span class="lang-es">Impulsar la entrega, montar procesos eficientes y sacar el trabajo adelante.</span>
+          </p>
+        </div>
+
+        <div class="wid-item">
+          <div class="wid-icon" aria-hidden="true">
+            <!-- Lucide: users -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3><span class="lang-en">Fractional Support</span><span class="lang-es">Soporte Fraccional</span></h3>
+          <p>
+            <span class="lang-en">Work alongside your team as a fractional Product &amp; Execution lead.</span>
+            <span class="lang-es">Trabajar junto a tu equipo como líder fraccional de Producto y Ejecución.</span>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- WHO I WORK WITH -->
 <section class="section surface-paper" id="who">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">Who I work with</span><span class="lang-es">Con quién trabajo</span></p>
-    <h2 class="display" style="font-size:clamp(1.4rem,2.6vw,2rem);margin-bottom:36px;max-width:640px">
-      <span class="lang-en">I work best with founders who...</span>
-      <span class="lang-es">Trabajo mejor con fundadores que...</span>
-    </h2>
-    <ul class="who-list">
-      <li><span class="lang-en">Have an MVP, or are preparing to build one.</span><span class="lang-es">Tienen un MVP, o se preparan para construirlo.</span></li>
-      <li><span class="lang-en">Need product leadership but aren't ready for a full-time Head of Product.</span><span class="lang-es">Necesitan liderazgo de producto pero no están listos para un Head of Product a tiempo completo.</span></li>
-      <li><span class="lang-en">Feel like every decision depends on them.</span><span class="lang-es">Sienten que cada decisión depende de ellos.</span></li>
-      <li><span class="lang-en">Want better execution, not more meetings.</span><span class="lang-es">Quieren mejor ejecución, no más reuniones.</span></li>
-    </ul>
+    <div class="who-inner wid-grid">
+
+      <div class="wid-intro">
+        <p class="sec-eyebrow"><span class="lang-en">Who I work with</span><span class="lang-es">Con quién trabajo</span></p>
+        <h2 class="sec-title">
+          <span class="lang-en">I work best with founders who...</span>
+          <span class="lang-es">Trabajo mejor con fundadores que...</span>
+        </h2>
+      </div>
+
+      <ul class="who-list stagger">
+        <li><span class="lang-en">Are building an MVP or figuring out what to build next.</span><span class="lang-es">Están construyendo un MVP o decidiendo qué construir a continuación.</span></li>
+        <li><span class="lang-en">Need experienced product leadership without a full-time hire.</span><span class="lang-es">Necesitan liderazgo de producto con experiencia sin contratar a tiempo completo.</span></li>
+        <li><span class="lang-en">Want to move from ideas and priorities to consistent execution.</span><span class="lang-es">Quieren pasar de ideas y prioridades a una ejecución constante.</span></li>
+        <li><span class="lang-en">Need someone who can think strategically and get hands-on.</span><span class="lang-es">Necesitan a alguien que piense en estrategia y se remangue.</span></li>
+      </ul>
+
+    </div>
   </div>
 </section>
-
-<!-- WHAT FOUNDERS GAIN -->
-<section class="section surface-tint">
+<!-- WHAT YOU GET OUT OF IT -->
+<section class="section surface-tint" id="outcomes">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">What founders gain</span><span class="lang-es">Qué ganan los fundadores</span></p>
-    <p class="section-intro">
-      <span class="lang-en">Not services. Outcomes you'll notice within the first few weeks.</span>
-      <span class="lang-es">No son servicios. Son resultados que notarás en las primeras semanas.</span>
-    </p>
+    <p class="sec-eyebrow"><span class="lang-en">What you get out of it</span><span class="lang-es">Lo que obtienes</span></p>
+    <h2 class="sec-title gains-title">
+      <span class="lang-en">Less time going in circles. Fewer wasted resources. Clear progress on what matters.</span>
+      <span class="lang-es">Menos tiempo dando vueltas. Menos recursos desperdiciados. Progreso claro en lo que importa.</span>
+    </h2>
     <div class="gains stagger">
-      <div class="gain"><span class="g-mark">01</span><p><span class="lang-en">You stop wondering what to build next.</span><span class="lang-es">Dejas de preguntarte qué construir después.</span></p></div>
-      <div class="gain"><span class="g-mark">02</span><p><span class="lang-en">Your team stops asking you every decision.</span><span class="lang-es">Tu equipo deja de consultarte cada decisión.</span></p></div>
-      <div class="gain"><span class="g-mark">03</span><p><span class="lang-en">Meetings become execution, not debate.</span><span class="lang-es">Las reuniones se convierten en ejecución, no en debate.</span></p></div>
-      <div class="gain"><span class="g-mark">04</span><p><span class="lang-en">You know exactly what matters this week.</span><span class="lang-es">Sabes exactamente qué importa esta semana.</span></p></div>
-      <div class="gain"><span class="g-mark">05</span><p><span class="lang-en">Product decisions move faster because they're documented.</span><span class="lang-es">Las decisiones de producto avanzan más rápido porque quedan documentadas.</span></p></div>
-      <div class="gain"><span class="g-mark">06</span><p><span class="lang-en">You're left with systems that keep working without me.</span><span class="lang-es">Te quedas con sistemas que siguen funcionando sin mí.</span></p></div>
+      <div class="gain"><span class="g-mark">01</span><p><span class="lang-en">A clear roadmap, so you know what to focus on and what can wait.</span><span class="lang-es">Un roadmap claro, para que sepas en qué enfocarte y qué puede esperar.</span></p></div>
+      <div class="gain"><span class="g-mark">02</span><p><span class="lang-en">Priorities that reflect your actual goals, resources and stage of growth.</span><span class="lang-es">Prioridades que reflejan tus objetivos reales, tus recursos y tu etapa de crecimiento.</span></p></div>
+      <div class="gain"><span class="g-mark">03</span><p><span class="lang-en">Clear deliverables and deadlines, with someone accountable for getting them done.</span><span class="lang-es">Entregables y plazos claros, con alguien responsable de que se cumplan.</span></p></div>
+      <div class="gain"><span class="g-mark">04</span><p><span class="lang-en">Faster decisions, without constantly revisiting the same questions.</span><span class="lang-es">Decisiones más rápidas, sin volver una y otra vez sobre las mismas preguntas.</span></p></div>
+      <div class="gain"><span class="g-mark">05</span><p><span class="lang-en">Progress you can see, not just another week of meetings and discussions.</span><span class="lang-es">Progreso que puedes ver, no otra semana más de reuniones y discusiones.</span></p></div>
+      <div class="gain"><span class="g-mark">06</span><p><span class="lang-en">A way of working your team can keep using as the business grows.</span><span class="lang-es">Una forma de trabajar que tu equipo puede seguir usando a medida que el negocio crece.</span></p></div>
     </div>
   </div>
 </section>
 
 <!-- SELECTED WORK -->
-<section class="section surface-paper" id="work">
+<section class="section work-dark" id="work">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">Selected work</span><span class="lang-es">Trabajo seleccionado</span></p>
-    <article class="case">
-      <div class="case-head">
-        <h3>Hosstinn</h3>
-        <div class="case-tags">
-          <span class="tag"><span class="lang-en">Co-founder · CEO · CPO</span><span class="lang-es">Cofundador · CEO · CPO</span></span>
-        </div>
+    <div class="work-grid">
+
+      <div class="work-intro">
+        <p class="sec-eyebrow"><span class="lang-en">Selected work</span><span class="lang-es">Trabajo seleccionado</span></p>
+        <h2 class="sec-title">
+          <span class="lang-en">I've built, launched and worked on products across different stages.</span>
+          <span class="lang-es">He construido, lanzado y trabajado en productos en distintas etapas.</span>
+        </h2>
+        <p>
+          <span class="lang-en">From taking an idea to a working product, to improving adoption, refining product direction and getting teams to execute. Here's a look at some of the work I've been involved in, the challenges behind it and what we achieved.</span>
+          <span class="lang-es">Desde llevar una idea a un producto que funciona, hasta mejorar la adopción, afinar la dirección de producto y conseguir que los equipos ejecuten. Aquí tienes una muestra del trabajo en el que he participado, los retos que había detrás y lo que conseguimos.</span>
+        </p>
+        <a class="work-all" href="case-studies.html"><span class="lang-en">View all case studies</span><span class="lang-es">Ver todos los casos</span><span class="arr" aria-hidden="true">→</span></a>
       </div>
-      <div class="ba">
-        <div class="before">
-          <h4><span class="lang-en">Before</span><span class="lang-es">Antes</span></h4>
-          <p class="lang-en">An idea with no product, no team, and no process behind it.</p>
-          <p class="lang-es">Una idea sin producto, sin equipo y sin procesos detrás.</p>
-        </div>
-        <div>
-          <h4><span class="lang-en">After</span><span class="lang-es">Después</span></h4>
-          <p class="lang-en">A live platform with an active user base, built on a product strategy I defined and an execution system the team could run.</p>
-          <p class="lang-es">Una plataforma en producción con usuarios activos, construida sobre una estrategia de producto que definí y un sistema de ejecución que el equipo podía llevar.</p>
-        </div>
+
+      <div class="work-cards stagger">
+
+        <a class="wcard" href="case-studies.html#hosstinn">
+          <div class="wcard-head"><span class="wcard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z"/><path d="M22 10v6"/><path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5"/></svg></span><span class="wcard-cat">Edtech</span></div>
+          <div class="wcard-body">
+            <h3>Hosstinn</h3>
+            <p><span class="lang-en">AI-driven hospitality training platform</span><span class="lang-es">Plataforma de formación en hostelería impulsada por IA</span></p>
+            <ul class="wcard-contrib">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg><span><span class="lang-en">Product strategy</span><span class="lang-es">Estrategia de producto</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 17 2 2 4-4"/><path d="m3 7 2 2 4-4"/><path d="M13 6h8"/><path d="M13 12h8"/><path d="M13 18h8"/></svg><span><span class="lang-en">Team &amp; execution system</span><span class="lang-es">Equipo y sistema de ejecución</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg><span><span class="lang-en">Fundraising</span><span class="lang-es">Levantamiento de capital</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg><span><span class="lang-en">15,000+ users</span><span class="lang-es">15.000+ usuarios</span></span></li>
+            </ul>
+          </div>
+        </a>
+
+        <a class="wcard" href="case-study-invictia.html">
+          <div class="wcard-head"><span class="wcard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4"/><path d="M22 5h-4"/><path d="M4 17v2"/><path d="M5 18H3"/></svg></span><span class="wcard-cat"><span class="lang-en">AI</span><span class="lang-es">IA</span></span></div>
+          <div class="wcard-body">
+            <h3>Invictia</h3>
+            <p><span class="lang-en">AI Chief Of Staff for early-stage startups</span><span class="lang-es">Jefe de personal de IA para startups en etapa temprana</span></p>
+            <ul class="wcard-contrib">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m16.24 7.76-1.804 5.411a2 2 0 0 1-1.265 1.265L7.76 16.24l1.804-5.411a2 2 0 0 1 1.265-1.265z"/><circle cx="12" cy="12" r="10"/></svg><span><span class="lang-en">Product strategy</span><span class="lang-es">Estrategia de producto</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg><span><span class="lang-en">Agent harness engineering</span><span class="lang-es">Ingeniería del harness de agentes</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></svg><span><span class="lang-en">Code audit &amp; security hardening</span><span class="lang-es">Auditoría de código y refuerzo de seguridad</span></span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"/><path d="m12 15-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg><span><span class="lang-en">Beta-ready</span><span class="lang-es">Lista para beta</span></span></li>
+            </ul>
+          </div>
+        </a>
+
+        <!-- TODO: fill in the real RZKI description and contributions -->
+        <a class="wcard" href="case-studies.html">
+          <div class="wcard-head"><span class="wcard-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="3" x2="21" y1="22" y2="22"/><line x1="6" x2="6" y1="18" y2="11"/><line x1="10" x2="10" y1="18" y2="11"/><line x1="14" x2="14" y1="18" y2="11"/><line x1="18" x2="18" y1="18" y2="11"/><polygon points="12 2 20 7 4 7"/></svg></span><span class="wcard-cat">Fintech</span></div>
+          <div class="wcard-body">
+            <h3>RZKI</h3>
+            <p><span class="lang-en">Fintech platform</span><span class="lang-es">Plataforma fintech</span></p>
+            <ul class="wcard-contrib">
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 7V4a1 1 0 0 0-1-1H5a2 2 0 0 0 0 4h15a1 1 0 0 1 1 1v4h-3a2 2 0 0 0 0 4h3a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1"/><path d="M3 5v14a2 2 0 0 0 2 2h15a1 1 0 0 0 1-1v-4"/></svg><span>Fintech</span></li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg><span><span class="lang-en">Case study coming soon</span><span class="lang-es">Caso próximamente</span></span></li>
+            </ul>
+          </div>
+        </a>
+
       </div>
-      <div class="metrics">
-        <div class="metric"><span class="val" data-target="6" data-suffix="x">6x</span><span class="lbl"><span class="lang-en">Engagement growth</span><span class="lang-es">Crecimiento de engagement</span></span></div>
-        <div class="metric"><span class="val" data-target="80" data-suffix="%+">80%+</span><span class="lbl"><span class="lang-en">Retention</span><span class="lang-es">Retención</span></span></div>
-        <div class="metric"><span class="val" data-target="15000" data-suffix="+">15,000+</span><span class="lbl"><span class="lang-en">Active users</span><span class="lang-es">Usuarios activos</span></span></div>
-        <div class="metric"><span class="val" data-prefix="€" data-target="200" data-suffix="K">€200K</span><span class="lbl"><span class="lang-en">Raised</span><span class="lang-es">Levantados</span></span></div>
-        <div class="metric"><span class="val" data-target="2">2</span><span class="lbl"><span class="lang-en">Industry awards</span><span class="lang-es">Premios del sector</span></span></div>
-      </div>
-      <div class="case-link">
-        <a href="case-studies.html#hosstinn"><span class="lang-en">Read the full case study</span><span class="lang-es">Leer el caso completo</span></a>
-      </div>
-    </article>
-    <article class="case">
-      <div class="case-head">
-        <h3>Invictia</h3>
-        <div class="case-tags">
-          <span class="tag"><span class="lang-en">Product &amp; Execution Lead</span><span class="lang-es">Líder de Producto y Ejecución</span></span>
-          <span class="tag live"><span class="lang-en">Completed · 3 months</span><span class="lang-es">Completado · 3 meses</span></span>
-        </div>
-      </div>
-      <div class="ba">
-        <div class="before">
-          <h4><span class="lang-en">Before</span><span class="lang-es">Antes</span></h4>
-          <p class="lang-en">A live app taking real payments, with no focus, no onboarding, and nothing being measured.</p>
-          <p class="lang-es">Una app en producción cobrando pagos reales, sin foco, sin onboarding y sin nada medido.</p>
-        </div>
-        <div>
-          <h4><span class="lang-en">After</span><span class="lang-es">Después</span></h4>
-          <p class="lang-en">A beta ready product, metrics running from day one, 56 blockers classified and tested, and a round ready to raise.</p>
-          <p class="lang-es">Un producto listo para la beta, métricas desde el primer día, 56 bloqueos clasificados y probados, y una ronda lista para levantar.</p>
-        </div>
-      </div>
-      <div class="case-link">
-        <a href="case-study-invictia.html"><span class="lang-en">Read the full case study</span><span class="lang-es">Leer el caso completo</span></a>
-      </div>
-    </article>
-    <p class="honesty">
-      <span class="lang-en">Every engagement is measured from day one. New results are published as they mature.</span>
-      <span class="lang-es">Cada colaboración se mide desde el primer día. Los nuevos resultados se publican a medida que maduran.</span>
-    </p>
+    </div>
   </div>
 </section>
 
 <!-- TESTIMONIALS -->
 <section class="section surface-tint" id="testimonials">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">What founders say</span><span class="lang-es">Lo que dicen los fundadores</span></p>
+    <p class="sec-eyebrow"><span class="lang-en">Testimonials</span><span class="lang-es">Testimonios</span></p>
+    <h2 class="sec-title quotes-title">
+      <span class="lang-en">What founders say</span>
+      <span class="lang-es">Lo que dicen los fundadores</span>
+    </h2>
     <div class="quotes stagger">
       <div class="q-card">
         <blockquote><span class="lang-en">Ismail was the reason we had a product and not just a plan. He turned a rough idea into a roadmap the whole team could actually follow, and he made the hard prioritization calls when they needed making.</span><span class="lang-es">Ismail fue la razón por la que tuvimos un producto y no solo un plan. Convirtió una idea en bruto en un roadmap que todo el equipo podía seguir de verdad, y tomó las decisiones difíciles de priorización cuando había que tomarlas.</span></blockquote>
@@ -582,53 +800,77 @@ footer a:hover{color:var(--paper)}
 <!-- HOW I WORK -->
 <section class="section surface-paper" id="method">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">How I work</span><span class="lang-es">Cómo trabajo</span></p>
-    <p class="section-intro">
-      <span class="lang-en">I don't improvise. Every engagement runs the same documented system.</span>
-      <span class="lang-es">No improviso. Cada colaboración usa el mismo sistema documentado.</span>
-    </p>
-    <div class="process stagger">
-      <div class="proc"><span class="p-num">01</span><h4><span class="lang-en">Diagnose</span><span class="lang-es">Diagnosticar</span></h4><p><span class="lang-en">Product, ops, technical, GTM, leadership.</span><span class="lang-es">Producto, ops, técnica, GTM, liderazgo.</span></p></div>
-      <div class="proc"><span class="p-num">02</span><h4><span class="lang-en">Prioritize</span><span class="lang-es">Priorizar</span></h4><p><span class="lang-en">Impact, effort, leverage, cost of delay.</span><span class="lang-es">Impacto, esfuerzo, apalancamiento, coste de la demora.</span></p></div>
-      <div class="proc"><span class="p-num">03</span><h4><span class="lang-en">Execute</span><span class="lang-es">Ejecutar</span></h4><p><span class="lang-en">Weekly sprints, written updates, named blockers.</span><span class="lang-es">Sprints semanales, updates escritos, bloqueos nombrados.</span></p></div>
-      <div class="proc"><span class="p-num">04</span><h4><span class="lang-en">Scale</span><span class="lang-es">Escalar</span></h4><p><span class="lang-en">Systems that outlast the engagement.</span><span class="lang-es">Sistemas que sobreviven a la colaboración.</span></p></div>
+    <div class="method-head">
+      <p class="sec-eyebrow"><span class="lang-en">How I work</span><span class="lang-es">Cómo trabajo</span></p>
+      <h2 class="sec-title">
+        <span class="lang-en">I don't improvise.</span>
+        <span class="lang-es">No improviso.</span>
+      </h2>
+      <p class="sec-lede">
+        <span class="lang-en">Every engagement runs the same documented system.</span>
+        <span class="lang-es">Cada colaboración usa el mismo sistema documentado.</span>
+      </p>
     </div>
-    <p class="process-more"><a class="text-link" href="about.html#how-i-work"><span class="lang-en">See the full process</span><span class="lang-es">Ver el proceso completo</span></a></p>
+    <div class="process stagger">
+      <div class="proc"><span class="p-num">01</span><h3><span class="lang-en">Diagnose</span><span class="lang-es">Diagnosticar</span></h3><p><span class="lang-en">Product, ops, technical, GTM, leadership.</span><span class="lang-es">Producto, ops, técnica, GTM, liderazgo.</span></p></div>
+      <div class="proc"><span class="p-num">02</span><h3><span class="lang-en">Prioritize</span><span class="lang-es">Priorizar</span></h3><p><span class="lang-en">Impact, effort, leverage, cost of delay.</span><span class="lang-es">Impacto, esfuerzo, apalancamiento, coste de la demora.</span></p></div>
+      <div class="proc"><span class="p-num">03</span><h3><span class="lang-en">Execute</span><span class="lang-es">Ejecutar</span></h3><p><span class="lang-en">Weekly sprints, written updates, named blockers.</span><span class="lang-es">Sprints semanales, updates escritos, bloqueos nombrados.</span></p></div>
+      <div class="proc"><span class="p-num">04</span><h3><span class="lang-en">Scale</span><span class="lang-es">Escalar</span></h3><p><span class="lang-en">Systems that outlast the engagement.</span><span class="lang-es">Sistemas que sobreviven a la colaboración.</span></p></div>
+    </div>
+    <p class="process-more"><a class="text-link" href="about.html#how-i-work"><span class="lang-en">See the full process</span><span class="lang-es">Ver el proceso completo</span><span class="arr" aria-hidden="true">→</span></a></p>
   </div>
 </section>
 
 <!-- SERVICES -->
 <section class="section surface-tint" id="how">
   <div class="wrap reveal">
-    <p class="eyebrow"><span class="lang-en">How we work together</span><span class="lang-es">Cómo trabajamos juntos</span></p>
-    <p class="section-intro">
-      <span class="lang-en">Three ways to engage. Each starts with a short discovery call.</span>
-      <span class="lang-es">Tres formas de colaborar. Cada una empieza con una breve llamada.</span>
-    </p>
+    <div class="offers-head">
+      <p class="sec-eyebrow"><span class="lang-en">How we work together</span><span class="lang-es">Cómo trabajamos juntos</span></p>
+      <h2 class="sec-title">
+        <span class="lang-en">Three ways to engage.</span>
+        <span class="lang-es">Tres formas de colaborar.</span>
+      </h2>
+      <p class="sec-lede">
+        <span class="lang-en">Each starts with a short discovery call.</span>
+        <span class="lang-es">Cada una empieza con una breve llamada.</span>
+      </p>
+    </div>
     <div class="offers stagger">
       <div class="offer">
-        <span class="kicker"></span>
+        <div class="offer-top">
+          <!-- Lucide: zap -->
+          <span class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg></span>
+          <span class="kicker"><span class="lang-en">2 to 4 weeks</span><span class="lang-es">2 a 4 semanas</span></span>
+        </div>
         <h3><span class="lang-en">Startup Execution Sprint</span><span class="lang-es">Sprint de Ejecución</span></h3>
         <p class="tagline"><span class="lang-en">Diagnose bottlenecks. Clarify priorities. Create momentum.</span><span class="lang-es">Diagnostica cuellos de botella. Aclara prioridades. Crea impulso.</span></p>
         <p class="lang-en">Fixed scope, two to four weeks. The ideal entry point.</p>
         <p class="lang-es">Alcance definido, de dos a cuatro semanas. El punto de entrada ideal.</p>
-        <div class="offer-cta"><a class="text-link" href="work-with-me.html#sprint"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span></a></div>
+        <div class="offer-cta"><a class="text-link" href="work-with-me.html#sprint"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span><span class="arr" aria-hidden="true">→</span></a></div>
       </div>
       <div class="offer core">
-        <span class="kicker"><span class="lang-en">Core offer</span><span class="lang-es">Oferta principal</span></span>
+        <div class="offer-top">
+          <!-- Lucide: users -->
+          <span class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+          <span class="kicker"><span class="lang-en">Core offer</span><span class="lang-es">Oferta principal</span></span>
+        </div>
         <h3><span class="lang-en">Product &amp; Execution Lead</span><span class="lang-es">Líder de Producto y Ejecución</span></h3>
         <p class="tagline"><span class="lang-en">Ongoing product leadership without a full-time hire.</span><span class="lang-es">Liderazgo de producto continuo sin una contratación a tiempo completo.</span></p>
         <p class="lang-en">As your fractional startup operator I own strategy, prioritization, and the execution rhythm.</p>
         <p class="lang-es">Como operador fraccional asumo la estrategia, la priorización y el ritmo de ejecución.</p>
-        <div class="offer-cta"><a class="text-link" href="work-with-me.html#fractional"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span></a></div>
+        <div class="offer-cta"><a class="text-link" href="work-with-me.html#fractional"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span><span class="arr" aria-hidden="true">→</span></a></div>
       </div>
       <div class="offer">
-        <span class="kicker"></span>
+        <div class="offer-top">
+          <!-- Lucide: message-circle -->
+          <span class="offer-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></svg></span>
+          <span class="kicker"><span class="lang-en">As needed</span><span class="lang-es">Según necesidad</span></span>
+        </div>
         <h3><span class="lang-en">Founder Advisory</span><span class="lang-es">Asesoría al Fundador</span></h3>
         <p class="tagline"><span class="lang-en">A calm, experienced product leader on call.</span><span class="lang-es">Un líder de producto sereno y con experiencia, disponible cuando lo necesites.</span></p>
         <p class="lang-en">Strategy calls, roadmap reviews, hiring guidance. As needed.</p>
         <p class="lang-es">Llamadas de estrategia, revisiones de roadmap, orientación en contratación. Según necesidad.</p>
-        <div class="offer-cta"><a class="text-link" href="work-with-me.html#advisory"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span></a></div>
+        <div class="offer-cta"><a class="text-link" href="work-with-me.html#advisory"><span class="lang-en">Learn more</span><span class="lang-es">Saber más</span><span class="arr" aria-hidden="true">→</span></a></div>
       </div>
     </div>
   </div>
@@ -637,19 +879,33 @@ footer a:hover{color:var(--paper)}
 <!-- FINAL CTA -->
 <section class="cta-band">
   <div class="wrap reveal">
-    <h2 class="display"><span class="lang-en">Ready to build with more clarity?</span><span class="lang-es">¿Listo para construir con más claridad?</span></h2>
+    <p class="sec-eyebrow"><span class="lang-en">Let's talk</span><span class="lang-es">Hablemos</span></p>
+    <h2><span class="lang-en">Ready to build with more <span class="accent">clarity?</span></span><span class="lang-es">¿Listo para construir con más <span class="accent">claridad?</span></span></h2>
     <p><span class="lang-en">I only work with a handful of startups at a time, so the focus is real. If you are serious about building the right product, let's talk.</span><span class="lang-es">Solo trabajo con un puñado de startups a la vez, para que el foco sea real. Si te tomas en serio construir el producto correcto, hablemos.</span></p>
-    <a class="btn" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span></a>
+    <div class="cta-actions">
+      <a class="hero-btn hero-btn-primary" data-booking data-booking-fallback="work-with-me.html#inquiry" href="work-with-me.html#inquiry"><span class="lang-en">Book a call</span><span class="lang-es">Reserva una llamada</span><span class="arr" aria-hidden="true">→</span></a>
+      <a class="hero-btn hero-btn-secondary" href="case-studies.html"><span class="lang-en">See my work</span><span class="lang-es">Ver mi trabajo</span></a>
+    </div>
   </div>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="wrap">
-    <div class="foot-links">
-      <a href="https://www.linkedin.com/in/ismail-dinia-pmp/" target="_blank" rel="noopener">LinkedIn</a>
-      <a href="mailto:hello@ismaildinia.com"><span class="lang-en">Email</span><span class="lang-es">Correo</span></a>
-      <a href="resources.html#newsletter"><span class="lang-en">Newsletter</span><span class="lang-es">Boletín</span></a>
+    <div class="foot-top">
+      <a class="brand" href="index.html" aria-label="Ismail Dinia, home">
+        <span class="brand-name">Ismail Dinia</span>
+        <span class="brand-divider" aria-hidden="true"></span>
+        <span class="brand-tag">
+          <span class="lang-en">Product Strategy &amp; Execution<br>for Early-Stage Startups</span>
+          <span class="lang-es">Estrategia de Producto y Ejecución<br>para Startups Early-Stage</span>
+        </span>
+      </a>
+      <div class="foot-links">
+        <a href="https://www.linkedin.com/in/ismail-dinia-pmp/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="mailto:hello@ismaildinia.com"><span class="lang-en">Email</span><span class="lang-es">Correo</span></a>
+        <a href="resources.html#newsletter"><span class="lang-en">Newsletter</span><span class="lang-es">Boletín</span></a>
+      </div>
     </div>
     <div class="foot-inner">
       <span>© <span id="year"></span> Ismail Dinia</span>
@@ -660,21 +916,7 @@ footer a:hover{color:var(--paper)}
 
 <script>
 var BOOKING_URL = "https://calendar.app.google/v88QGjvPbbctwXkm9";
-var MARQUEE = {
-  en: ["PRODUCT","EXECUTION","FOUNDER SUPPORT","STRATEGY INTO SHIPPED PRODUCT","SYSTEMS THAT OUTLAST ME"],
-  es: ["PRODUCTO","EJECUCIÓN","APOYO AL FUNDADOR","DE LA ESTRATEGIA AL PRODUCTO","SISTEMAS QUE ME SOBREVIVEN"]
-};
-function buildMarquee(lang){
-  var track = document.getElementById("marquee-track");
-  if (!track) return;
-  var items = MARQUEE[lang], seq = "";
-  for (var r = 0; r < 2; r++){
-    for (var i = 0; i < items.length * 2; i++){
-      seq += "<span>" + items[i % items.length] + " ·&nbsp;</span>";
-    }
-  }
-  track.innerHTML = seq;
-}
+
 function rewriteLinks(lang){
   document.querySelectorAll("a[href]").forEach(function(a){
     var href = a.getAttribute("href");
@@ -692,7 +934,6 @@ function setLang(lang){
   var be = document.getElementById("btn-en"), bs = document.getElementById("btn-es");
   if (be) be.setAttribute("aria-pressed", lang === "en");
   if (bs) bs.setAttribute("aria-pressed", lang === "es");
-  buildMarquee(lang);
   rewriteLinks(lang);
 }
 var params = new URLSearchParams(window.location.search);
@@ -733,6 +974,16 @@ if (burger){
     burger.setAttribute("aria-expanded", open);
   });
 }
+var navLinks = document.getElementById("nav-links");
+function closeMenu(){
+  if (!navLinks || !burger) return;
+  navLinks.classList.remove("open");
+  burger.setAttribute("aria-expanded", "false");
+}
+if (navLinks){
+  navLinks.querySelectorAll("a").forEach(function(a){ a.addEventListener("click", closeMenu); });
+}
+document.addEventListener("keydown", function(e){ if (e.key === "Escape") closeMenu(); });
 var yr = document.getElementById("year");
 if (yr) yr.textContent = new Date().getFullYear();
 var io = new IntersectionObserver(function(entries){
